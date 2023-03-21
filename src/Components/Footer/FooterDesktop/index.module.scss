@@ -1,0 +1,122 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscribe {
+
+}
+
+.item {
+  &__socialNet {
+    a:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__btn {
+    background: #FFC85E;
+    border-radius: 79px;
+    box-sizing: border-box;
+    margin-top: 20px;
+
+    & > a {
+      padding: 21px 51px 21px 51px;
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 17px;
+      color: #FFFFFF;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > img {
+        margin-left: 15px;
+      }
+    }
+
+  }
+
+  &__title {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+  }
+
+  &__link {
+    margin-top: 20px;
+
+    & > a {
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 150%;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+  }
+}
+
+.feedback {
+  margin-top: 20px;
+  margin-bottom: 25px;
+
+  &__phone {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: #FFFFFF;
+  }
+
+  &__time {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  &__call {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 150%;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+  }
+}
+
+.email {
+  margin-bottom: 25px;
+
+  & > p:first-child {
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFFFFF;
+  }
+  & > p:last-child {
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+    color: #FFFFFF;
+  }
+}

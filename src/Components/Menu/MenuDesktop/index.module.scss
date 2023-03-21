@@ -1,0 +1,46 @@
+.main{
+  display: flex;
+  min-height: 61px;
+  align-items: center;
+  justify-content: space-between;
+}
+.contacts{
+  display: flex;
+}
+.links {
+  display: flex;
+  & > .item:not(:last-child) {
+    padding-right: 30px;
+    min-height: 29px;
+    border-right: 1px dashed #dadde1;
+  }
+  .item:not(:first-child) {
+    padding-left: 30px;
+  }
+
+}
+
+
+.address{
+  max-height: 39px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px dashed #dadde1;
+  padding-right: 20px;
+  &__img{
+    margin-right: 18px;
+  }
+}
+
+
+.email{
+  max-height: 39px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  &__img{
+    margin-right: 16px;
+  }
+}
