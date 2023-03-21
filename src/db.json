@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "url": "https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://eclips.by/wp-content/uploads/2020/12/Stirka-UNIVERSAL-2-1.png",
+      "title": "AOS Ср-во для мытья посуды Апельсин+мята",
+      "typeSize": "мл",
+      "size": 450,
+      "barcode": "4604049097548",
+      "manufacturer": "Нэфис",
+      "brand": "AOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
+      "price": 48.12,
+      "currencyType": "₸"
+    },
+    {
+      "id": 2,
+      "url": "https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://eclips.by/wp-content/uploads/2020/12/Stirka-UNIVERSAL-2-1.png",
+      "title": "AOS Ср-во для мытья посуды Мята",
+      "typeSize": "мл",
+      "size": 400,
+      "barcode": "4604049097549",
+      "manufacturer": "Нэфис",
+      "brand": "AOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
+      "price": 52.12,
+      "currencyType": "₸"
+    }
+  ]
+}

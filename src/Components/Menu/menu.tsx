@@ -1,5 +1,5 @@
 import React from "react";
-import wrapper from "../../styles/wrapper.module.scss"
+import wrapper from "../../Styles/wrapper.module.scss"
 import styles from "./index.module.scss"
 import MenuDesktop from "./MenuDesktop/menuDesktop";
 

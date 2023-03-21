@@ -4,7 +4,58 @@
 }
 
 .subscribe {
+  &__text {
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #FFFFFF;
+    max-width: 320px;
+    margin-bottom: 45px;
+    margin-top: 15px;
+  }
+  &__salesText{
+    margin-bottom: 14px;
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #FFFFFF;
 
+  }
+  &__input{
+    width: 282px;
+    height: 59px;
+    padding: 10px 10px 10px 20px;
+    background: #FFFFFF;
+    border-radius: 36px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    & > input {
+      border: none;
+      color: #5C6370;
+      opacity: 0.6;
+      &:focus{
+        outline: none;
+      }
+    }
+    & > button {
+      height: 39px;
+      width: 39px;
+      border: none;
+      background: #FFC85E;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .item {
@@ -104,15 +155,16 @@
   margin-bottom: 25px;
 
   & > p:first-child {
-    font-family: 'Inter',serif;
+    font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 18px;
     color: #FFFFFF;
   }
+
   & > p:last-child {
-    font-family: 'Inter',serif;
+    font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 300;
     font-size: 12px;

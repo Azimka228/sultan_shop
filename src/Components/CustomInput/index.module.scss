@@ -1,0 +1,30 @@
+.main{
+  height: 59px;
+  padding: 10px 10px 10px 20px;
+  box-sizing: border-box;
+  background: #EDEDED;
+  border-radius: 36px;
+  display: flex;
+  justify-content: space-between;
+  & > input {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #5C6370;
+    opacity: 0.6;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
+  & > button {
+    border: none;
+    min-width: 39px;
+    min-height: 39px;
+    border-radius: 50%;
+    background: #FFC85E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

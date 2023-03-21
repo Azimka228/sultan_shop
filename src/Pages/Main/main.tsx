@@ -1,9 +1,10 @@
 import React from "react";
+import PromotionalGoods from "./PromotionalGoods/promotionalGoods";
 
 const Main = () => {
 	return (
-		<div>
-			main
+		<div >
+		<PromotionalGoods/>
 		</div>
 	);
 };

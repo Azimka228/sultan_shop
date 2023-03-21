@@ -8,6 +8,7 @@ import telegramLogo from "../telegram.svg"
 import visaLogo from "../visa.svg"
 import mastercardLogo from "../mastercard.svg"
 import subscribeMainLogo from '../logo.svg'
+import buttonLogo from '../button.svg'
 
 export const FooterDesktop = () => {
 	return (
@@ -17,11 +18,14 @@ export const FooterDesktop = () => {
 					<img src={subscribeMainLogo} alt="log"/>
 				</div>
 				<div className={styles.subscribe__text}>
-					<p>	Компания «Султан» — снабжаем розничные магазины товарами
+					<p>	Компания «Султан» — снабжаем розничные магазины товарами<br/>
 						"под ключ" в Кокчетаве и Акмолинской области</p>
 				</div>
-				<p>Подпишись на скидки и акции</p>
-
+				<p className={styles.subscribe__salesText}>Подпишись на скидки и акции</p>
+				<div className={styles.subscribe__input}>
+					<input type="text" placeholder="Введите ваш E-mail"/>
+					<button><img src={buttonLogo} alt="buttonLogo"/></button>
+				</div>
 			</div>
 			<div className={styles.item}>
 				<div className={styles.item__title}>Меню сайта:</div>

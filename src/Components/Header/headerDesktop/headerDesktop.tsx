@@ -7,8 +7,12 @@ import download from "./download.svg"
 import basket from "./basket.svg"
 import {Link} from "react-router-dom";
 import {HeaderLinks} from "../../links";
+import {CustomInput} from "../../CustomInput/customInput";
 
 const HeaderDesktop = () => {
+	const handleInputSearch = (value: string) => {
+		alert(value)
+	}
 	return (
 		<div className={styles.main}>
 			<div className={styles.logo}>
@@ -21,7 +25,7 @@ const HeaderDesktop = () => {
 				</Link>
 			</div>
 			<div className={styles.input}>
-				<input type="text" placeholder="Поиск..."/>
+				<CustomInput InputSubmit={handleInputSearch} width={263}/>
 			</div>
 			<div className={styles.operator}>
 				<div className={styles.operator__description}>
