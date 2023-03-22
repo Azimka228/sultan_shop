@@ -18,7 +18,6 @@ const HeaderDesktop = () => {
 	const navigate = useNavigate()
 
 	const handleInputSearch = (value: string) => {
-		alert(value)
 	}
 
 	const handleNavigateToBasket = () => {
@@ -31,7 +30,7 @@ const HeaderDesktop = () => {
 			</div>
 			<div className={styles.btn}>
 				<Link to={AppLinks.catalog}>
-					Каталог
+					<p>Каталог</p>
 					<img src={catalog} alt="catalog"/>
 				</Link>
 			</div>
@@ -40,9 +39,9 @@ const HeaderDesktop = () => {
 			</div>
 			<div className={styles.operator}>
 				<div className={styles.operator__description}>
-					<p><b>+7 (777) 490-00-91</b></p>
-					<p>время работы: 9:00-20:00</p>
-					<Link to={"/call"}>Заказать звонок</Link>
+					<p className={styles.operator__number}><b>+7 (777) 490-00-91</b></p>
+					<p className={styles.operator__workTime}>время работы: 9:00-20:00</p>
+					<Link to={"#"}>Заказать звонок</Link>
 				</div>
 				<div className={styles.operator__logo}>
 					<img src={operatorLogo} alt="operator logo"/>
@@ -51,19 +50,19 @@ const HeaderDesktop = () => {
 			</div>
 			<div className={styles.border}></div>
 			<div className={styles.btn}>
-				<Link to={AppLinks.priceList}>
-					Прайс-лист
+				<Link to={'#'}>
+					<p>Прайс-лист</p>
 					<img src={download} alt="download"/>
 				</Link>
 			</div>
 			<div className={styles.border}></div>
 			<div className={styles.basket} onClick={handleNavigateToBasket}>
-					<div>
-						<img src={basket} alt="3"/>
-					</div>
-					<div className={styles.basket__ellipse}>
-						{basketAmountItems}
-					</div>
+				<div>
+					<img src={basket} alt="3"/>
+				</div>
+				<div className={styles.basket__ellipse}>
+					{basketAmountItems}
+				</div>
 			</div>
 			<div className={styles.basket__text}>
 				<div className={styles.basket__title}>

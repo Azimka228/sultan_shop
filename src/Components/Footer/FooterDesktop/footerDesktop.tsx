@@ -63,7 +63,7 @@ export const FooterDesktop = () => {
 			<div className={styles.item}>
 				<div className={styles.item__title}>Скачать прайс-лист:</div>
 				<div className={styles.item__btn}>
-					<Link to={AppLinks.priceList}>
+					<Link to={"#"}>
 						Прайс-лист
 						<img src={download} alt="download"/>
 					</Link>
