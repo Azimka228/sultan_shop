@@ -2,6 +2,7 @@ import React from "react";
 import {useAppSelector} from "../../Store/hooks/useAppSelector";
 import wrapper from "../../Styles/wrapper.module.scss";
 import styles from "./index.module.scss"
+import breadCrumbs from "../../Styles/breadCrumbs.module.scss";
 import {Link} from "react-router-dom";
 import {AppLinks} from "../../Routes/links";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
@@ -27,13 +28,13 @@ const Catalog = () => {
 	return (
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>
-				<div className={styles.navigate}>
-					<div className={styles.navigate__item}>
+				<div className={breadCrumbs.navigate}>
+					<div className={breadCrumbs.navigate__item}>
 						<Link to={AppLinks.home}>Главная</Link>
 					</div>
-					<div className={styles.navigate__item}>
+					<div className={breadCrumbs.navigate__item}>
 						<Link to={AppLinks.catalog} onClick={handleDisablePageNavigation}
-												className={styles.navigate__item_disabled}>Каталог</Link>
+												className={breadCrumbs.navigate__item_disabled}>Каталог</Link>
 					</div>
 				</div>
 				<div className={styles.header}>

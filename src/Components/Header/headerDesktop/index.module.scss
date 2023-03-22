@@ -27,14 +27,18 @@
   border-right: 1px dashed #dadde1;
   margin: 0 25px 0 25px;
 }
-.operator{
+
+.operator {
   display: flex;
+
   &__logo {
     position: relative;
+
     & > img {
       border-radius: 50%;
     }
-    &_online{
+
+    &_online {
       position: absolute;
       width: 8px;
       height: 8px;
@@ -51,8 +55,12 @@
   position: relative;
   width: 40px;
 
+  &:hover {
+    cursor: pointer
+  }
+
   &__text {
-  margin-left: 28px;
+    margin-left: 28px;
   }
 
   &__ellipse {
@@ -75,16 +83,18 @@
     color: #FFFFFF;
     position: absolute;
   }
-  &__title{
-    font-family: 'Inter',serif;
+
+  &__title {
+    font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 300;
     font-size: 12px;
     line-height: 150%;
     color: #3F4E65;
   }
+
   &__price {
-    font-family: 'Inter',serif;
+    font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;

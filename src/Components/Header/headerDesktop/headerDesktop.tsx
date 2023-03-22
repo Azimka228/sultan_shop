@@ -5,13 +5,24 @@ import catalog from "./catalog.svg"
 import operatorLogo from "./operatorLogo.svg"
 import download from "./download.svg"
 import basket from "./basket.svg"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AppLinks} from "../../../Routes/links";
 import {CustomInput} from "../../CustomInput/customInput";
+import {useAppSelector} from "../../../Store/hooks/useAppSelector";
 
 const HeaderDesktop = () => {
+	const basketBalance = useAppSelector(state => state.basket.balance)
+	const basketAmountItems = useAppSelector(state => state.basket.amountItems)
+	const basketWallet = useAppSelector(state => state.basket.wallet)
+
+	const navigate = useNavigate()
+
 	const handleInputSearch = (value: string) => {
 		alert(value)
+	}
+
+	const handleNavigateToBasket = () => {
+		navigate(AppLinks.basket)
 	}
 	return (
 		<div className={styles.main}>
@@ -46,12 +57,12 @@ const HeaderDesktop = () => {
 				</Link>
 			</div>
 			<div className={styles.border}></div>
-			<div className={styles.basket}>
+			<div className={styles.basket} onClick={handleNavigateToBasket}>
 					<div>
 						<img src={basket} alt="3"/>
 					</div>
 					<div className={styles.basket__ellipse}>
-						3
+						{basketAmountItems}
 					</div>
 			</div>
 			<div className={styles.basket__text}>
@@ -59,7 +70,7 @@ const HeaderDesktop = () => {
 					Корзина
 				</div>
 				<div className={styles.basket__price}>
-					12 478 ₸
+					{basketBalance.toFixed(2)} {basketWallet}
 				</div>
 			</div>
 		</div>
