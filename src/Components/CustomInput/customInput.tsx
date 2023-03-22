@@ -14,6 +14,9 @@ export const CustomInput:FC<CustomInputPropsType> = ({
 	const [inputValue, setInputValue] = useState<string>('')
 	const handleInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value)
+		if (e.target.value === "") {
+			InputSubmit("")
+		}
 	}
 	const handleInputSubmit = () => {
 			InputSubmit(inputValue)
