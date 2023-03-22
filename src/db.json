@@ -1,7 +1,8 @@
 {
-  "items": [
+  "productsList": [
     {
       "id": 1,
+      "itemType": "Уход за телом",
       "url": "https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://eclips.by/wp-content/uploads/2020/12/Stirka-UNIVERSAL-2-1.png",
       "title": "AOS Ср-во для мытья посуды Апельсин+мята",
       "typeSize": "мл",
@@ -15,15 +16,44 @@
     },
     {
       "id": 2,
+      "itemType": "Уход за руками",
       "url": "https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://eclips.by/wp-content/uploads/2020/12/Stirka-UNIVERSAL-2-1.png",
-      "title": "AOS Ср-во для мытья посуды Мята",
-      "typeSize": "мл",
+      "title": "AOS Ср-во для мытья посуды Апельсин",
+      "typeSize": "мг",
       "size": 400,
       "barcode": "4604049097549",
+      "manufacturer": "Maestro",
+      "brand": "COS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
+      "price": 52.12,
+      "currencyType": "₸"
+    },
+    {
+      "id": 3,
+      "itemType": "Уход за ногами",
+      "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
+      "title": "AOS Ср-во для ухода за ногами",
+      "typeSize": "мг",
+      "size": 300,
+      "barcode": "4604049097550",
       "manufacturer": "Нэфис",
       "brand": "AOS",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
-      "price": 52.12,
+      "price": 42.12,
+      "currencyType": "₸"
+    },
+    {
+      "id": 4,
+      "itemType": "Уход за ногами",
+      "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
+      "title": "AOS Ср-во для ухода за ногами",
+      "typeSize": "мл",
+      "size": 200,
+      "barcode": "4604049097551",
+      "manufacturer": "Boom",
+      "brand": "AOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
+      "price": 32.12,
       "currencyType": "₸"
     }
   ]

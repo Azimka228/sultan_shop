@@ -5,12 +5,16 @@ import "./Styles/normalize.scss"
 import Header from "./Components/Header/header";
 import {AppRoutes} from "./Routes/appRoutes";
 import {Footer} from "./Components/Footer/footer";
-import data from './db.json'
+import data from "./db.json"
+import {useAppDispatch} from "./Store/hooks/useAppDispatch";
+import {setProductData} from "./Store/slices/productListSlice";
 
 function App() {
+	const dispatch = useAppDispatch()
 	useEffect(()=>{
-		console.log(data.items)
+		dispatch(setProductData(data))
 	},[])
+
 	return (
 		<React.Fragment>
 			<Menu/>

@@ -3,9 +3,9 @@ import PromotionalGoods from "./PromotionalGoods/promotionalGoods";
 
 const Main = () => {
 	return (
-		<div >
+		<React.Fragment>
 		<PromotionalGoods/>
-		</div>
+		</React.Fragment>
 	);
 };
 

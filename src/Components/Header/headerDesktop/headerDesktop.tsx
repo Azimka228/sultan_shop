@@ -6,7 +6,7 @@ import operatorLogo from "./operatorLogo.svg"
 import download from "./download.svg"
 import basket from "./basket.svg"
 import {Link} from "react-router-dom";
-import {HeaderLinks} from "../../links";
+import {AppLinks} from "../../../Routes/links";
 import {CustomInput} from "../../CustomInput/customInput";
 
 const HeaderDesktop = () => {
@@ -16,10 +16,10 @@ const HeaderDesktop = () => {
 	return (
 		<div className={styles.main}>
 			<div className={styles.logo}>
-				<Link to={HeaderLinks.home}> <img src={logo} alt="logo"/></Link>
+				<Link to={AppLinks.home}> <img src={logo} alt="logo"/></Link>
 			</div>
 			<div className={styles.btn}>
-				<Link to={HeaderLinks.catalog}>
+				<Link to={AppLinks.catalog}>
 					Каталог
 					<img src={catalog} alt="catalog"/>
 				</Link>
@@ -40,7 +40,7 @@ const HeaderDesktop = () => {
 			</div>
 			<div className={styles.border}></div>
 			<div className={styles.btn}>
-				<Link to={HeaderLinks.priceList}>
+				<Link to={AppLinks.priceList}>
 					Прайс-лист
 					<img src={download} alt="download"/>
 				</Link>

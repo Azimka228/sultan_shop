@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss"
 import {Link} from "react-router-dom";
-import {HeaderLinks} from "../../links";
+import {AppLinks} from "../../../Routes/links";
 import download from "../../Header/headerDesktop/download.svg";
 import whatsappLogo from "../whatsapp.svg"
 import telegramLogo from "../telegram.svg"
@@ -63,7 +63,7 @@ export const FooterDesktop = () => {
 			<div className={styles.item}>
 				<div className={styles.item__title}>Скачать прайс-лист:</div>
 				<div className={styles.item__btn}>
-					<Link to={HeaderLinks.priceList}>
+					<Link to={AppLinks.priceList}>
 						Прайс-лист
 						<img src={download} alt="download"/>
 					</Link>

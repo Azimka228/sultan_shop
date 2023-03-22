@@ -5,7 +5,7 @@ type CustomTitlePropsType = {
 	text: string
 }
 
-export const CustomTitle:FC<CustomTitlePropsType> = ({text}) => {
+export const ColoredCustomTitle:FC<CustomTitlePropsType> = ({text}) => {
 	const [firstWord,secondWord] = text.split(' ')
 	return (
 		<div className={styles.main}>

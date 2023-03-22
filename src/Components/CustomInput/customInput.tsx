@@ -16,9 +16,7 @@ export const CustomInput:FC<CustomInputPropsType> = ({
 		setInputValue(e.target.value)
 	}
 	const handleInputSubmit = () => {
-		if (inputValue.length > 0) {
 			InputSubmit(inputValue)
-		}
 	}
 	return (
 		<div style={{width: `${width}px`}} className={styles.main}>
