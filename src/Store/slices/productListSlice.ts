@@ -5,7 +5,7 @@ export type ProductDataType = {
 	itemType: string
 	url: string
 	title: string
-	typeSize: string
+	typeSize: itemWeightType | itemVolumeLiquidType
 	size: number
 	barcode: string
 	manufacturer: string
@@ -14,6 +14,10 @@ export type ProductDataType = {
 	price: number
 	currencyType: string
 }
+
+export type itemWeightType = "кг" | "г" | "мг"
+export type itemVolumeLiquidType = "мл" | "л"
+
 
 const initialState: InitialAppStateType = {
 	productsList: []

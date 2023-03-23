@@ -1,14 +1,15 @@
-.checkout{
+.checkout {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 100px;
-  & > button{
+
+  & > button {
     border: none;
     background: #FFC85E;
     border-radius: 79px;
-    font-family: 'Inter',serif;
+    font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -16,9 +17,18 @@
     color: #FFFFFF;
     padding: 21px 38px 21px 38px;
     text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:disabled:hover {
+      cursor: default;
+    }
   }
+
   & > p {
-    font-family: 'Inter',serif;
+    font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -26,14 +36,21 @@
     color: #111111;
   }
 }
-.cards{
+
+.cards {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  & > div{
+  max-height: 873px;
+  overflow: auto;
+
+
+
+  & > div {
     border-bottom: 1px dashed rgba(63, 78, 101, 0.3);
   }
-  & > div:first-child{
+
+  & > div:first-child {
     border-top: 1px dashed rgba(63, 78, 101, 0.3);
   }
 }

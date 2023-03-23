@@ -1,11 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {itemVolumeLiquidType, itemWeightType} from "./productListSlice";
 
 export type BasketDataType = {
 	id: number
 	itemType: string
 	url: string
 	title: string
-	typeSize: string
+	typeSize: itemWeightType | itemVolumeLiquidType
 	size: number
 	barcode: string
 	manufacturer: string
@@ -39,16 +40,16 @@ const slice = createSlice({
 			if (isItemInState) {
 				state.items = state.items.map((el) => {
 					if (el.id === action.payload.item.id && el.count) {
-						el.count = el.count + 1
+						el.count = el.count + action.payload.item.count
 					}
 					return el
 				})
 			} else {
-				state.items.push({...action.payload.item, count: 1})
+				state.items.push({...action.payload.item, count: action.payload.item.count})
 			}
 
-			state.amountItems += 1
-			state.balance += action.payload.item.price
+			state.amountItems += action.payload.item.count
+			state.balance += action.payload.item.price * action.payload.item.count
 		},
 		deleteBasketItem(state, action: PayloadAction<{ item: BasketDataType }>) {
 			state.items = state.items.filter((el) => (el.id !== action.payload.item.id))
@@ -61,7 +62,7 @@ const slice = createSlice({
 					return {...el, count: el.count - 1}
 				}
 				return el
-			}).filter( el => (el.count >= 1))
+			}).filter(el => (el.count >= 1))
 			state.amountItems -= 1
 			state.balance -= action.payload.item.price
 		},
@@ -76,8 +77,13 @@ const slice = createSlice({
 			state.amountItems += 1
 			state.balance += action.payload.item.price
 		},
+		clearBasket(state) {
+			state.items = []
+			state.amountItems = 0
+			state.balance = 0
+		},
 	}
 })
 
 export const basketReducer = slice.reducer
-export const {setBasketItem, deleteBasketItem, decreaseItemCount, increaseItemCount} = slice.actions
+export const {setBasketItem, deleteBasketItem, decreaseItemCount, increaseItemCount,clearBasket} = slice.actions

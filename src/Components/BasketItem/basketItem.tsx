@@ -4,6 +4,7 @@ import {BasketDataType, decreaseItemCount, deleteBasketItem, increaseItemCount} 
 import {useAppSelector} from "../../Store/hooks/useAppSelector";
 import deleteIcon from "./delete.svg"
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
+import {ItemSize} from "../ItemSize/itemSize";
 
 type BasketItemPropsType = {
 	data: BasketDataType
@@ -27,21 +28,21 @@ export const BasketItem: FC<BasketItemPropsType> = ({data}) => {
 			<div className={styles.logo}>
 				<img src={data.url} alt="img"/>
 			</div>
-			<div>
-				<div>{data.size} {data.typeSize}</div>
-				<div>{data.title}</div>
-				<div>{data.description}</div>
+			<div className={styles.information}>
+				<ItemSize size={data.size} typeSize={data.typeSize}/>
+				<div className={styles.title}>{data.brand} {data.title}</div>
+				<div className={styles.description}>{data.description}</div>
 			</div>
 			<div className={styles.main__settings}>
-				<div>
+				<div className={styles.calculateBTNS}>
 					<button onClick={handleDecreaseItemCount}>-</button>
-					{data.count}
+					<p>{data.count}</p>
 					<button onClick={handleIncreaseItemCount}>+</button>
 				</div>
-				<div>
+				<div className={styles.price}>
 					<p>{data.price.toFixed(2)} {basketWallet}</p>
 				</div>
-				<div>
+				<div className={styles.deleteBTN}>
 					<button onClick={handleDeleteItem}><img src={deleteIcon} alt="deleteIcon"/></button>
 				</div>
 			</div>

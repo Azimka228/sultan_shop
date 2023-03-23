@@ -1,0 +1,66 @@
+
+.overlay {
+  overflow: hidden;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  box-sizing: border-box;
+  padding: 36px;
+  z-index: 101;
+  width: 735px;
+  height: 424px;
+  background: #FFFFFF;
+  border-radius: 8px;
+}
+
+.closeBTN {
+  display: flex;
+  justify-content: end;
+  & > button {
+    border: none;
+    background: none;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+}
+.logo{
+  display: flex;
+  justify-content: center;
+  margin-top: 67px;
+  margin-bottom: 24px;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  font-family: 'Inter',serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 20px;
+}
+.description{
+  display: flex;
+  justify-content: center;
+  font-family: 'Inter',serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 120%;
+  text-align: center;
+  color: #3F4E65;
+}

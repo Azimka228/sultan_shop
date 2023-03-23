@@ -1,18 +1,109 @@
-.main{
+.main {
   display: flex;
   padding: 50px 0 50px 0;
-  &__settings{
+
+  &__settings {
     display: flex;
     align-items: center;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      height: 49px;
+      padding-left: 44px;
+      border-left: 1px dashed rgba(63, 78, 101, 0.3);
+    }
+
+    & > div:not(:last-child) {
+      padding-right: 44px;
+    }
   }
 }
-.logo{
+
+.logo {
   max-height: 191px;
   max-width: 281px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   & > img {
     height: 100%;
+  }
+}
+
+.information {
+  max-width: 400px;
+}
+
+.title {
+  font-family: 'Inter', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #111111;
+  margin: 10px 0 10px 0;
+}
+
+.description {
+  font-family: 'Inter', serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 150%;
+  color: #3F4E65;
+}
+
+.calculateBTNS {
+  display: flex;
+
+  & > button {
+    border: none;
+    padding: 4px 13px 4px 13px;
+    background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+    border-radius: 1000px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  & > p {
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 130%;
+    color: #3F4E65;
+    padding: 0 21px 0 21px;
+  }
+
+}
+
+.price {
+  font-family: 'Inter', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 130%;
+  color: #111111;
+}
+
+.deleteBTN {
+  display: flex;
+  align-items: center;
+
+  & > button {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background: #FFC85E;
+    border-radius: 79px;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

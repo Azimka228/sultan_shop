@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import wrapper from "../../Styles/wrapper.module.scss";
 import {useAppSelector} from "../../Store/hooks/useAppSelector";
 import styles from "./index.module.scss";
@@ -8,11 +8,16 @@ import {AppLinks} from "../../Routes/links";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
 import {BasketItem} from "../../Components/BasketItem/basketItem";
 import {EmptyBasketItem} from "../../Components/EmptyBasketItem/emptyBasketItem";
+import {ModalWindow} from "../../Components/ModalWindow/modalWindow";
+import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
+import {clearBasket} from "../../Store/slices/basketSlice";
 
 const Basket = () => {
 	const basketBalance = useAppSelector(state => state.basket.balance)
 	const basketWallet = useAppSelector(state => state.basket.wallet)
 	const basketItems = useAppSelector(state => state.basket.items)
+
+	const dispatch = useAppDispatch()
 
 	const handleDisablePageNavigation = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 		e.preventDefault()
@@ -23,7 +28,15 @@ const Basket = () => {
 	})
 
 	const cardsBody = mappedBasketItems.length ? mappedBasketItems : <EmptyBasketItem/>
+	const [isOpenModal, setIsOpenModal] = useState(false)
+	const hanldeChangeStateModal = () => {
+		setIsOpenModal(!isOpenModal)
+	}
 
+	const handleConfirmOrder = () => {
+		setIsOpenModal(true)
+		dispatch(clearBasket())
+	}
 	return (
 		<div>
 			<div className={wrapper.wrapper}>
@@ -41,7 +54,8 @@ const Basket = () => {
 					{cardsBody}
 				</div>
 				<div className={styles.checkout}>
-					<button>Оформить заказ</button>
+					<ModalWindow isOpen={isOpenModal} toggle={hanldeChangeStateModal}></ModalWindow>
+					<button disabled={basketItems.length <= 0} onClick={handleConfirmOrder}>Оформить заказ</button>
 					<p>{basketBalance.toFixed(2)} {basketWallet}</p>
 				</div>
 			</div>
