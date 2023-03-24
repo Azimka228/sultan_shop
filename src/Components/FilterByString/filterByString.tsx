@@ -6,27 +6,40 @@ import {FilterByStringItem} from "./FilterByStringItem/filterByStringItem";
 type FilterByStringPropsType = {
 	title: string
 	data: Array<DataType>
+	onChangeCallback: (e: Array<string>) => void
 }
 
-export const FilterByString: FC<FilterByStringPropsType> = ({title, data}) => {
+export const FilterByString: FC<FilterByStringPropsType> = ({title, data,onChangeCallback}) => {
 	const [currentData, setCurrentData] = useState<any>()
+	const [selectedItems, setSelectedItems] = useState<string[]>([])
 
 	useEffect(() => {
 		setCurrentData(Object.entries(data))
 	}, [data])
 
-	const test = (e: string) => {
-		console.log(e)
-		setCurrentData(currentData.filter((el: string | string[]) =>(el[0].includes(e))))
+	const handleSubmit = (e: string) => {
+		setCurrentData(currentData.filter((el: string | string[]) => (el[0].includes(e))))
 		if (e === "") {
 			setCurrentData(Object.entries(data))
 		}
 	}
-	const items = currentData?.map((el: any,index:number) => (<FilterByStringItem key={index} data={el}/>))
+	const handleChangeSelectedItems = (name: string, checked: boolean) => {
+		if (checked) {
+			const currentArray = [...selectedItems, name]
+			setSelectedItems(currentArray)
+			onChangeCallback(currentArray)
+		} else {
+			const currentArray = [...selectedItems].filter(el => el === name)
+			setSelectedItems(currentArray)
+			onChangeCallback(currentArray)
+		}
+	}
+	const items = currentData?.map((el: any, index: number) => (
+		<FilterByStringItem onChangeCallback={handleChangeSelectedItems} key={index} data={el}/>))
 	return (
 		<div>
 			<div>{title}</div>
-			<CustomInput width={238} InputSubmit={test}/>
+			<CustomInput width={238} InputSubmit={handleSubmit}/>
 			{items}
 		</div>
 	);

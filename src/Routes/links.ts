@@ -1,5 +1,6 @@
 export const AppLinks = {
 	home: '/',
 	catalog: '/catalog',
-	basket: '/bakset'
+	basket: '/bakset',
+	admin: '/admin'
 } as const

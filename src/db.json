@@ -55,6 +55,62 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
       "price": 32.12,
       "currencyType": "₸"
+    },
+    {
+      "id": 5,
+      "itemType": "Уход за ногами",
+      "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
+      "title": "Мыло для ног",
+      "typeSize": "мл",
+      "size": 220,
+      "barcode": "4604049097552",
+      "manufacturer": "Boom",
+      "brand": "AOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
+      "price": 123,
+      "currencyType": "₸"
+    },
+    {
+      "id": 6,
+      "itemType": "Уход за телом",
+      "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
+      "title": "Мыло для рук",
+      "typeSize": "мл",
+      "size": 220,
+      "barcode": "4604049097553",
+      "manufacturer": "Boom",
+      "brand": "AOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.",
+      "price": 35,
+      "currencyType": "₸"
+    },
+    {
+      "id": 7,
+      "itemType": "Уход за телом",
+      "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
+      "title": "Молот для рук",
+      "typeSize": "кг",
+      "size": 223,
+      "barcode": "4604049097554",
+      "manufacturer": "Boom2231",
+      "brand": "ASOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.  Nullam interdum ut justo  Nullam interdum ut justo  Nullam interdum ut justo",
+      "price": 350,
+      "currencyType": "₸"
+    },
+    {
+      "id": 8,
+      "itemType": "Уход за телом",
+      "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
+      "title": "Молот для рук",
+      "typeSize": "кг",
+      "size": 223,
+      "barcode": "4604049097555",
+      "manufacturer": "Boom223",
+      "brand": "ASOS",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.  Nullam interdum ut justo  Nullam interdum ut justo  Nullam interdum ut justo",
+      "price": 350,
+      "currencyType": "₸"
     }
   ]
 }
