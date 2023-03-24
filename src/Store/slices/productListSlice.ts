@@ -13,6 +13,7 @@ export type ProductDataType = {
 	description: string
 	price: number
 	currencyType: string
+
 }
 
 export type itemWeightType = "кг" | "г" | "мг"

@@ -1,18 +1,28 @@
-import React from "react";
-import styles from './index.module.scss'
+import React, {ChangeEvent, FC} from "react";
+import styles from "./index.module.scss"
 
 type FilterByPricePropsType = {
-	defaultMax: number
-	defaultMin: number
+	initialValue: {
+		max: number
+		min: number
+	}
+	onChangeCallback: (max: number, min: number) => void
 }
 
-const FilterByPrice = () => {
+const FilterByPrice: FC<FilterByPricePropsType> = ({initialValue, onChangeCallback}) => {
+
+	const handleChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+		onChangeCallback(Number(e.target.value), initialValue.min)
+	}
+	const handleChangeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+		onChangeCallback(initialValue.max, Number(e.target.value))
+	}
 
 	return (
 		<div className={styles.main}>
-			<input type="number" defaultValue={0}/>
+			<input type="number" min={0} onChange={handleChangeMinValue} value={initialValue.min}/>
 			<span> - </span>
-			<input type="number" defaultValue={1000}/>
+			<input type="number" min={0} onChange={handleChangeMaxValue} value={initialValue.max}/>
 		</div>
 	);
 };

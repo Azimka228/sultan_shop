@@ -1,6 +1,6 @@
 import React, {FC, ReactElement, useState} from "react";
-import openListLogo from './openedList.svg'
-import closedListLogo from './closedList.svg'
+import openListLogo from '../../assets/openedList.svg'
+import closedListLogo from '../../assets/closedList.svg'
 import styles from './index.module.scss'
 
 type CollapsibleDivPropsType = {

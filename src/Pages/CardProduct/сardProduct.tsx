@@ -16,6 +16,8 @@ import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 
 const СardProduct = () => {
 
+
+
 	const [amountItems, setAmountItems] = useState<number>(1)
 	const dispatch = useAppDispatch()
 	let {barcode} = useParams()
