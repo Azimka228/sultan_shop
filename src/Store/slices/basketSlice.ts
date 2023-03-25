@@ -1,21 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {itemVolumeLiquidType, itemWeightType} from "./productListSlice";
+import {ProductDataType} from "./productListFilter";
 
 export type BasketDataType = {
-	id: number
-	itemType: string
-	url: string
-	title: string
-	typeSize: itemWeightType | itemVolumeLiquidType
-	size: number
-	barcode: string
-	manufacturer: string
-	brand: string
-	description: string
-	price: number
-	currencyType: string
 	count: number
-}
+} & ProductDataType
 
 const initialState: InitialAppStateType = {
 	items: [],
@@ -86,4 +74,4 @@ const slice = createSlice({
 })
 
 export const basketReducer = slice.reducer
-export const {setBasketItem, deleteBasketItem, decreaseItemCount, increaseItemCount,clearBasket} = slice.actions
+export const {setBasketItem, deleteBasketItem, decreaseItemCount, increaseItemCount, clearBasket} = slice.actions

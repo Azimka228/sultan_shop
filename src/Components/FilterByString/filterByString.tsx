@@ -2,19 +2,24 @@ import React, {FC, useEffect, useState} from "react";
 import {CustomInput} from "../CustomInput/customInput";
 import {DataType} from "../../Utills/getDataSearchByString";
 import {FilterByStringItem} from "./FilterByStringItem/filterByStringItem";
+import openListLogo from "../../assets/openedList.svg";
+import closedListLogo from "../../assets/closedList.svg";
+import styles from './index.module.scss'
 
 type FilterByStringPropsType = {
 	title: string
 	data: Array<DataType>
 	onChangeCallback: (e: Array<string>) => void
+	itemsAmountByStart: number
 }
 
-export const FilterByString: FC<FilterByStringPropsType> = ({title, data,onChangeCallback}) => {
+export const FilterByString: FC<FilterByStringPropsType> = ({title, data, onChangeCallback,itemsAmountByStart}) => {
+
 	const [currentData, setCurrentData] = useState<any>()
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
 
 	useEffect(() => {
-		setCurrentData(Object.entries(data))
+		setCurrentData(Object.entries(data).slice(0,itemsAmountByStart))
 	}, [data])
 
 	const handleSubmit = (e: string) => {
@@ -28,19 +33,37 @@ export const FilterByString: FC<FilterByStringPropsType> = ({title, data,onChang
 			const currentArray = [...selectedItems, name]
 			setSelectedItems(currentArray)
 			onChangeCallback(currentArray)
-		} else {
-			const currentArray = [...selectedItems].filter(el => el === name)
+		}
+		if (!checked) {
+			const currentArray = selectedItems.filter(el => el !== name)
+			console.log("currentArray", currentArray)
 			setSelectedItems(currentArray)
 			onChangeCallback(currentArray)
 		}
 	}
+
 	const items = currentData?.map((el: any, index: number) => (
 		<FilterByStringItem onChangeCallback={handleChangeSelectedItems} key={index} data={el}/>))
+	const [isOpened, setIsOpened] = useState(false)
+	const isOpenedImg = isOpened ?  openListLogo : closedListLogo
+	const handleChangeIsOpened = () => {
+		if(!isOpened) {
+			setCurrentData(Object.entries(data))
+		}
+		if(isOpened) {
+			setCurrentData(Object.entries(data).slice(0,itemsAmountByStart))
+		}
+		setIsOpened(!isOpened)
+	}
+	const buttonTitle = isOpened ? "Закрыть cписок" : "Показать все"
 	return (
 		<div>
-			<div>{title}</div>
+			<div className={styles.title}>{title}</div>
 			<CustomInput width={238} InputSubmit={handleSubmit}/>
-			{items}
+			<div className={styles.items}>
+				{items}
+			</div>
+			<button onClick={handleChangeIsOpened} className={styles.button}>{buttonTitle}<img src={isOpenedImg} alt="isOpenedImg"/></button>
 		</div>
 	);
 };

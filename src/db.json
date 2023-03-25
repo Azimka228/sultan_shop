@@ -1,8 +1,8 @@
 {
   "productsList": [
     {
-      "id": 1,
-      "itemType": "Уход за телом",
+      "id": "1",
+      "itemType": ["Уход за телом","Уход за ногами"],
       "url": "https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://eclips.by/wp-content/uploads/2020/12/Stirka-UNIVERSAL-2-1.png",
       "title": "Автмат Гель СМС жидкоев растворимых капсулах Liquid Capsules Горный родник",
       "typeSize": "мл",
@@ -15,8 +15,8 @@
       "currencyType": "₸"
     },
     {
-      "id": 2,
-      "itemType": "Уход за руками",
+      "id": "2",
+      "itemType": ["Уход за телом","Уход за ногами"],
       "url": "https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/https://eclips.by/wp-content/uploads/2020/12/Stirka-UNIVERSAL-2-1.png",
       "title": "Ср-во для мытья посуды Апельсин",
       "typeSize": "мг",
@@ -29,8 +29,8 @@
       "currencyType": "₸"
     },
     {
-      "id": 3,
-      "itemType": "Уход за ногами",
+      "id": "3",
+      "itemType": ["Гигиена полости рта","Уход за лицом","Уход за волосами"],
       "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
       "title": "Порошок стиральный Автомат 100 пятен COMPACT",
       "typeSize": "мг",
@@ -43,8 +43,8 @@
       "currencyType": "₸"
     },
     {
-      "id": 4,
-      "itemType": "Уход за ногами",
+      "id": "4",
+      "itemType": ["Средства для загара","Средства для бритья","Уход за волосами"],
       "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
       "title": "Ср-во для ухода за ногами",
       "typeSize": "мл",
@@ -57,8 +57,8 @@
       "currencyType": "₸"
     },
     {
-      "id": 5,
-      "itemType": "Уход за ногами",
+      "id": "5",
+      "itemType": ["Подарочные наборы","Средства для бритья","Гигиеническая продукция"],
       "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
       "title": "Мыло для ног",
       "typeSize": "мл",
@@ -71,8 +71,8 @@
       "currencyType": "₸"
     },
     {
-      "id": 6,
-      "itemType": "Уход за телом",
+      "id": "6",
+      "itemType": ["Средства для загара","Бумажная продукция","Уход за волосами"],
       "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
       "title": "Мыло для рук",
       "typeSize": "мл",
@@ -85,10 +85,10 @@
       "currencyType": "₸"
     },
     {
-      "id": 7,
-      "itemType": "Уход за телом",
+      "id": "7",
+      "itemType": ["Средства для загара","Бумажная продукция","Уход за волосами"],
       "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
-      "title": "Молот для рук",
+      "title": "Молот для рук1",
       "typeSize": "кг",
       "size": 223,
       "barcode": "4604049097554",
@@ -99,17 +99,17 @@
       "currencyType": "₸"
     },
     {
-      "id": 8,
-      "itemType": "Уход за телом",
+      "id": "8",
+      "itemType": ["Средства для загара","Бумажная продукция","Уход за волосами"],
       "url": "https://static.siberianhealth.com/public/projects/shopen/images/41/411588_5b5870e5.png?w=372",
       "title": "Молот для рук",
       "typeSize": "кг",
-      "size": 223,
+      "size": 2223,
       "barcode": "4604049097555",
       "manufacturer": "Boom223",
       "brand": "ASOS",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo.  Nullam interdum ut justo  Nullam interdum ut justo  Nullam interdum ut justo",
-      "price": 350,
+      "price": 3523,
       "currencyType": "₸"
     }
   ]

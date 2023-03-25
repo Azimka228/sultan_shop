@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export type ProductDataType = {
-	id: number
-	itemType: string
+	id: string
+	itemType: Array<string>
 	url: string
 	title: string
 	typeSize: itemWeightType | itemVolumeLiquidType
@@ -13,7 +13,6 @@ export type ProductDataType = {
 	description: string
 	price: number
 	currencyType: string
-
 }
 
 export type itemWeightType = "кг" | "г" | "мг"

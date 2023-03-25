@@ -1,0 +1,33 @@
+.button{
+  border: none;
+  background: none;
+  font-family: 'Inter',serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  color: #3F4E65;
+  margin-top: 5px;
+  & > img {
+    margin-left: 5px ;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}
+.title{
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-family: 'Inter',serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #111111;
+}
+.items{
+  margin-top: 15px;
+  & > div:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}

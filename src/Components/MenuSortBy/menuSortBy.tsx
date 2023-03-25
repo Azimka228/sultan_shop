@@ -5,7 +5,7 @@ import closedListLogo from "../../assets/closedList.svg";
 import {DefaultSortType} from "../../Store/slices/productListFilter";
 
 type MenuSortByPropsType = {
-	selected: string
+	selected: DefaultSortType
 	sortBy: Array<DefaultSortType>
 	onChangeSelected: (e: DefaultSortType) => void
 }
@@ -13,7 +13,7 @@ type MenuSortByPropsType = {
 export const MenuSortBy: FC<MenuSortByPropsType> = ({selected, sortBy, onChangeSelected}) => {
 	const [isOpened, setIsOpened] = useState(false)
 
-	const [selectedItem, setSelectedItem] = useState("")
+	const [selectedItem, setSelectedItem] = useState<DefaultSortType>()
 
 	useEffect(() => {
 		setSelectedItem(selected)
@@ -24,20 +24,30 @@ export const MenuSortBy: FC<MenuSortByPropsType> = ({selected, sortBy, onChangeS
 	const handleChangeIsOpened = () => {
 		setIsOpened(!isOpened)
 	}
+
 	const handleSetSelectedItem = (item: DefaultSortType) => {
-		onChangeSelected(item)
-		setSelectedItem(item)
-		setIsOpened(!isOpened)
+		if (item === selected) {
+			setIsOpened(true)
+		}
+		if (item !== selected) {
+			onChangeSelected(item)
+			setSelectedItem(item)
+			setIsOpened(!isOpened)
+		}
+
 	}
+
 	return (
 		<React.Fragment>
-			<div className={styles.main} onClick={handleChangeIsOpened}>
+			<div className={styles.main}>
 				<div onClick={handleChangeIsOpened} className={styles.button}>Сортировка: <span>{selectedItem}</span> <img
 					src={isOpenedImg} alt="isOpenedImg"/></div>
 				{isOpened && <div className={styles.menu}>{sortBy.map(el => {
-					return <div onClick={() => {
-						handleSetSelectedItem(el)
-					}}>{el}</div>
+					return <div
+						className={el === selected ? styles.selected : ""}
+						onClick={() => {
+							handleSetSelectedItem(el)
+						}}>{el}</div>
 				})}</div>}
 			</div>
 		</React.Fragment>

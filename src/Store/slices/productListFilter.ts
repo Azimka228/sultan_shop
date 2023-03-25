@@ -1,6 +1,22 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {WritableDraft} from "immer/dist/internal";
-import {ProductDataType} from "./productListSlice";
+
+export type ProductDataType = {
+	id: string
+	itemType: Array<string>
+	url: string
+	title: string
+	typeSize: itemWeightType | itemVolumeLiquidType
+	size: number
+	barcode: string
+	manufacturer: string
+	brand: string
+	description: string
+	price: number
+	currencyType: string
+}
+
+export type itemWeightType = "кг" | "г" | "мг"
+export type itemVolumeLiquidType = "мл" | "л"
 
 const initialState: InitialAppStateType = {
 	maxPrice: 10000,
@@ -10,7 +26,9 @@ const initialState: InitialAppStateType = {
 	sortByBrand: [],
 	sortByItemType: [],
 	productsList: [],
-	productsListCopy: []
+	productsListCopy: [],
+	currentPage: 1,
+	countPerPage: 5,
 }
 
 export type InitialAppStateType = {
@@ -22,6 +40,8 @@ export type InitialAppStateType = {
 	sortByItemType: Array<string>,
 	productsList: Array<ProductDataType>
 	productsListCopy: Array<ProductDataType>
+	currentPage: number,
+	countPerPage: number,
 }
 
 export type DefaultSortType = "дешевые" | "дорогие" | "по названию A-Z" | "по названию Z-A"
@@ -38,8 +58,11 @@ const slice = createSlice({
 			state.productsList = action.payload.productsList
 			state.productsListCopy = action.payload.productsList
 		},
+		setCurrentPage(state, action: PayloadAction<{ page: number }>) {
+			state.currentPage = action.payload.page
+		},
 		catalogDataFilterByPrice(state, action: PayloadAction<{ minPrice: number, maxPrice: number }>) {
-			state.productsList = state.productsListCopy.filter(el => el.price >= action.payload.minPrice && el.price <= action.payload.maxPrice)
+			state.productsList = state.productsList.filter(el => el.price >= action.payload.minPrice && el.price <= action.payload.maxPrice)
 		},
 		catalogDataFilterByManufacturer(state, action: PayloadAction<{ value: Array<string> }>) {
 			if (action.payload.value.length === 0) return
@@ -53,7 +76,9 @@ const slice = createSlice({
 				})
 			})
 
-			state.productsList = FiltredArray
+			//Delete repeating elements
+			const table: any = {};
+			state.productsList = FiltredArray.filter(({id}) => (!table[id] && (table[id] = 1)));
 		},
 		catalogDataDefaultSort(state, action: PayloadAction<{ sortBy: DefaultSortType }>) {
 			switch (action.payload.sortBy) {
@@ -89,5 +114,6 @@ export const {
 	setCatalogData,
 	catalogDataFilterByPrice,
 	catalogDataDefaultSort,
-	catalogDataFilterByManufacturer
+	catalogDataFilterByManufacturer,
+	setCurrentPage
 } = slice.actions

@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+import styles from './index.module.scss'
 
 type FilterByStringItemPropsType = {
 	data: any
@@ -18,10 +19,12 @@ export const FilterByStringItem: FC<FilterByStringItemPropsType> = ({data,onChan
 
 
 	return (
-		<div onClick={handleChange}>
-			<input type="checkbox" checked={checked}/>
-			<span> {title} </span>
-			<span>({amount})</span>
+		<div onClick={handleChange} className={styles.main}>
+			<input type="checkbox"
+										onChange={handleChange}
+										checked={checked}/>
+			<span className={styles.title}> {title} </span>
+			<span className={styles.amount}>({amount})</span>
 		</div>
 	);
 };

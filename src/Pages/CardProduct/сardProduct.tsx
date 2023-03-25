@@ -16,8 +16,6 @@ import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 
 const СardProduct = () => {
 
-
-
 	const [amountItems, setAmountItems] = useState<number>(1)
 	const dispatch = useAppDispatch()
 	let {barcode} = useParams()
@@ -95,7 +93,7 @@ const СardProduct = () => {
 							<p>Штрихкод: <span>{currentItem?.barcode}</span></p>
 							<p>Вес коробки: <span>{currentItem?.size} {currentItem?.typeSize}</span></p>
 						</div>
-						<CollapsibleDiv 
+						<CollapsibleDiv
 							title={"Описание"}>
 							<div className={styles.description}>{currentItem?.description}</div>
 						</CollapsibleDiv>

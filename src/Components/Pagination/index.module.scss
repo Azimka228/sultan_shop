@@ -1,0 +1,51 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0 68px 0;
+
+  & > button {
+    border: none;
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+    padding: 0 35px 0 35px;
+
+    & > div {
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 130%;
+      text-align: center;
+      color: #3F4E65;
+      height: 35px;
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  div &__item {
+    &_selected {
+      background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+      border-radius: 1000px;
+
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+}

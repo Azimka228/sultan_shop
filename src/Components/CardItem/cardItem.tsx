@@ -2,10 +2,10 @@ import React, {FC} from "react";
 import {Link} from "react-router-dom";
 import styles from "./index.module.scss"
 import cartImg from "../../assets/cart.svg"
-import {ProductDataType} from "../../Store/slices/productListSlice";
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 import {setBasketItem} from "../../Store/slices/basketSlice";
 import {ItemSize} from "../ItemSize/itemSize";
+import {ProductDataType} from "../../Store/slices/productListFilter";
 
 type PromotionalGoodsItemPropsType = {
 	data: ProductDataType

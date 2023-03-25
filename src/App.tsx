@@ -7,8 +7,8 @@ import {AppRoutes} from "./Routes/appRoutes";
 import {Footer} from "./Components/Footer/footer";
 import data from "./db.json"
 import {useAppDispatch} from "./Store/hooks/useAppDispatch";
-import {ProductDataType, setProductData} from "./Store/slices/productListSlice";
-import {setCatalogData} from "./Store/slices/productListFilter";
+import {ProductDataType, setCatalogData} from "./Store/slices/productListFilter";
+import {setProductData} from "./Store/slices/productListSlice";
 
 function App() {
 
