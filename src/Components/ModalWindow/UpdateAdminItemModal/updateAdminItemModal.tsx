@@ -1,16 +1,21 @@
 import React, {FC, useEffect} from "react";
 import styles from "./index.module.scss"
 import ReactDOM from "react-dom";
-import succsesLogo from "./succses.svg"
-import closeLogo from "./close.svg"
+import closeLogo from "../close.svg"
+import {ProductDataType} from "../../../Store/slices/productListSlice";
+import AdminDataItemForm from "../../adminCRUD/AdminDataItemForm";
+import {DefaultCustomTitle} from "../../DefaultCustomTitle/defaultCustomTitle";
 
 type ModalWindowPropsType = {
 	isOpen: boolean
 	toggle: (e: boolean) => void;
+	data: ProductDataType
+	onModalSubmit: (e:ProductDataType) => void
+
 }
 
 const modalRoot = document.getElementById("portal") as Element
-export const ModalWindow: FC<ModalWindowPropsType> = ({isOpen, toggle}) => {
+export const UpdateAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,data,onModalSubmit}) => {
 
 	useEffect(() => {
 		if (isOpen) {
@@ -26,6 +31,9 @@ export const ModalWindow: FC<ModalWindowPropsType> = ({isOpen, toggle}) => {
 	const handleStopProg = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.stopPropagation()
 	}
+	const handleModalSubmit = (e:ProductDataType) => {
+		onModalSubmit(e)
+	}
 
 	if (!isOpen) return null
 	return ReactDOM.createPortal(
@@ -34,11 +42,8 @@ export const ModalWindow: FC<ModalWindowPropsType> = ({isOpen, toggle}) => {
 				<div className={styles.closeBTN}>
 					<button onClick={handleCloseModal}><img src={closeLogo} alt="closeLogo"/></button>
 				</div>
-				<div className={styles.logo}>
-					<img src={succsesLogo} alt="succsesLogo"/>
-				</div>
-				<div className={styles.title}>Спасибо за заказ</div>
-				<div className={styles.description}>Наш менеджер свяжется с вами в ближайшее время</div>
+				<DefaultCustomTitle text={"Update Item"}/>
+				<AdminDataItemForm onSubmit={handleModalSubmit} data={data}/>
 			</div>
 		</div>,
 		modalRoot

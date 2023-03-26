@@ -14,7 +14,7 @@ export const ItemSize: FC<ItemSizePropsType> = ({typeSize, size}) => {
 	return (
 		<div className={styles.main}>
 			<img src={itemSizeImg} alt="itemSizeImg"/>
-			{size} {typeSize}
+			<p >{size} {typeSize}</p>
 		</div>
 	);
 };

@@ -5,6 +5,7 @@
   padding: 29px 21px 29px 21px;
   position: relative;
   max-width: 326px;
+  height: max-content;
 }
 
 .title {
@@ -65,11 +66,10 @@
 
 .mark {
   padding: 5px 11px 5px 11px;
-  background: #1FD85D;
   border-radius: 5px;
   position: absolute;
-  left: 15px;
-  top: 29px;
+  right: 0;
+  top: 10px;
   font-family: 'Inter', serif;
   font-style: normal;
   font-weight: 600;
@@ -78,7 +78,27 @@
   text-align: center;
   letter-spacing: 0.045em;
   color: #FFFFFF;
-
+  display: flex;
+  & > button {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-sizing: border-box;
+    background: #FFC85E;
+    border-radius: 79px;
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__update{
+    & > img {
+      max-width: 20px;
+      max-height: 20px;
+    }
+  }
   &:hover {
     cursor: default;
     user-select: none;
@@ -91,7 +111,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 13px;
-
+  margin-bottom: 9px;
   & > img {
     height: 100%;
   }

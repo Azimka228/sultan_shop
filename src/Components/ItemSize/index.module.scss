@@ -7,7 +7,9 @@
     font-size: 12px;
     line-height: 130%;
     color: #3F4E65;
-
+    & > p {
+        height: 15px;
+    }
     & > img {
       margin-right: 8px;
     }

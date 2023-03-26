@@ -9,15 +9,23 @@ import data from "./db.json"
 import {useAppDispatch} from "./Store/hooks/useAppDispatch";
 import {ProductDataType, setCatalogData} from "./Store/slices/productListFilter";
 import {setProductData} from "./Store/slices/productListSlice";
+import {useLocalStorage} from "usehooks-ts";
 
 function App() {
 
 	const dispatch = useAppDispatch()
-
+	const [cardItems,] = useLocalStorage<Array<ProductDataType>>("cardItems", [])
+	const isCardItems = cardItems.length > 0
 
 	useEffect(()=>{
-		dispatch(setProductData({productsList : data.productsList as Array<ProductDataType>}))
-		dispatch(setCatalogData({productsList : data.productsList as Array<ProductDataType>}))
+		if(isCardItems) {
+			dispatch(setProductData({productsList : cardItems }))
+			dispatch(setCatalogData({productsList : cardItems}))
+		} else {
+			dispatch(setProductData({productsList : data.productsList as Array<ProductDataType>}))
+			dispatch(setCatalogData({productsList : data.productsList as Array<ProductDataType>}))
+		}
+
 	},[dispatch])
 
 	return (

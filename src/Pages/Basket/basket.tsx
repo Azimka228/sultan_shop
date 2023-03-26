@@ -8,7 +8,7 @@ import {AppLinks} from "../../Routes/links";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
 import {BasketItem} from "../../Components/BasketItem/basketItem";
 import {EmptyBasketItem} from "../../Components/EmptyBasketItem/emptyBasketItem";
-import {ModalWindow} from "../../Components/ModalWindow/modalWindow";
+import {SuccsesPurchaseModal} from "../../Components/ModalWindow/SuccsesPurchaseModal/succsesPurchaseModal";
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 import {clearBasket} from "../../Store/slices/basketSlice";
 
@@ -54,9 +54,9 @@ const Basket = () => {
 					{cardsBody}
 				</div>
 				<div className={styles.checkout}>
-					<ModalWindow isOpen={isOpenModal} toggle={hanldeChangeStateModal}></ModalWindow>
+					<SuccsesPurchaseModal isOpen={isOpenModal} toggle={hanldeChangeStateModal}></SuccsesPurchaseModal>
 					<button disabled={basketItems.length <= 0} onClick={handleConfirmOrder}>Оформить заказ</button>
-					<p>{basketBalance.toFixed(2)} {basketWallet}</p>
+					<p>{basketBalance} {basketWallet}</p>
 				</div>
 			</div>
 		</div>

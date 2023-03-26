@@ -68,7 +68,7 @@ const СardProduct = () => {
 				</div>
 				<div className={styles.content}>
 					<div className={styles.logo}><img src={currentItem?.url} alt="Item img"/></div>
-					<div>
+					<div className={styles.content__main}>
 						<div className={styles.status}>В наличии</div>
 						<div className={styles.title}><b>{currentItem?.brand}</b> {currentItem?.title}</div>
 						<div className={styles.size}><img src={itemSizeImg} alt="itemSizeImg"/>{currentItem?.size} {currentItem?.typeSize}

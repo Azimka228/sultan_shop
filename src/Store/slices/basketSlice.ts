@@ -63,7 +63,7 @@ const slice = createSlice({
 				return el
 			})
 			state.amountItems += 1
-			state.balance += action.payload.item.price
+			state.balance += Number(action.payload.item.price)
 		},
 		clearBasket(state) {
 			state.items = []

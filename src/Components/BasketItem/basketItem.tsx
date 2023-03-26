@@ -40,7 +40,7 @@ export const BasketItem: FC<BasketItemPropsType> = ({data}) => {
 					<button onClick={handleIncreaseItemCount}>+</button>
 				</div>
 				<div className={styles.price}>
-					<p>{data.price.toFixed(2)} {basketWallet}</p>
+					<p>{data.price} {basketWallet}</p>
 				</div>
 				<div className={styles.deleteBTN}>
 					<button onClick={handleDeleteItem}><img src={deleteIcon} alt="deleteIcon"/></button>

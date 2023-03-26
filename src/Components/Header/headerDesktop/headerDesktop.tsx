@@ -17,16 +17,13 @@ const HeaderDesktop = () => {
 
 	const navigate = useNavigate()
 
-	const handleInputSearch = (value: string) => {
-	}
-
 	const handleNavigateToBasket = () => {
 		navigate(AppLinks.basket)
 	}
 	return (
 		<div className={styles.main}>
 			<div className={styles.logo}>
-				<Link to={AppLinks.home}> <img src={logo} alt="logo"/></Link>
+				<Link to={AppLinks.catalog}> <img src={logo} alt="logo"/></Link>
 			</div>
 			<div className={styles.btn}>
 				<Link to={AppLinks.catalog}>
@@ -35,7 +32,7 @@ const HeaderDesktop = () => {
 				</Link>
 			</div>
 			<div className={styles.input}>
-				<CustomInput InputSubmit={handleInputSearch} width={263}/>
+				<CustomInput InputSubmit={()=>{}} width={263}/>
 			</div>
 			<div className={styles.operator}>
 				<div className={styles.operator__description}>
@@ -69,7 +66,7 @@ const HeaderDesktop = () => {
 					Корзина
 				</div>
 				<div className={styles.basket__price}>
-					{basketBalance.toFixed(2)} {basketWallet}
+					{basketBalance} {basketWallet}
 				</div>
 			</div>
 		</div>

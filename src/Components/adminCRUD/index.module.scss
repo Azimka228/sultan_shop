@@ -1,0 +1,97 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > label:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  & > label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    & > input {
+      border: none;
+      padding: 20px 20px 20px 20px;
+      box-sizing: border-box;
+      background: #EDEDED;
+      border-radius: 36px;
+      width: 100%;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.submit {
+  height: 59px;
+  min-width: 59px;
+  border-radius: 50%;
+  padding: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFC85E;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.currentImg{
+  width: 220px;
+  height: 220px;
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter',serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #111111;
+  margin-bottom: 10px;
+  & > img{
+    height: 100%;
+    width: 100%;
+  }
+}
+
+body .inputFileLabel {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  padding: 20px;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background: #FFC85E;
+  border-radius: 79px;
+  width: 200px;
+  &:hover{
+    background-color: #1FD85D;
+  }
+  & > img {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.inputFile {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  &:hover {
+    cursor: pointer;
+  }
+}

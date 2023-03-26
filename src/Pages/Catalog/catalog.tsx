@@ -207,7 +207,6 @@ const Catalog = () => {
 			}
 		}
 
-		dispatch(setCatalogData({productsList: itemsCopy}))
 		setFilterState({...filterState, sortBy: sortBy.value, max: Number(maxPriceParams), min: Number(minPriceParams)})
 		dispatch(catalogDataDefaultSort({sortBy: sortBy.value}))
 		dispatch(catalogDataFilterByPrice({maxPrice: Number(maxPriceParams), minPrice: Number(minPriceParams)}))

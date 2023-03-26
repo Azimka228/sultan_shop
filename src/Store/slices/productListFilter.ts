@@ -28,7 +28,7 @@ const initialState: InitialAppStateType = {
 	productsList: [],
 	productsListCopy: [],
 	currentPage: 1,
-	countPerPage: 5,
+	countPerPage: 9,
 }
 
 export type InitialAppStateType = {
@@ -54,33 +54,34 @@ const slice = createSlice({
 			state.maxPrice = action.payload.max
 			state.minPrice = action.payload.min
 		},
-		setSortByItemType(state, action: PayloadAction<{ item: string | Array<string>}>) {
-			if (Array.isArray((action.payload.item))){
+		setSortByItemType(state, action: PayloadAction<{ item: string | Array<string> }>) {
+			if (Array.isArray((action.payload.item))) {
 				state.sortByItemType = action.payload.item
 			}
-			if (typeof action.payload.item === 'string') {
+			if (typeof action.payload.item === "string") {
 				const isItemInState = state.sortByItemType.find(el => el === action.payload.item)
-				if(isItemInState) {
-					state.sortByItemType = state.sortByItemType.filter( el => el !== action.payload.item)
+				if (isItemInState) {
+					state.sortByItemType = state.sortByItemType.filter(el => el !== action.payload.item)
 				} else {
 					state.sortByItemType.push(action.payload.item)
 				}
 			}
 
-
 		},
 		setCatalogData(state, action: PayloadAction<{ productsList: Array<ProductDataType> }>) {
+			const maxPrice = action.payload.productsList.reduce((acc, curr) => acc.price > curr.price ? acc : curr).price
 			state.productsList = action.payload.productsList
 			state.productsListCopy = action.payload.productsList
+			state.maxPrice = maxPrice
 		},
 		setCurrentPage(state, action: PayloadAction<{ page: number }>) {
 			state.currentPage = action.payload.page
 		},
 		catalogDataFilterByItemType(state, action: PayloadAction<{ fitlerValues: Array<string> }>) {
-			const filtredArray:Array<ProductDataType> = []
+			const filtredArray: Array<ProductDataType> = []
 			action.payload.fitlerValues.forEach(filterItem => {
 				state.productsList.forEach(el => {
-					if(el.itemType.includes(filterItem)) {
+					if (el.itemType.includes(filterItem)) {
 						filtredArray.push(el)
 					}
 				})
