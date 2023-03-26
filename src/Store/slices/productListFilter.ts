@@ -54,12 +54,39 @@ const slice = createSlice({
 			state.maxPrice = action.payload.max
 			state.minPrice = action.payload.min
 		},
+		setSortByItemType(state, action: PayloadAction<{ item: string | Array<string>}>) {
+			if (Array.isArray((action.payload.item))){
+				state.sortByItemType = action.payload.item
+			}
+			if (typeof action.payload.item === 'string') {
+				const isItemInState = state.sortByItemType.find(el => el === action.payload.item)
+				if(isItemInState) {
+					state.sortByItemType = state.sortByItemType.filter( el => el !== action.payload.item)
+				} else {
+					state.sortByItemType.push(action.payload.item)
+				}
+			}
+
+
+		},
 		setCatalogData(state, action: PayloadAction<{ productsList: Array<ProductDataType> }>) {
 			state.productsList = action.payload.productsList
 			state.productsListCopy = action.payload.productsList
 		},
 		setCurrentPage(state, action: PayloadAction<{ page: number }>) {
 			state.currentPage = action.payload.page
+		},
+		catalogDataFilterByItemType(state, action: PayloadAction<{ fitlerValues: Array<string> }>) {
+			const filtredArray:Array<ProductDataType> = []
+			action.payload.fitlerValues.forEach(filterItem => {
+				state.productsList.forEach(el => {
+					if(el.itemType.includes(filterItem)) {
+						filtredArray.push(el)
+					}
+				})
+			})
+			const table: any = {};
+			state.productsList = filtredArray.filter(({id}) => (!table[id] && (table[id] = 1)));
 		},
 		catalogDataFilterByPrice(state, action: PayloadAction<{ minPrice: number, maxPrice: number }>) {
 			state.productsList = state.productsList.filter(el => el.price >= action.payload.minPrice && el.price <= action.payload.maxPrice)
@@ -69,7 +96,7 @@ const slice = createSlice({
 			const FiltredArray: ProductDataType[] = []
 
 			action.payload.value.forEach(el => {
-				state.productsList.forEach(productItm => {
+				state.productsListCopy.forEach(productItm => {
 					if (productItm.manufacturer === el) {
 						FiltredArray.push(productItm)
 					}
@@ -115,5 +142,7 @@ export const {
 	catalogDataFilterByPrice,
 	catalogDataDefaultSort,
 	catalogDataFilterByManufacturer,
-	setCurrentPage
+	setCurrentPage,
+	setSortByItemType,
+	catalogDataFilterByItemType
 } = slice.actions

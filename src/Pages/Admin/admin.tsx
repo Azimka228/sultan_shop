@@ -25,7 +25,6 @@ const Admin = () => {
 			currencyType: "string",
 		}])
 	}
-	console.log(isDarkTheme)
 	return (
 	<div>
 		<div className={wrapper.wrapper}>

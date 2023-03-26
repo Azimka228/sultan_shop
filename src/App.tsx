@@ -14,6 +14,7 @@ function App() {
 
 	const dispatch = useAppDispatch()
 
+
 	useEffect(()=>{
 		dispatch(setProductData({productsList : data.productsList as Array<ProductDataType>}))
 		dispatch(setCatalogData({productsList : data.productsList as Array<ProductDataType>}))

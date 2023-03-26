@@ -17,6 +17,7 @@ export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data}) => {
 	const handleAddToCart = (item: ProductDataType) => {
 		dispatch(setBasketItem({item: {...item, count: 1},}))
 	}
+	const typeCare = data.itemType.join(", ")
 
 	return (
 		<div className={styles.main}>
@@ -28,6 +29,7 @@ export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data}) => {
 			<div className={styles.barcode}>Штрихкод: <b>{data.barcode}</b></div>
 			<div className={styles.manufacturer}>Производитель: <b>{data.manufacturer}</b></div>
 			<div className={styles.brand}>Бренд: <b>{data.brand}</b></div>
+			<div>Тип ухода: <b>{typeCare}</b></div>
 			<div className={styles.cashout}>
 				<div><b>{data.price} {data.currencyType}</b></div>
 				<button onClick={() => handleAddToCart(data)}>В КОРЗИНУ <img src={cartImg} alt="cart"/></button>

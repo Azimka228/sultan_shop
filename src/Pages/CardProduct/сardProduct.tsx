@@ -39,6 +39,7 @@ const СardProduct = () => {
 	}
 
 	const itemSizeImg = currentItem?.typeSize === "мл" ? bottleImg : boxImg
+	const typeCare = currentItem?.itemType.join(", ")
 
 	const characteristicsBlock =
 		<div className={styles.specification}>
@@ -47,6 +48,7 @@ const СardProduct = () => {
 			<p>Артикул: <span>{currentItem?.barcode.slice(0, 6)}</span></p>
 			<p>Штрихкод: <span>{currentItem?.barcode}</span></p>
 			<p>Вес коробки: <span>{currentItem?.size} {currentItem?.typeSize}</span></p>
+			<p>Тип ухода: <span>{typeCare}</span></p>
 		</div>;
 
 	return (

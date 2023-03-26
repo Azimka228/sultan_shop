@@ -15,13 +15,13 @@ import deleteIcon from "../../assets/delete.svg"
 
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 import {
-	catalogDataDefaultSort,
+	catalogDataDefaultSort, catalogDataFilterByItemType,
 	catalogDataFilterByManufacturer,
 	catalogDataFilterByPrice,
 	DefaultSortType,
 	setCatalogData,
 	setCurrentPage,
-	setFilterByPrice
+	setFilterByPrice, setSortByItemType
 } from "../../Store/slices/productListFilter";
 import Pagination from "../../Components/Pagination/pagination";
 
@@ -33,6 +33,16 @@ type FilterStateType = {
 }
 
 const Catalog = () => {
+	useEffect(() => {
+		//This code is for loading search parameters by "Item type"
+		const SortByItemTypeParams = searchParams.get("SortByItemType")
+
+		let SortByItemTypeArray:Array<string> = []
+		if(SortByItemTypeParams !== null) {
+			SortByItemTypeArray = SortByItemTypeParams.split(',')
+			dispatch(setSortByItemType({item:SortByItemTypeArray}))
+		}
+	},[])
 	const dispatch = useAppDispatch()
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation();
@@ -40,7 +50,6 @@ const Catalog = () => {
 	const items = useAppSelector((state) => state.productListFilter.productsList)
 	const itemsCopy = useAppSelector((state) => state.productListFilter.productsListCopy)
 
-	console.log(items)
 
 	const sortByList = useAppSelector(state => state.productListFilter.sortByList)
 
@@ -49,6 +58,8 @@ const Catalog = () => {
 	const filterByMinPrice = useAppSelector(state => state.productListFilter.minPrice)
 	const filterCurrentPage = useAppSelector(state => state.productListFilter.currentPage)
 	const filterCountPerPage = useAppSelector(state => state.productListFilter.countPerPage)
+	const filterSortByItemType = useAppSelector(state => state.productListFilter.sortByItemType)
+
 
 	const [filterState, setFilterState] = useState<FilterStateType>({
 		max: filterByMaxPrice,
@@ -63,16 +74,19 @@ const Catalog = () => {
 			minPrice: string
 			sortBy: string
 			page: string
+			SortByItemType?: string
 		}
 		const params: ParamsType = {
 			maxPrice: "0",
 			minPrice: "0",
 			sortBy: "price:asc",
-			page: "1"
+			page: "1",
+
 		}
 
 		if (filterByMaxPrice >= 0) params.maxPrice = String(filterByMaxPrice)
 		if (filterByMinPrice >= 0) params.minPrice = String(filterByMinPrice)
+
 		switch (filterSortBy) {
 			case "дешевые" : {
 				params.sortBy = "price-asc"
@@ -91,10 +105,13 @@ const Catalog = () => {
 				break;
 			}
 		}
+		if (filterSortByItemType.length > 0) {
+			params.SortByItemType = filterSortByItemType.join(",")
+		}
+
 		params.page = String(filterCurrentPage)
 		setSearchParams(params)
-
-	}, [filterByMaxPrice, filterByMinPrice, filterSortBy, filterCurrentPage])
+	}, [filterByMaxPrice, filterByMinPrice, filterSortBy, filterCurrentPage, filterSortByItemType])
 
 	const itemTypesFiltred = new Set()
 	items.forEach((item) => {
@@ -115,7 +132,42 @@ const Catalog = () => {
 	//
 
 	const productCardItems = currentItems.map(el => (<CardItem data={el}/>))
-	const typeCardItems = itemTypesFiltredArr.map((el) => (<div className={styles.typeCards__item}>{el}</div>))
+
+	const handleAddItemTypes = (item: string) => {
+		dispatch(setSortByItemType({item}))
+	}
+	const typeCardItems = itemTypesFiltredArr.map((el) => {
+			let isSelectedItem
+			if (filterSortByItemType.includes(el)) {
+				isSelectedItem = `${styles.typeCards__item} ${styles.typeCards__item_selected}`
+			} else {
+				isSelectedItem = styles.typeCards__item
+			}
+
+			return (
+				<div
+					onClick={() => handleAddItemTypes(el)}
+					className={isSelectedItem}
+				>
+					{el}
+				</div>
+			)
+		})
+	const leftMenuTypeCardsItems = itemTypesFiltredArr.map((el,index,array) => {
+			let isSelectedItem
+			if (filterSortByItemType.includes(el)) {
+				isSelectedItem = `${styles.itemTypeCare__title} ${styles.itemTypeCare__title_selected}`
+			} else {
+				isSelectedItem = styles.itemTypeCare__title
+			}
+
+			return (
+				<>
+					<div className={isSelectedItem} onClick={() => handleAddItemTypes(el)}>{el}</div>
+					{index !== array.length - 1  && <div className={styles.line}></div>}
+				</>
+			)
+		})
 
 	const filtredItemsByPrice = items.filter(el => el.price >= filterState.min && el.price <= filterState.max)
 
@@ -126,6 +178,9 @@ const Catalog = () => {
 		const minPriceParams = searchParams.get("minPrice") ?? filterByMinPrice
 		const sortByParams = searchParams.get("sortBy")
 		const pageParams = searchParams.get("page") ?? filterCurrentPage
+		const SortByItemTypeParams = searchParams.get("SortByItemType")
+
+
 
 		type SortBY = {
 			value: DefaultSortType
@@ -152,11 +207,19 @@ const Catalog = () => {
 			}
 		}
 
+		dispatch(setCatalogData({productsList: itemsCopy}))
 		setFilterState({...filterState, sortBy: sortBy.value, max: Number(maxPriceParams), min: Number(minPriceParams)})
 		dispatch(catalogDataDefaultSort({sortBy: sortBy.value}))
 		dispatch(catalogDataFilterByPrice({maxPrice: Number(maxPriceParams), minPrice: Number(minPriceParams)}))
 		dispatch(setFilterByPrice({max: Number(maxPriceParams), min: Number(minPriceParams)}))
 		dispatch(setCurrentPage({page: Number(pageParams)}))
+
+		let SortByItemTypeArray:Array<string> = []
+		if(SortByItemTypeParams !== null) {
+			SortByItemTypeArray = SortByItemTypeParams.split(',')
+			dispatch(catalogDataFilterByItemType({fitlerValues: SortByItemTypeArray}))
+		}
+
 	}, [location])
 
 	const handleChangeSelectionByPrice = (max: number, min: number) => {
@@ -241,22 +304,18 @@ const Catalog = () => {
 							</div>
 						</div>
 						<div className={styles.filterPanel__itemTypeCare}>
-							<div className={styles.itemTypeCare__title}>Уход за собой</div>
-							<div className={styles.line}></div>
-							<div className={styles.itemTypeCare__title}>Уход за собой</div>
-							<div className={styles.line}></div>
-							<div className={styles.itemTypeCare__title}>Уход за собой</div>
-							<div className={styles.line}></div>
+							{leftMenuTypeCardsItems}
 						</div>
 					</div>
 					<div>
 						<div className={styles.cards}>
 							{productCardItems}
 						</div>
-						<Pagination currentPage={filterCurrentPage}
-																		onSetPage={handleSetPage}
-																		countPerPage={filterCountPerPage}
-																		totalCountItems={items.length}
+						<Pagination
+							currentPage={filterCurrentPage}
+							onSetPage={handleSetPage}
+							countPerPage={filterCountPerPage}
+							totalCountItems={items.length}
 						/>
 						<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo, vestibulum sagittis
 							iaculis iaculis. Quis mattis vulputate feugiat massa vestibulum duis. Faucibus consectetur aliquet sed

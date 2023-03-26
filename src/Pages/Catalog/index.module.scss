@@ -28,6 +28,15 @@
     font-size: 14px;
     line-height: 17px;
     color: #3F4E65;
+    &:hover{
+      cursor: pointer;
+    }
+    &_selected{
+      background: lightgrey;
+    }
+  }
+  &__item:not(:last-child) {
+    margin-right: 11px;
   }
 }
 
@@ -113,6 +122,9 @@
   text-transform: uppercase;
   color: #111111;
 
+  &_selected{
+    color:red;
+  }
   &:hover {
     cursor: pointer;
   }
