@@ -2,21 +2,16 @@ import React, {FC, useEffect} from "react";
 import styles from "./index.module.scss"
 import ReactDOM from "react-dom";
 import closeLogo from "../close.svg"
-import {ProductDataType} from "../../../Store/slices/productListSlice";
-import AdminDataItemForm from "../../adminCRUD/AdminDataItemForm";
 import {DefaultCustomTitle} from "../../DefaultCustomTitle/defaultCustomTitle";
 import {modalRoot} from "../../../index";
 
 type ModalWindowPropsType = {
 	isOpen: boolean
 	toggle: (e: boolean) => void;
-	data: ProductDataType
-	onModalSubmit: (e:ProductDataType) => void
-
+	onModalSubmit: () => void
 }
 
-
-export const UpdateAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,data,onModalSubmit}) => {
+export const DeleteAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,onModalSubmit}) => {
 
 	useEffect(() => {
 		if (isOpen) {
@@ -32,8 +27,8 @@ export const UpdateAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,d
 	const handleStopProg = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.stopPropagation()
 	}
-	const handleModalSubmit = (e:ProductDataType) => {
-		onModalSubmit(e)
+	const handleModalSubmit = () => {
+		onModalSubmit()
 	}
 
 	if (!isOpen) return null
@@ -43,8 +38,9 @@ export const UpdateAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,d
 				<div className={styles.closeBTN}>
 					<button onClick={handleCloseModal}><img src={closeLogo} alt="closeLogo"/></button>
 				</div>
-				<DefaultCustomTitle text={"Update Item"}/>
-				<AdminDataItemForm onSubmit={handleModalSubmit} data={data}/>
+				<DefaultCustomTitle text={"Удалить предмет?"}/>
+				<button onClick={handleModalSubmit}>Ок</button>
+				<button onClick={handleCloseModal}>Отмена</button>
 			</div>
 		</div>,
 		modalRoot

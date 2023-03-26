@@ -3,13 +3,13 @@ import styles from "./index.module.scss"
 import ReactDOM from "react-dom";
 import succsesLogo from "./succses.svg"
 import closeLogo from "../close.svg"
+import {modalRoot} from "../../../index";
 
 type ModalWindowPropsType = {
 	isOpen: boolean
 	toggle: (e: boolean) => void;
 }
 
-const modalRoot = document.getElementById("portal") as Element
 export const SuccsesPurchaseModal: FC<ModalWindowPropsType> = ({isOpen, toggle}) => {
 
 	useEffect(() => {

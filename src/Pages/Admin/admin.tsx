@@ -22,7 +22,17 @@ const Admin = () => {
 		})
 		setCardItems(newArray)
 	}
-	const MappedItems = cardItems.map( el => <CardItem data={el} key={el.id} updateForAdmin onItemUpdate={handleUpdateItem}/>)
+	const handleDeleteCardItem = (e: ProductDataType) => {
+		const newArray = cardItems.filter((cardItem) => cardItem.id !== e.id)
+		setCardItems(newArray)
+	}
+	const MappedItems = cardItems.map(el => <CardItem
+		data={el}
+		key={el.id}
+		updateForAdmin
+		onItemUpdate={handleUpdateItem}
+		onItemDelete={handleDeleteCardItem}
+	/>)
 	return (
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>

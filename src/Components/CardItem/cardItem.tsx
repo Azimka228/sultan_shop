@@ -5,18 +5,20 @@ import cartImg from "../../assets/cart.svg"
 import deleteLogo from "../../assets/delete.svg"
 import updateLogo from "../../assets/update.png"
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
-import {clearBasket, setBasketItem} from "../../Store/slices/basketSlice";
+import {setBasketItem} from "../../Store/slices/basketSlice";
 import {ItemSize} from "../ItemSize/itemSize";
 import {ProductDataType} from "../../Store/slices/productListFilter";
 import {UpdateAdminItemModal} from "../ModalWindow/UpdateAdminItemModal/updateAdminItemModal";
+import {DeleteAdminItemModal} from "../ModalWindow/DeleteAdminItemModal/deleteAdminItemModal";
 
 type PromotionalGoodsItemPropsType = {
 	data: ProductDataType
 	updateForAdmin?: boolean
 	onItemUpdate?: (e: ProductDataType) => void
+	onItemDelete?: (e: ProductDataType) => void
 }
 
-export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data,updateForAdmin,onItemUpdate}) => {
+export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data, updateForAdmin, onItemUpdate, onItemDelete}) => {
 	const dispatch = useAppDispatch()
 
 	const handleAddToCart = (item: ProductDataType) => {
@@ -24,29 +26,42 @@ export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data,updateForAdmin
 	}
 	const typeCare = data.itemType.join(", ")
 
-	const [isOpenModal, setIsOpenModal] = useState(false)
-	const hanldeChangeStateModal = () => {
-		setIsOpenModal(!isOpenModal)
+	const [isOpenModalUpdateItem, setIsOpenModalUpdateItem] = useState(false)
+	const [isOpenModalDeleteItem, setIsOpenModalDeleteItem] = useState(false)
+
+	const handleChangeUpdateItemStatusModal = () => {
+		setIsOpenModalUpdateItem(!isOpenModalUpdateItem)
+	}
+	const handleChangeDeleteItemStatusModal = () => {
+		setIsOpenModalDeleteItem(!isOpenModalDeleteItem)
 	}
 
-	const handleSubmitUpdateItem = (e:ProductDataType) => {
-		setIsOpenModal(false)
-		dispatch(clearBasket())
-		if(onItemUpdate){
+	const handleSubmitUpdateItem = (e: ProductDataType) => {
+		setIsOpenModalUpdateItem(false)
+		if (onItemUpdate) {
 			onItemUpdate(e)
 		}
-
 	}
+	const handleSubmitDeleteItem = () => {
+		setIsOpenModalDeleteItem(false)
+		if (onItemDelete) {
+			onItemDelete(data)
+		}
+	}
+
 	return (
 		<div className={styles.main}>
 			{updateForAdmin &&
-
     <div className={styles.mark}>
-     <UpdateAdminItemModal isOpen={isOpenModal} toggle={hanldeChangeStateModal} data={data} onModalSubmit={handleSubmitUpdateItem}/>
-     <button className={styles.mark__update} onClick={hanldeChangeStateModal}>
+     <UpdateAdminItemModal isOpen={isOpenModalUpdateItem} toggle={handleChangeUpdateItemStatusModal} data={data}
+                           onModalSubmit={handleSubmitUpdateItem}/>
+
+     <DeleteAdminItemModal isOpen={isOpenModalDeleteItem} toggle={handleChangeDeleteItemStatusModal}
+                           onModalSubmit={handleSubmitDeleteItem}/>
+     <button className={styles.mark__update} onClick={handleChangeUpdateItemStatusModal}>
       <img src={updateLogo} alt="updateLogo"/>
      </button>
-     <button className={styles.mark__delete}>
+     <button className={styles.mark__delete} onClick={handleChangeDeleteItemStatusModal}>
       <img src={deleteLogo} alt="deleteLogo"/>
      </button>
     </div>
@@ -61,7 +76,8 @@ export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data,updateForAdmin
 			<div>Тип ухода: <b>{typeCare}</b></div>
 			<div className={styles.cashout}>
 				<div><b>{data.price} {data.currencyType}</b></div>
-				{!updateForAdmin && 	<button onClick={() => handleAddToCart(data)}>В КОРЗИНУ <img src={cartImg} alt="cart"/></button>}
+				{!updateForAdmin &&
+     <button onClick={() => handleAddToCart(data)}>В КОРЗИНУ <img src={cartImg} alt="cart"/></button>}
 			</div>
 		</div>
 	);
