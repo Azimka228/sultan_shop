@@ -3,7 +3,7 @@ import styles from "./index.module.scss"
 import ReactDOM from "react-dom";
 import closeLogo from "../close.svg"
 import {ProductDataType} from "../../../Store/slices/productListSlice";
-import AdminDataItemForm from "../../adminCRUD/AdminDataItemForm";
+import AdminDataItemForm from "../../AdminCRUD/AdminDataItemForm";
 import {DefaultCustomTitle} from "../../DefaultCustomTitle/defaultCustomTitle";
 import {modalRoot} from "../../../index";
 

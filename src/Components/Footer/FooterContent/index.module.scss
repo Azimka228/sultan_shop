@@ -1,6 +1,20 @@
+@import "../../../Styles/varibels.module";
+
 .main {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  @media only screen and (min-width: 0px) and (max-width: $largeWidth) {
+    & {
+      justify-content: space-around;
+    }
+  }
+}
+.wrapper{
+  display: flex;
+  & > div:first-child{
+    margin-right: 95px;
+  }
 }
 
 .subscribe {

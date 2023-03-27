@@ -4,7 +4,7 @@ import wrapper from "../../Styles/wrapper.module.scss";
 import {ProductDataType} from "../../Store/slices/productListSlice";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
 import styles from "./index.module.scss"
-import AdminDataItemForm from "../../Components/adminCRUD/AdminDataItemForm";
+import AdminDataItemForm from "../../Components/AdminCRUD/AdminDataItemForm";
 import {CardItem} from "../../Components/CardItem/cardItem";
 
 const Admin = () => {

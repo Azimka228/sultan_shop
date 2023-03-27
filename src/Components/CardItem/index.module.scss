@@ -4,8 +4,9 @@
   border-radius: 10px;
   padding: 29px 21px 29px 21px;
   position: relative;
-  max-width: 326px;
+  width: 326px;
   height: max-content;
+  box-sizing: border-box;
 }
 
 .title {
@@ -113,6 +114,7 @@
   margin-top: 13px;
   margin-bottom: 9px;
   & > img {
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
   }
 }

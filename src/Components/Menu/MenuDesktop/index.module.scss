@@ -1,46 +1,103 @@
-.main{
+@import "../../../Styles/varibels.module";
+
+.main {
   display: flex;
   min-height: 61px;
   align-items: center;
   justify-content: space-between;
+  @media only screen and (min-width: 0px) and (max-width: $largeWidth) {
+    & {
+      flex-direction: column;
+
+      & > div {
+        margin-top: 20px;
+      }
+
+      & > div:last-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
 }
-.contacts{
+
+.contacts {
   display: flex;
+  @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+    & {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 }
+
 .links {
   display: flex;
+  @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+    & {
+    flex-direction: column;
+      & > .item {
+        padding: 0;
+      }
+    }
+  }
   & > .item:not(:last-child) {
     padding-right: 30px;
     min-height: 29px;
     border-right: 1px dashed #dadde1;
+    @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+      & {
+       border: none;
+        padding: 0;
+      }
+    }
   }
+
   .item:not(:first-child) {
     padding-left: 30px;
+    @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+      & {
+        padding: 0;
+      }
+    }
   }
 
 }
 
 
-.address{
+.address {
   max-height: 39px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-right: 1px dashed #dadde1;
   padding-right: 20px;
-  &__img{
+  @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+    & {
+      border: none;
+      padding: 0;
+    }
+  }
+
+  &__img {
     margin-right: 18px;
   }
 }
 
 
-.email{
+.email {
   max-height: 39px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 20px;
-  &__img{
+  @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+    & {
+      margin-top: 10px;
+      padding: 0;
+    }
+  }
+
+  &__img {
     margin-right: 16px;
   }
 }

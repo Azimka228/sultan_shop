@@ -9,12 +9,29 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 21px;
   grid-row-gap: 21px;
+  @media only screen and (min-width: 0px) and (max-width: 1407px) {
+    & {
+      grid-template-columns: 1fr 1fr;
+      & > div {
+        justify-self: center;
+      }
+    }
+  }
+  @media only screen and (min-width: 0px) and (max-width: 1050px) {
+    & {
+      grid-template-columns: 1fr;
+      & > div {
+        justify-self: center;
+      }
+    }
+  }
 }
 
 .typeCards {
   margin-top: 25px;
   margin-bottom: 30px;
   display: flex;
+  flex-wrap: wrap;
 
   &__item {
     background: #FFFFFF;
@@ -28,6 +45,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #3F4E65;
+    margin-bottom: 10px;
     &:hover{
       cursor: pointer;
     }

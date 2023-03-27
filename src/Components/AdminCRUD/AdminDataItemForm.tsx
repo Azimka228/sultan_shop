@@ -22,7 +22,6 @@ const initialState = {
 }
 
 export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data}) => {
-	debugger
 	useEffect(() => {
 		if (data) {
 			const currentItemType = data.itemType.join(", ")
