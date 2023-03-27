@@ -1,7 +1,27 @@
+@import "../../../Styles/varibels.module";
+
 .main {
   min-height: 107px;
   display: flex;
   align-items: center;
+  @media only screen and (min-width: 0px) and (max-width: $largeWidth) {
+    & {
+      flex-direction: column;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+      & {
+        flex-direction: column;
+        & > div {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
 }
 
 .btn {
@@ -35,7 +55,6 @@
   display: flex;
 
 
-
   &__number {
     font-family: 'Inter', serif;
     font-style: normal;
@@ -60,8 +79,9 @@
     align-items: flex-end;
     justify-content: center;
     margin-right: 10px;
+
     & > a {
-      font-family: 'Inter',serif;
+      font-family: 'Inter', serif;
       font-style: normal;
       font-weight: 400;
       font-size: 10px;
@@ -94,7 +114,15 @@
 .basket {
   position: relative;
   width: 40px;
-
+  &__main{
+    display: flex;
+    align-items: center;
+    @media only screen and (min-width: 0px) and (max-width: $mediumWidth) {
+      & {
+        margin-bottom: 10px;
+      }
+    }
+  }
   &:hover {
     cursor: pointer
   }
