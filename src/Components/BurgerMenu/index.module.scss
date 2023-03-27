@@ -1,0 +1,135 @@
+.main {
+  position: absolute;
+  z-index: 300;
+  top: 0;
+  height: 591px;
+  background: #FFFFFF;
+  width: 100%;
+  padding: 21px 15px 32px 13px;
+  box-sizing: border-box;
+}
+.menu{
+  display: flex;
+  flex-direction: column;
+  & > button {
+    border: none;
+    background: #FFC85E;
+    border-radius: 79px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 26px 0 26px 0;
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    & > img {
+      margin-left: 12px;
+    }
+  }
+  &__links{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-bottom: 22px;
+    & > a {
+      font-family: 'Inter',serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 150%;
+      color: #3F4E65;
+      text-decoration: none;
+    }
+    & > a:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  &__title{
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    color: #3F4E65;
+    margin-top: 25px;
+  }
+
+}
+
+.information {
+  &__timeWork {
+    margin-top: 5px;
+  }
+
+  &__RequestCall {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    & > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 2px;
+      margin-right: 7px;
+      border: none;
+      padding: 10px;
+      background: #FFC85E;
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+    }
+
+    & > p {
+      font-family: 'Inter',serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 150%;
+      text-decoration-line: underline;
+      color: #3F4E65;
+    }
+  }
+
+  &__item {
+    display: flex;
+
+    & > img {
+      margin-right: 18px;
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+
+      & > p:first-child {
+        font-family: 'Inter', serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 130.02%;
+        color: #111111;
+      }
+
+      & > p {
+        font-family: 'Inter', serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 150%;
+        color: #3F4E65
+      }
+    }
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+.line{
+  height: 1px;
+  border-bottom: 1px dashed #dadde1;
+  width: 100%;
+}

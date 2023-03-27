@@ -8,9 +8,10 @@ import {MenuMobile} from "./MenuMobile/menuMobile";
 export const Menu = () => {
 	const isMobile = useMediaQuery('(max-width: 480px)')
 	const MenuBody = isMobile? <MenuMobile/> : <MenuDesktop/>
+	const menuWrapper =  isMobile ? `${wrapper.wrapper}  ${styles.mobileWrapper}` : wrapper.wrapper
 	return (
 		<div className={styles.main}>
-			<div className={wrapper.wrapper}>
+			<div className={menuWrapper}>
 				{MenuBody}
 			</div>
 		</div>

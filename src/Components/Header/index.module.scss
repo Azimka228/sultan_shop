@@ -1,4 +1,16 @@
+@import "../../Styles/varibels.module";
+
 .main{
+  display: flex;
+  align-items: center;
   min-height: 107px;
   border-bottom: 2px solid rgba(63, 78, 101, 0.2);
+  @media only screen and (min-width: 0px) and (max-width: $smallWidth) {
+    & {
+     min-height: 40px;
+    }
+  }
+}
+.mobileWrapper{
+  width: 100%;
 }

@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  min-height: 61px;
+  justify-content: space-between;
+  align-items: center;
+}
+.basket{
+  position: relative;
+  &__amountItems{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    background: #FFC85E;
+    border: 3px solid #FFFFFF;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    font-family: 'Inter',serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+}
+.button{
+  border: none;
+  background: #FFC85E;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 12px;
+  & > img {
+
+  }
+}

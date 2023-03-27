@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss"
 import {Link} from "react-router-dom";
-import download from "../../Header/headerDesktop/download.svg";
+import download from "../../Header/HeaderDesktop/download.svg";
 import whatsappLogo from "../whatsapp.svg"
 import telegramLogo from "../telegram.svg"
 import visaLogo from "../visa.svg"
@@ -9,7 +9,7 @@ import mastercardLogo from "../mastercard.svg"
 import subscribeMainLogo from "../logo.svg"
 import buttonLogo from "../button.svg"
 
-export const FooterContent = () => {
+export const FooterDescktop = () => {
 	return (
 		<div className={styles.main}>
 			<div className={styles.subscribe}>
