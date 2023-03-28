@@ -28,6 +28,8 @@ export const DeleteAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,o
 		e.stopPropagation()
 	}
 	const handleModalSubmit = () => {
+		toggle(false)
+		document.body.style.overflow = ""
 		onModalSubmit()
 	}
 
@@ -39,8 +41,11 @@ export const DeleteAdminItemModal: FC<ModalWindowPropsType> = ({isOpen, toggle,o
 					<button onClick={handleCloseModal}><img src={closeLogo} alt="closeLogo"/></button>
 				</div>
 				<DefaultCustomTitle text={"Удалить предмет?"}/>
-				<button onClick={handleModalSubmit}>Ок</button>
-				<button onClick={handleCloseModal}>Отмена</button>
+				<div className={styles.confirm}>
+					<button onClick={handleModalSubmit}>Ок</button>
+					<button onClick={handleCloseModal}>Отмена</button>
+				</div>
+
 			</div>
 		</div>,
 		modalRoot

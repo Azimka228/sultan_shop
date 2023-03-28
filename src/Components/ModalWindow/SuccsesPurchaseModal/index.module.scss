@@ -1,4 +1,4 @@
-
+@import "../../../Styles/varibels.module";
 .overlay {
   overflow: hidden;
   z-index: 100;
@@ -20,6 +20,14 @@
   height: 424px;
   background: #FFFFFF;
   border-radius: 8px;
+  margin: 0 15px 0 15px;
+  overflow: auto;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      max-height: 288px;
+      padding: 10px;
+    }
+  }
 }
 
 .closeBTN {
@@ -39,6 +47,12 @@
   justify-content: center;
   margin-top: 67px;
   margin-bottom: 24px;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      margin-top: 26px;
+      margin-bottom: 20px;
+    }
+  }
 }
 .title{
   display: flex;

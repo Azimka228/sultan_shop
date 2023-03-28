@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import succsesLogo from "./succses.svg"
 import closeLogo from "../close.svg"
 import {modalRoot} from "../../../index";
+import {DefaultCustomTitle} from "../../DefaultCustomTitle/defaultCustomTitle";
 
 type ModalWindowPropsType = {
 	isOpen: boolean
@@ -37,7 +38,8 @@ export const SuccsesPurchaseModal: FC<ModalWindowPropsType> = ({isOpen, toggle})
 				<div className={styles.logo}>
 					<img src={succsesLogo} alt="succsesLogo"/>
 				</div>
-				<div className={styles.title}>Спасибо за заказ</div>
+
+				<div className={styles.title}><DefaultCustomTitle text={"Спасибо за заказ"}/></div>
 				<div className={styles.description}>Наш менеджер свяжется с вами в ближайшее время</div>
 			</div>
 		</div>,

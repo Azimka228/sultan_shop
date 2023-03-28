@@ -15,7 +15,7 @@ import {setIsOpen} from "../Store/slices/burgerMenuSlice";
 export const AppRoutes = () => {
 	const dispatch = useAppDispatch()
 	const isOpenBurgerMenu = useAppSelector(state => state.burgerMenu.isOpen)
-	const isMobile = useMediaQuery('(max-width: 480px)')
+	const isMobile = useMediaQuery('(max-width: 694px)')
 	const handleCloseBurgerMenu = () => {
 		dispatch(setIsOpen({value: false}))
 	}

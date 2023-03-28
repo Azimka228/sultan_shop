@@ -6,7 +6,7 @@ import {useMediaQuery} from "usehooks-ts";
 import {HeaderMobile} from "./HeaderMobile/headerMobile";
 
 const Header = () => {
-	const isMobile = useMediaQuery('(max-width: 480px)')
+	const isMobile = useMediaQuery('(max-width: 694px)')
 	const HeaderBody = isMobile? <HeaderMobile/> : <HeaderDesktop/>
 	const headerWrapper =  isMobile ? `${wrapper.wrapper}  ${styles.mobileWrapper}` : wrapper.wrapper
 	return (

@@ -1,11 +1,29 @@
+@import "../../Styles/varibels.module";
+
 .main {
   padding: 0 0 100px 0;
 }
 
 .content {
   display: flex;
-  &__main{
+  @media only screen and (min-width: 0px) and (max-width: 1253px) {
+    & {
+        justify-content: space-evenly;
+    }
+  }
+  @media only screen and (min-width: 0px) and (max-width: 730px) {
+    & {
+     flex-direction: column;
+      align-items: center;
+    }
+  }
+  &__main {
     max-width: 630px;
+    @media only screen and (min-width: 0px) and (max-width: 330px) {
+      & {
+        width: 100%;
+      }
+    }
   }
 }
 
@@ -24,17 +42,84 @@
   align-items: center;
   max-width: 600px;
   margin-bottom: 35px;
+  & > div:nth-child(2),div:nth-child(3){
+    @media only screen and (min-width: 0px) and (max-width: 1253px) {
+      & {
+        max-width: 290px;
+        margin-bottom: 10px ;
+      }
+      & >  button{
+       padding: 20px;
+        min-height: 77px;
+        box-sizing: border-box;
+        width: 290px;
+        text-align: center;
+      }
+    }
+    @media only screen and (min-width: 0px) and (max-width: 330px) {
+      & {
+        width: 100%;
+        margin-bottom: 10px ;
+      }
+      & >  button{
+        width: 100%;
+      }
+    }
+  }
+  @media only screen and (min-width: 0px) and (max-width: 1253px) {
+    & {
+      flex-direction: column;
+      align-items: flex-start;
+      height: max-content;
+      margin-bottom: 0;
+    }
+  }
+
+  &__share {
+    @media only screen and (min-width: 0px) and (max-width: 1253px) {
+      & {
+        display: flex;
+        margin-bottom: 20px;
+
+        & > button:first-child {
+          margin-right: 31px;
+        }
+        & > button:nth-child(2){
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    @media only screen and (min-width: 0px) and (max-width: 330px) {
+      & > button:first-child{
+        margin: 0;
+      }
+      & {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
 
   &__download {
     display: flex;
     align-items: center;
+    @media only screen and (min-width: 0px) and (max-width: 1253px) {
+      & {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
+    }
     & > img {
       margin-left: 13px;
     }
   }
 
-  & > button {
+  & > div > button {
     border: none;
     height: 100%;
     padding: 0 30px 0 30px;
@@ -48,7 +133,11 @@
     line-height: 150%;
     text-align: center;
     color: #3F4E65;
-
+    @media only screen and (min-width: 0px) and (max-width: 1253px) {
+      & {
+        padding: unset;
+      }
+    }
     &:hover {
       cursor: pointer;
     }
@@ -68,16 +157,46 @@
   }
 }
 
+html > body .addToCart {
+  box-sizing: border-box;
+  background: #FFC85E;
+  border-radius: 79px;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 18px 40px 18px 40px;
+  font-family: 'Inter', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & > img {
+    margin-left: 12px;
+  }
+}
+
 .cashout {
   display: flex;
   align-items: center;
   max-width: 489px;
   justify-content: space-between;
   margin: 15px 0 20px 0;
+  @media only screen and (min-width: 0px) and (max-width: 1253px) {
+    & {
+      justify-content: unset;
+    }
+  }
 
   &__settings {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     & > button {
       padding: 4px 13px 4px 13px;
@@ -96,29 +215,6 @@
     }
   }
 
-  & > button {
-    box-sizing: border-box;
-    background: #FFC85E;
-    border-radius: 79px;
-    border: none;
-    display: flex;
-    align-items: center;
-    padding: 18px 40px 18px 40px;
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    color: #FFFFFF;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    & > img {
-      margin-left: 12px;
-    }
-  }
 
   &__price {
     font-family: 'Inter', serif;
@@ -130,6 +226,16 @@
     max-width: 120px;
     text-align: center;
     word-break: break-word;
+    @media only screen and (min-width: 0px) and (max-width: 1253px) {
+      & {
+        font-style: normal;
+        font-weight: 800;
+        font-size: 20px;
+        line-height: 130%;
+        color: #111111;
+        margin-right: 27px;
+      }
+    }
   }
 }
 
@@ -149,7 +255,14 @@
   font-size: 30px;
   line-height: 150%;
   color: #111111;
-
+  @media only screen and (min-width: 0px) and (max-width: 730px) {
+    & {
+      font-style: normal;
+      font-size: 16px;
+      line-height: 150%;
+      color: #111111;
+    }
+  }
   & > b {
     font-weight: 800;
   }
@@ -164,15 +277,30 @@
   color: #1FD85D;
   margin-bottom: 10px;
   margin-top: 40px;
+  @media only screen and (min-width: 0px) and (max-width: 730px) {
+    & {
+      margin-top: 15px;
+    }
+  }
 }
 
 .line {
   width: 270px;
   opacity: 0.3;
   border-bottom: 1px dashed #3F4E65;
+  @media only screen and (min-width: 0px) and (max-width: 730px) {
+    & {
+     width: 100%;
+    }
+  }
 }
 
 .specification {
+  @media only screen and (min-width: 0px) and (max-width: 1253px) {
+    & {
+      margin-top: 10px;
+    }
+  }
   & > p {
     font-family: 'Inter', serif;
     font-style: normal;
@@ -198,6 +326,13 @@
   max-height: 450px;
   display: flex;
   margin-right: 60px;
+  @media only screen and (min-width: 0px) and (max-width: 1253px) {
+    & {
+      height: 191px;
+      margin: 0;
+    }
+  }
+
   & > img {
     width: 100%;
     height: 100%;

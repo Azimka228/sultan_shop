@@ -257,7 +257,7 @@ const Catalog = () => {
 						<div className={breadCrumbs.navigate__item_mobile}>
 							<Link to={AppLinks.home}>
 								<div><img src={bradCrumbsLogo} alt="bradCrumbsLogo"/></div>
-										Назад
+								Назад
 							</Link>
 						</div>
 						:
@@ -272,8 +272,7 @@ const Catalog = () => {
 									className={breadCrumbs.navigate__item_disabled}
 								>Каталог</Link>
 							</div>
-						</>
-					}
+						</>}
 				</div>
 				<div className={styles.header}>
 					<DefaultCustomTitle text={"Косметика и гигиена"}/>

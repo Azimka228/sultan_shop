@@ -4,8 +4,6 @@ import {useAppSelector} from "../../Store/hooks/useAppSelector";
 import wrapper from "../../Styles/wrapper.module.scss";
 import breadCrumbs from "../../Styles/breadCrumbs.module.scss";
 import {AppLinks} from "../../Routes/links";
-import bottleImg from "../../assets/bottle.svg";
-import boxImg from "../../assets/box.svg";
 import cartImg from "../../assets/cart.svg";
 import styles from "./index.module.scss"
 import CollapsibleDiv from "../../Components/CollapsibleDiv/collapsibleDiv";
@@ -13,8 +11,15 @@ import shareLogo from "./share.svg"
 import downloadLogo from "./download.svg"
 import {setBasketItem} from "../../Store/slices/basketSlice";
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
+import {useMediaQuery} from "usehooks-ts";
+import bradCrumbsLogo from "../../assets/bradCrumbsArrow.svg";
+import {ItemSize} from "../../Components/ItemSize/itemSize";
 
 const СardProduct = () => {
+
+	const isDesktop = useMediaQuery("(max-width: 1253px)")
+	const isTablet = useMediaQuery("(max-width: 768px)")
+	const isMobile = useMediaQuery("(max-width: 480px)")
 
 	const [amountItems, setAmountItems] = useState<number>(1)
 	const dispatch = useAppDispatch()
@@ -38,7 +43,6 @@ const СardProduct = () => {
 		}
 	}
 
-	const itemSizeImg = currentItem?.typeSize === "мл" ? bottleImg : boxImg
 	const typeCare = currentItem?.itemType.join(", ")
 
 	const characteristicsBlock =
@@ -55,24 +59,35 @@ const СardProduct = () => {
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>
 				<div className={breadCrumbs.navigate}>
-					<div className={breadCrumbs.navigate__item}>
-						<Link to={AppLinks.home}>Главная</Link>
-					</div>
-					<div className={breadCrumbs.navigate__item}>
-						<Link to={AppLinks.catalog}>Каталог</Link>
-					</div>
-					<div className={breadCrumbs.navigate__item}>
-						<Link to={AppLinks.catalog + `/${barcode}`} onClick={handleDisablePageNavigation}
-												className={breadCrumbs.navigate__item_disabled}>{currentItem?.title}</Link>
-					</div>
+					{isMobile ?
+						<div className={breadCrumbs.navigate__item_mobile}>
+							<Link to={AppLinks.home}>
+								<div><img src={bradCrumbsLogo} alt="bradCrumbsLogo"/></div>
+								Назад
+							</Link>
+						</div>
+						:
+						<>
+							<div className={breadCrumbs.navigate__item}>
+								<Link to={AppLinks.home}>Главная</Link>
+							</div>
+							<div className={breadCrumbs.navigate__item}>
+								<Link to={AppLinks.catalog}>Каталог</Link>
+							</div>
+							<div className={breadCrumbs.navigate__item}>
+								<Link to={AppLinks.catalog + `/${barcode}`} onClick={handleDisablePageNavigation}
+														className={breadCrumbs.navigate__item_disabled}>{currentItem?.title}</Link>
+							</div>
+						</>
+					}
+
 				</div>
 				<div className={styles.content}>
 					<div className={styles.logo}><img src={currentItem?.url} alt="Item img"/></div>
 					<div className={styles.content__main}>
 						<div className={styles.status}>В наличии</div>
 						<div className={styles.title}><b>{currentItem?.brand}</b> {currentItem?.title}</div>
-						<div className={styles.size}><img src={itemSizeImg} alt="itemSizeImg"/>{currentItem?.size} {currentItem?.typeSize}
-						</div>
+						{!isMobile && <ItemSize typeSize={currentItem?.typeSize || "мл"} size={currentItem?.size || 0}/>}
 						<div className={styles.cashout}>
 							<p className={styles.cashout__price}>{currentItem?.price} {currentItem?.currencyType}</p>
 							<div className={styles.cashout__settings}>
@@ -80,13 +95,22 @@ const СardProduct = () => {
 								<p>{amountItems}</p>
 								<button onClick={handleIncreaseAmountItems}>+</button>
 							</div>
-							<button onClick={handleAddToCart}>В корзину <img src={cartImg} alt="cart"/></button>
+							{!isDesktop && <button onClick={handleAddToCart} className={styles.addToCart}>В корзину <img src={cartImg} alt="cart"/></button>}
+
 						</div>
 						<div className={styles.informationBTNS}>
-							<button><img src={shareLogo} alt="shareLogo"/></button>
-							<button>При покупке от <b>10 000 ₸</b> бесплатная<br/> доставка по Кокчетаву и области</button>
-							<button className={styles.informationBTNS__download}><b>Прайс-лист</b> <img src={downloadLogo}
-																																																																																			alt="downloadLogo"/></button>
+							<div className={styles.informationBTNS__share}>
+								{isDesktop && <button onClick={handleAddToCart} className={styles.addToCart}>В корзину <img src={cartImg} alt="cart"/></button>}
+								<button><img src={shareLogo} alt="shareLogo"/></button>
+							</div>
+							<div>
+								<button>При покупке от <b>10 000 ₸</b> бесплатная<br/> доставка по Кокчетаву и области</button>
+							</div>
+							<div>
+								<button className={styles.informationBTNS__download}><b>Прайс-лист</b>
+									<img src={downloadLogo} alt="downloadLogo"/>
+								</button>
+							</div>
 						</div>
 						<div className={styles.specification}>
 							<p>Производитель: <span>{currentItem?.manufacturer}</span></p>

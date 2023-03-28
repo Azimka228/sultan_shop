@@ -6,7 +6,7 @@ import {useMediaQuery} from "usehooks-ts";
 import {MenuMobile} from "./MenuMobile/menuMobile";
 
 export const Menu = () => {
-	const isMobile = useMediaQuery('(max-width: 480px)')
+	const isMobile = useMediaQuery('(max-width: 694px)')
 	const MenuBody = isMobile? <MenuMobile/> : <MenuDesktop/>
 	const menuWrapper =  isMobile ? `${wrapper.wrapper}  ${styles.mobileWrapper}` : wrapper.wrapper
 	return (
