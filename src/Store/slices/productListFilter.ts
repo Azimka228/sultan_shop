@@ -69,10 +69,11 @@ const slice = createSlice({
 
 		},
 		setCatalogData(state, action: PayloadAction<{ productsList: Array<ProductDataType> }>) {
-			const maxPrice = action.payload.productsList.reduce((acc, curr) => acc.price > curr.price ? acc : curr).price
 			state.productsList = action.payload.productsList
 			state.productsListCopy = action.payload.productsList
-			state.maxPrice = maxPrice
+		},
+		setCatalogMaxPrice(state, action: PayloadAction<{ productsList: Array<ProductDataType> }>) {
+			state.maxPrice = action.payload.productsList.reduce((acc, curr) => acc.price > curr.price ? acc : curr).price
 		},
 		setCurrentPage(state, action: PayloadAction<{ page: number }>) {
 			state.currentPage = action.payload.page
@@ -97,7 +98,7 @@ const slice = createSlice({
 			const FiltredArray: ProductDataType[] = []
 
 			action.payload.value.forEach(el => {
-				state.productsListCopy.forEach(productItm => {
+				state.productsList.forEach(productItm => {
 					if (productItm.manufacturer === el) {
 						FiltredArray.push(productItm)
 					}
@@ -145,5 +146,6 @@ export const {
 	catalogDataFilterByManufacturer,
 	setCurrentPage,
 	setSortByItemType,
-	catalogDataFilterByItemType
+	catalogDataFilterByItemType,
+	setCatalogMaxPrice
 } = slice.actions

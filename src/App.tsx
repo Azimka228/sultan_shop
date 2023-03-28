@@ -7,7 +7,7 @@ import {AppRoutes} from "./Routes/appRoutes";
 import {Footer} from "./Components/Footer/footer";
 import data from "./db.json"
 import {useAppDispatch} from "./Store/hooks/useAppDispatch";
-import {ProductDataType, setCatalogData} from "./Store/slices/productListFilter";
+import {ProductDataType, setCatalogData, setCatalogMaxPrice} from "./Store/slices/productListFilter";
 import {setProductData} from "./Store/slices/productListSlice";
 import {useLocalStorage} from "usehooks-ts";
 
@@ -21,9 +21,11 @@ function App() {
 		if(isCardItems) {
 			dispatch(setProductData({productsList : cardItems }))
 			dispatch(setCatalogData({productsList : cardItems}))
+			dispatch(setCatalogMaxPrice({productsList : cardItems}))
 		} else {
 			dispatch(setProductData({productsList : data.productsList as Array<ProductDataType>}))
 			dispatch(setCatalogData({productsList : data.productsList as Array<ProductDataType>}))
+			dispatch(setCatalogMaxPrice({productsList : data.productsList as Array<ProductDataType>}))
 		}
 
 	},[dispatch])

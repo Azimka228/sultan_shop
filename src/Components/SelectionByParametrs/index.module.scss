@@ -1,0 +1,99 @@
+@import "../../Styles/varibels.module";
+
+.filterPanel {
+  &__priceTitle {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 150%;
+    color: #3F4E65;
+    margin-top: 10px;
+    margin-bottom: 16px;
+
+    & > b {
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 150%;
+      color: #111111;
+    }
+  }
+
+  &__title {
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #111111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media only screen and (min-width: 0px) and (max-width: $mobile) {
+      & {
+        margin-bottom: 10px;
+        margin-top: 19px;
+      }
+    }
+
+    & > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFCA65;
+      opacity: 0.5;
+      border-radius: 50%;
+      border: none;
+      height: 32px;
+      width: 32px;
+    }
+  }
+
+  &__submit {
+    padding: 21px 74px 21px 74px;
+    font-family: 'Inter', serif;
+    background: #FFC85E;
+    border-radius: 79px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    border: none;
+    @media only screen and (min-width: 0px) and (max-width: $mobile) {
+      & {
+        padding: 21px 26% 21px 26%;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__reset {
+    margin-left: 10px;
+    border: none;
+    background: #FFC85E;
+    border-radius: 79px;
+    padding: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media only screen and (min-width: 0px) and (max-width: $mobile) {
+      & {
+        margin: 0;
+      }
+    }
+  }
+
+  &__btns {
+    display: flex;
+    margin-top: 20px;
+    @media only screen and (min-width: 0px) and (max-width: $mobile) {
+      & {
+        margin-bottom: 40px;
+        justify-content: space-between;
+      }
+    }
+  }
+}

@@ -1,5 +1,13 @@
+@import "../../Styles/varibels.module";
+
 .main {
   position: relative;
+  @media only screen and (min-width: 0px) and (max-width: $tablet) {
+    & {
+      margin-top: 5px;
+      margin-bottom: 37px;
+    }
+  }
 }
 
 .menu {

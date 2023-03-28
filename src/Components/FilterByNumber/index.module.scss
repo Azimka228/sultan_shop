@@ -1,6 +1,5 @@
 .main{
   display: flex;
-  justify-content: space-between;
   align-items: center;
   & > input {
     background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
@@ -24,5 +23,7 @@
     font-size: 14px;
     line-height: 130%;
     color: #3F4E65;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }

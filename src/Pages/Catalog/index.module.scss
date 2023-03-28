@@ -1,7 +1,14 @@
+@import "../../Styles/varibels.module";
+
 .catalogGroup {
   display: grid;
   grid-template-columns: 238px 1fr;
   grid-column-gap: 108px;
+  @media only screen and (min-width: 0px) and (max-width: $tablet) {
+    & {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 .cards {
@@ -9,7 +16,10 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 21px;
   grid-row-gap: 21px;
-  @media only screen and (min-width: 0px) and (max-width: 1407px) {
+  &__description{
+    margin-bottom: 50px;
+  }
+  @media only screen and (min-width: 1050px) and (max-width: 1407px) {
     & {
       grid-template-columns: 1fr 1fr;
       & > div {
@@ -28,7 +38,6 @@
 }
 
 .typeCards {
-  margin-top: 25px;
   margin-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -62,6 +71,20 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 25px;
+  @media only screen and (min-width: 0px) and (max-width: $tablet) {
+    & {
+      justify-content: center;
+    }
+  }
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
 }
 
 .line {
@@ -74,6 +97,28 @@
 }
 
 .filterPanel {
+  @media only screen and (min-width: $mobile) and (max-width: $tablet) {
+    & {
+      width: 320px;
+      justify-self: center;
+    }
+  }
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      width: 100%;
+      justify-self: center;
+    }
+  }
+  &__itemTypeCare{
+    @media only screen and (min-width: 0px) and (max-width: $mobile) {
+      & {
+       display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+    }
+  }
   &__priceTitle {
     font-family: 'Inter', serif;
     font-style: normal;
@@ -139,6 +184,19 @@
   line-height: 150%;
   text-transform: uppercase;
   color: #111111;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      margin: 5px 0 5px 0;
+      font-family: 'Inter',serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      color: #3F4E65;
+      text-transform: none ;
+    }
+  }
 
   &_selected{
     color:red;

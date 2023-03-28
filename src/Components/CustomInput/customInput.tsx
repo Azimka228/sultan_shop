@@ -3,7 +3,7 @@ import searchIcon from "./search.svg"
 import styles from "./index.module.scss"
 
 type CustomInputPropsType = {
-	width: number,
+	width: string,
 	InputSubmit: (inputValue: string) => void
 }
 
@@ -30,7 +30,7 @@ export const CustomInput: FC<CustomInputPropsType> = ({
 		InputSubmit(inputValue)
 	}
 	return (
-		<div style={{width: `${width}px`}} className={styles.main}>
+		<div style={{width: `${width}`}} className={styles.main}>
 			<input onKeyDown={handleInputKeyDown} type="text" placeholder="Поиск..." value={inputValue}
 										onChange={handleInputValueChange}/>
 			<button onClick={handleInputSubmit}><img src={searchIcon} alt="searchIcon"/></button>

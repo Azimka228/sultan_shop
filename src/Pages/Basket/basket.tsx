@@ -11,8 +11,12 @@ import {EmptyBasketItem} from "../../Components/EmptyBasketItem/emptyBasketItem"
 import {SuccsesPurchaseModal} from "../../Components/ModalWindow/SuccsesPurchaseModal/succsesPurchaseModal";
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 import {clearBasket} from "../../Store/slices/basketSlice";
+import bradCrumbsLogo from "../../assets/bradCrumbsArrow.svg";
+import {useMediaQuery} from "usehooks-ts";
 
 const Basket = () => {
+	const isMobile = useMediaQuery("(max-width: 480px)")
+
 	const basketBalance = useAppSelector(state => state.basket.balance)
 	const basketWallet = useAppSelector(state => state.basket.wallet)
 	const basketItems = useAppSelector(state => state.basket.items)
@@ -41,13 +45,27 @@ const Basket = () => {
 		<div>
 			<div className={wrapper.wrapper}>
 				<div className={breadCrumbs.navigate}>
-					<div className={breadCrumbs.navigate__item}>
-						<Link to={AppLinks.home}>Главная</Link>
-					</div>
-					<div className={breadCrumbs.navigate__item}>
-						<Link to={AppLinks.basket} onClick={handleDisablePageNavigation}
-												className={breadCrumbs.navigate__item_disabled}>Корзина</Link>
-					</div>
+					{isMobile ?
+						<div className={breadCrumbs.navigate__item_mobile}>
+							<Link to={AppLinks.home}>
+								<div><img src={bradCrumbsLogo} alt="bradCrumbsLogo"/></div>
+								Назад
+							</Link>
+						</div>
+						:
+						<>
+							<div className={breadCrumbs.navigate__item}>
+								<Link to={AppLinks.home}>Главная</Link>
+							</div>
+							<div className={breadCrumbs.navigate__item}>
+								<Link
+									to={AppLinks.catalog}
+									onClick={handleDisablePageNavigation}
+									className={breadCrumbs.navigate__item_disabled}
+								>Каталог</Link>
+							</div>
+						</>
+					}
 				</div>
 				<DefaultCustomTitle text={"Корзина"}/>
 				<div className={styles.cards}>
@@ -56,7 +74,7 @@ const Basket = () => {
 				<div className={styles.checkout}>
 					<SuccsesPurchaseModal isOpen={isOpenModal} toggle={hanldeChangeStateModal}></SuccsesPurchaseModal>
 					<button disabled={basketItems.length <= 0} onClick={handleConfirmOrder}>Оформить заказ</button>
-					<p>{basketBalance} {basketWallet}</p>
+					<p>{basketBalance.toFixed(2)} {basketWallet}</p>
 				</div>
 			</div>
 		</div>

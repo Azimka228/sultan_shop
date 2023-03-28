@@ -1,9 +1,18 @@
+@import "../../Styles/varibels.module";
+
 .checkout {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 100px;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      flex-direction: column-reverse;
+      margin-top: 25px;
+      margin-bottom: 50px;
+    }
+  }
 
   & > button {
     border: none;
@@ -17,6 +26,13 @@
     color: #FFFFFF;
     padding: 21px 38px 21px 38px;
     text-align: center;
+    @media only screen and (min-width: 0px) and (max-width: $mobile) {
+      & {
+        margin-top: 25px;
+        padding: 31px 86px 31px 86px;
+        width: 100%;
+      }
+    }
 
     &:hover {
       cursor: pointer;
@@ -43,8 +59,12 @@
   margin-top: 50px;
   max-height: 873px;
   overflow: auto;
-  scrollbar-color:  #FFC85E;
-
+  scrollbar-color: #FFC85E;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      margin-top: 20px;
+    }
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -61,7 +81,6 @@
     border-radius: 10px;
     background-color: rgba(255, 200, 94, 0.4);
   }
-
 
 
   & > div {

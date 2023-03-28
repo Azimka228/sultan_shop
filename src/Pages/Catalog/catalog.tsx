@@ -7,23 +7,25 @@ import {Link, useLocation, useSearchParams} from "react-router-dom";
 import {AppLinks} from "../../Routes/links";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
 import {CardItem} from "../../Components/CardItem/cardItem";
-import FilterByPrice from "../../Components/FilterByNumber/filterByPrice";
-import {FilterByString} from "../../Components/FilterByString/filterByString";
 import {getDataSearchByString} from "../../Utills/getDataSearchByString";
 import {MenuSortBy} from "../../Components/MenuSortBy/menuSortBy";
-import deleteIcon from "../../assets/delete.svg"
+import bradCrumbsLogo from "../../assets/bradCrumbsArrow.svg"
 
 import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
 import {
-	catalogDataDefaultSort, catalogDataFilterByItemType,
+	catalogDataDefaultSort,
+	catalogDataFilterByItemType,
 	catalogDataFilterByManufacturer,
 	catalogDataFilterByPrice,
 	DefaultSortType,
 	setCatalogData,
 	setCurrentPage,
-	setFilterByPrice, setSortByItemType
+	setFilterByPrice,
+	setSortByItemType
 } from "../../Store/slices/productListFilter";
 import Pagination from "../../Components/Pagination/pagination";
+import {useMediaQuery} from "usehooks-ts";
+import {SelectionByParametrs} from "../../Components/SelectionByParametrs/selectionByParametrs";
 
 type FilterStateType = {
 	max: number
@@ -31,25 +33,34 @@ type FilterStateType = {
 	sortBy: DefaultSortType
 	filterByManufacturer: Array<string>
 }
+type ParamsType = {
+	maxPrice: string
+	minPrice: string
+	sortBy: string
+	page: string
+	SortByItemType?: string
+}
 
 const Catalog = () => {
+	const isTablet = useMediaQuery("(max-width: 768px)")
+	const isMobile = useMediaQuery("(max-width: 480px)")
+
 	useEffect(() => {
 		//This code is for loading search parameters by "Item type"
 		const SortByItemTypeParams = searchParams.get("SortByItemType")
 
-		let SortByItemTypeArray:Array<string> = []
-		if(SortByItemTypeParams !== null) {
-			SortByItemTypeArray = SortByItemTypeParams.split(',')
-			dispatch(setSortByItemType({item:SortByItemTypeArray}))
+		let SortByItemTypeArray: Array<string> = []
+		if (SortByItemTypeParams !== null) {
+			SortByItemTypeArray = SortByItemTypeParams.split(",")
+			dispatch(setSortByItemType({item: SortByItemTypeArray}))
 		}
-	},[])
+	}, [])
 	const dispatch = useAppDispatch()
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation();
 
 	const items = useAppSelector((state) => state.productListFilter.productsList)
 	const itemsCopy = useAppSelector((state) => state.productListFilter.productsListCopy)
-
 
 	const sortByList = useAppSelector(state => state.productListFilter.sortByList)
 
@@ -60,7 +71,6 @@ const Catalog = () => {
 	const filterCountPerPage = useAppSelector(state => state.productListFilter.countPerPage)
 	const filterSortByItemType = useAppSelector(state => state.productListFilter.sortByItemType)
 
-
 	const [filterState, setFilterState] = useState<FilterStateType>({
 		max: filterByMaxPrice,
 		min: filterByMinPrice,
@@ -69,13 +79,7 @@ const Catalog = () => {
 	})
 
 	useEffect(() => {
-		type ParamsType = {
-			maxPrice: string
-			minPrice: string
-			sortBy: string
-			page: string
-			SortByItemType?: string
-		}
+
 		const params: ParamsType = {
 			maxPrice: "0",
 			minPrice: "0",
@@ -137,37 +141,39 @@ const Catalog = () => {
 		dispatch(setSortByItemType({item}))
 	}
 	const typeCardItems = itemTypesFiltredArr.map((el) => {
-			let isSelectedItem
-			if (filterSortByItemType.includes(el)) {
-				isSelectedItem = `${styles.typeCards__item} ${styles.typeCards__item_selected}`
-			} else {
-				isSelectedItem = styles.typeCards__item
-			}
+		let isSelectedItem
+		if (filterSortByItemType.includes(el)) {
+			isSelectedItem = `${styles.typeCards__item} ${styles.typeCards__item_selected}`
+		} else {
+			isSelectedItem = styles.typeCards__item
+		}
 
-			return (
-				<div
-					onClick={() => handleAddItemTypes(el)}
-					className={isSelectedItem}
-				>
-					{el}
-				</div>
-			)
-		})
-	const leftMenuTypeCardsItems = itemTypesFiltredArr.map((el,index,array) => {
-			let isSelectedItem
-			if (filterSortByItemType.includes(el)) {
-				isSelectedItem = `${styles.itemTypeCare__title} ${styles.itemTypeCare__title_selected}`
-			} else {
-				isSelectedItem = styles.itemTypeCare__title
-			}
+		return (
+			<div
+				onClick={() => handleAddItemTypes(el)}
+				className={isSelectedItem}
+			>
+				{el}
+			</div>
+		)
+	})
+	const leftMenuTypeCardsItems = itemTypesFiltredArr.map((el, index, array) => {
+		let isSelectedItem
+		if (filterSortByItemType.includes(el)) {
+			isSelectedItem = `${styles.itemTypeCare__title} ${styles.itemTypeCare__title_selected}`
+		} else {
+			isSelectedItem = styles.itemTypeCare__title
+		}
 
-			return (
-				<>
-					<div className={isSelectedItem} onClick={() => handleAddItemTypes(el)}>{el}</div>
-					{index !== array.length - 1  && <div className={styles.line}></div>}
-				</>
-			)
-		})
+		const linesAfterItem = index !== array.length - 1 && <div className={styles.line}></div>
+
+		return (
+			<>
+				<div className={isSelectedItem} onClick={() => handleAddItemTypes(el)}>{el}</div>
+				{!isMobile && linesAfterItem}
+			</>
+		)
+	})
 
 	const filtredItemsByPrice = items.filter(el => el.price >= filterState.min && el.price <= filterState.max)
 
@@ -179,8 +185,6 @@ const Catalog = () => {
 		const sortByParams = searchParams.get("sortBy")
 		const pageParams = searchParams.get("page") ?? filterCurrentPage
 		const SortByItemTypeParams = searchParams.get("SortByItemType")
-
-
 
 		type SortBY = {
 			value: DefaultSortType
@@ -213,9 +217,9 @@ const Catalog = () => {
 		dispatch(setFilterByPrice({max: Number(maxPriceParams), min: Number(minPriceParams)}))
 		dispatch(setCurrentPage({page: Number(pageParams)}))
 
-		let SortByItemTypeArray:Array<string> = []
-		if(SortByItemTypeParams !== null) {
-			SortByItemTypeArray = SortByItemTypeParams.split(',')
+		let SortByItemTypeArray: Array<string> = []
+		if (SortByItemTypeParams !== null) {
+			SortByItemTypeArray = SortByItemTypeParams.split(",")
 			dispatch(catalogDataFilterByItemType({fitlerValues: SortByItemTypeArray}))
 		}
 
@@ -249,62 +253,57 @@ const Catalog = () => {
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>
 				<div className={breadCrumbs.navigate}>
-					<div className={breadCrumbs.navigate__item}>
-						<Link to={AppLinks.home}>Главная</Link>
-					</div>
-					<div className={breadCrumbs.navigate__item}>
-						<Link
-							to={AppLinks.catalog}
-							onClick={handleDisablePageNavigation}
-							className={breadCrumbs.navigate__item_disabled}
-						>Каталог</Link>
-					</div>
+					{isMobile ?
+						<div className={breadCrumbs.navigate__item_mobile}>
+							<Link to={AppLinks.home}>
+								<div><img src={bradCrumbsLogo} alt="bradCrumbsLogo"/></div>
+										Назад
+							</Link>
+						</div>
+						:
+						<>
+							<div className={breadCrumbs.navigate__item}>
+								<Link to={AppLinks.home}>Главная</Link>
+							</div>
+							<div className={breadCrumbs.navigate__item}>
+								<Link
+									to={AppLinks.catalog}
+									onClick={handleDisablePageNavigation}
+									className={breadCrumbs.navigate__item_disabled}
+								>Каталог</Link>
+							</div>
+						</>
+					}
 				</div>
 				<div className={styles.header}>
 					<DefaultCustomTitle text={"Косметика и гигиена"}/>
-					<MenuSortBy
-						selected={filterState.sortBy}
-						sortBy={sortByList}
-						onChangeSelected={handleChangeDefaultSort}
-					/>
+					{!isTablet && <MenuSortBy
+      selected={filterState.sortBy}
+      sortBy={sortByList}
+      onChangeSelected={handleChangeDefaultSort}
+     />}
 				</div>
-				<div className={styles.typeCards}>
+				{!isTablet && <div className={styles.typeCards}>
 					{typeCardItems}
-				</div>
+    </div>}
 				<div className={styles.catalogGroup}>
 					<div className={styles.filterPanel}>
-						<div>
-							<div className={styles.filterPanel__title}><p>ПОДБОР ПО ПАРАМЕТРАМ</p></div>
-							<div className={styles.filterPanel__priceTitle}>Цена <b>₸</b></div>
-							<FilterByPrice
-								initialValue={{max: filterState.max, min: filterState.min}}
-								onChangeCallback={handleChangeSelectionByPrice}
-							/>
-							<FilterByString
-								onChangeCallback={handleChangeFilterByManufacturer}
-								data={itemsByManufacturer}
-								title={"Производитель"}
-								itemsAmountByStart={4}/>
-							<div className={styles.filterPanel__btns}>
-								<button
-									onClick={handleSubmitParametrs}
-									className={styles.filterPanel__submit}
-								>Показать
-								</button>
-								<button
-									onClick={handleResetParametrs}
-									className={styles.filterPanel__reset}
-								>
-									<img
-										src={deleteIcon}
-										alt="deleteIcon"
-									/>
-								</button>
-							</div>
-						</div>
+						<SelectionByParametrs
+							FilterByPriceData={{max: filterState.max, min: filterState.min}}
+							FilterByStringData={itemsByManufacturer}
+							onChangeFilterByPrice={handleChangeSelectionByPrice}
+							onChangeFilterByString={handleChangeFilterByManufacturer}
+							onResetResetParametrs={handleResetParametrs}
+							onSubmitParametrs={handleSubmitParametrs}
+						/>
 						<div className={styles.filterPanel__itemTypeCare}>
 							{leftMenuTypeCardsItems}
 						</div>
+						{isTablet && <MenuSortBy
+       selected={filterState.sortBy}
+       sortBy={sortByList}
+       onChangeSelected={handleChangeDefaultSort}
+      />}
 					</div>
 					<div>
 						<div className={styles.cards}>
@@ -316,7 +315,8 @@ const Catalog = () => {
 							countPerPage={filterCountPerPage}
 							totalCountItems={items.length}
 						/>
-						<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo, vestibulum sagittis
+						<div className={styles.cards__description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+							interdum ut justo, vestibulum sagittis
 							iaculis iaculis. Quis mattis vulputate feugiat massa vestibulum duis. Faucibus consectetur aliquet sed
 							pellentesque consequat consectetur congue mauris venenatis. Nunc elit, dignissim sed nulla ullamcorper enim,
 							malesuada.

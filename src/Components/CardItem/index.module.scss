@@ -1,3 +1,5 @@
+@import "../../Styles/varibels.module";
+
 .main {
   background: #FFFFFF;
   box-shadow: 0 14px 39px -11px rgba(0, 0, 0, 0.06);
@@ -7,6 +9,13 @@
   width: 326px;
   height: max-content;
   box-sizing: border-box;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      max-width: 290px;
+      padding: 29px 15px 29px 15px;
+      width: auto;
+    }
+  }
 }
 
 .title {
@@ -39,6 +48,11 @@
   display: flex;
   align-items: center;
   margin-top: 12px;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      justify-content: space-between;
+    }
+  }
 
   & > button {
 
@@ -56,9 +70,11 @@
     padding: 14px 25px 14px 25px;
     border: none;
     margin-left: 40px;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
     }
+
     & > img {
       margin-left: 5px;
     }
@@ -80,6 +96,7 @@
   letter-spacing: 0.045em;
   color: #FFFFFF;
   display: flex;
+
   & > button {
     padding: 20px;
     display: flex;
@@ -90,16 +107,19 @@
     background: #FFC85E;
     border-radius: 79px;
     margin-right: 10px;
+
     &:hover {
       cursor: pointer;
     }
   }
-  &__update{
+
+  &__update {
     & > img {
       max-width: 20px;
       max-height: 20px;
     }
   }
+
   &:hover {
     cursor: default;
     user-select: none;
@@ -113,6 +133,7 @@
   align-items: center;
   margin-top: 13px;
   margin-bottom: 9px;
+
   & > img {
     max-height: 100%;
     max-width: 100%;

@@ -39,7 +39,7 @@ const HeaderDesktop = () => {
 					</Link>
 				</div>
 				<div className={styles.input}>
-					<CustomInput InputSubmit={()=>{}} width={263}/>
+					<CustomInput InputSubmit={()=>{}} width={"263px"}/>
 				</div>
 			</div>
 			<div className={styles.main__wrapper}>
@@ -76,7 +76,7 @@ const HeaderDesktop = () => {
 							Корзина
 						</div>
 						<div className={styles.basket__price}>
-							{basketBalance} {basketWallet}
+							{basketBalance.toFixed(2)} {basketWallet}
 						</div>
 					</div>
 				</div>

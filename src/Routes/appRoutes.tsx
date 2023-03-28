@@ -22,7 +22,7 @@ export const AppRoutes = () => {
 	return (
 		<main className={styles.main}>
 			{isMobile && <BurgerMenu isOpen={isOpenBurgerMenu}/> }
-			{isOpenBurgerMenu &&	<div onClick={handleCloseBurgerMenu} className={styles.overlay}></div>}
+			{isOpenBurgerMenu &&	isMobile &&<div onClick={handleCloseBurgerMenu} className={styles.overlay}></div>}
 			<Routes>
 				<Route path={"*"} element={<Navigate to={AppLinks.catalog} replace />}/>
 				<Route path={AppLinks.admin} element={<Admin />}/>

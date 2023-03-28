@@ -18,7 +18,7 @@ export const Footer = () => {
 	const FooterBody = isMobile? <FooterMobile/> : <FooterDescktop/>
 	return (
 		<footer className={styles.main}>
-			{isOpenBurgerMenu &&	<div onClick={handleCloseBurgerMenu} className={styles.overlay}></div>}
+			{isOpenBurgerMenu &&	isMobile &&<div onClick={handleCloseBurgerMenu} className={styles.overlay}></div>}
 				<div className={wrapper.wrapper}>
 					{FooterBody}
 				</div>
