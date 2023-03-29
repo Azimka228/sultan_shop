@@ -6,9 +6,9 @@ import Header from "./Components/Header/header";
 import {AppRoutes} from "./Routes/appRoutes";
 import {Footer} from "./Components/Footer/footer";
 import data from "./db.json"
-import {useAppDispatch} from "./Store/hooks/useAppDispatch";
-import {ProductDataType, setCatalogData, setCatalogMaxPrice} from "./Store/slices/productListFilter";
-import {setProductData} from "./Store/slices/productListSlice";
+import {useAppDispatch} from "./Store/Hooks/useAppDispatch";
+import {ProductDataType, setCatalogData, setCatalogMaxPrice} from "./Store/Slices/productListFilterSlice";
+import {setProductData} from "./Store/Slices/productListSlice";
 import {useLocalStorage} from "usehooks-ts";
 
 function App() {

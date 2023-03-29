@@ -19,7 +19,7 @@ export type itemWeightType = "кг" | "г" | "мг"
 export type itemVolumeLiquidType = "мл" | "л"
 
 const initialState: InitialAppStateType = {
-	maxPrice: 10000,
+	maxPrice: 9999999,
 	minPrice: 0,
 	sortBy: "дешевые",
 	sortByList: ["дешевые", "дорогие", "по названию A-Z", "по названию Z-A"],
@@ -79,9 +79,13 @@ const slice = createSlice({
 			state.currentPage = action.payload.page
 		},
 		catalogDataFilterByItemType(state, action: PayloadAction<{ fitlerValues: Array<string> }>) {
+			if (action.payload.fitlerValues.length === 0) {
+				state.productsList = state.productsListCopy
+				return
+			}
 			const filtredArray: Array<ProductDataType> = []
 			action.payload.fitlerValues.forEach(filterItem => {
-				state.productsList.forEach(el => {
+				state.productsListCopy.forEach(el => {
 					if (el.itemType.includes(filterItem)) {
 						filtredArray.push(el)
 					}

@@ -4,10 +4,10 @@ import styles from "./index.module.scss"
 import cartImg from "../../assets/cart.svg"
 import deleteLogo from "../../assets/delete.svg"
 import updateLogo from "../../assets/update.png"
-import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
-import {setBasketItem} from "../../Store/slices/basketSlice";
+import {useAppDispatch} from "../../Store/Hooks/useAppDispatch";
+import {setBasketItem} from "../../Store/Slices/basketSlice";
 import {ItemSize} from "../ItemSize/itemSize";
-import {ProductDataType} from "../../Store/slices/productListFilter";
+import {ProductDataType} from "../../Store/Slices/productListFilterSlice";
 import {UpdateAdminItemModal} from "../ModalWindow/UpdateAdminItemModal/updateAdminItemModal";
 import {DeleteAdminItemModal} from "../ModalWindow/DeleteAdminItemModal/deleteAdminItemModal";
 

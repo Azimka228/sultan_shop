@@ -8,7 +8,7 @@ import basket from "./basket.svg"
 import {Link, useNavigate} from "react-router-dom";
 import {AppLinks} from "../../../Routes/links";
 import {CustomInput} from "../../CustomInput/customInput";
-import {useAppSelector} from "../../../Store/hooks/useAppSelector";
+import {useAppSelector} from "../../../Store/Hooks/useAppSelector";
 import {useMediaQuery} from "usehooks-ts";
 
 const HeaderDesktop = () => {

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ProductDataType} from "./productListFilter";
+import {ProductDataType} from "./productListFilterSlice";
 
 export type BasketDataType = {
 	count: number

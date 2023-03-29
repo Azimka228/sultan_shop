@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import bottleImg from "../../assets/bottle.svg";
 import boxImg from "../../assets/box.svg";
-import {itemVolumeLiquidType, itemWeightType} from "../../Store/slices/productListSlice";
+import {itemVolumeLiquidType, itemWeightType} from "../../Store/Slices/productListSlice";
 import styles from './index.module.scss'
 type ItemSizePropsType = {
 	typeSize: itemWeightType | itemVolumeLiquidType

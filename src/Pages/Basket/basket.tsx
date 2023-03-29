@@ -1,31 +1,41 @@
 import React, {useState} from "react";
 import wrapper from "../../Styles/wrapper.module.scss";
-import {useAppSelector} from "../../Store/hooks/useAppSelector";
+import {useAppSelector} from "../../Store/Hooks/useAppSelector";
 import styles from "./index.module.scss";
-import breadCrumbs from "../../Styles/breadCrumbs.module.scss";
-import {Link} from "react-router-dom";
 import {AppLinks} from "../../Routes/links";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
 import {BasketItem} from "../../Components/BasketItem/basketItem";
 import {EmptyBasketItem} from "../../Components/EmptyBasketItem/emptyBasketItem";
 import {SuccsesPurchaseModal} from "../../Components/ModalWindow/SuccsesPurchaseModal/succsesPurchaseModal";
-import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
-import {clearBasket} from "../../Store/slices/basketSlice";
-import bradCrumbsLogo from "../../assets/bradCrumbsArrow.svg";
-import {useMediaQuery} from "usehooks-ts";
+import {useAppDispatch} from "../../Store/Hooks/useAppDispatch";
+import {clearBasket} from "../../Store/Slices/basketSlice";
+import {basketBalanceSelector, basketItemsSelector, basketWalletSelector} from "../../Store/Selectors/basketSelector";
+import BradCrumbs, {BradCrumbsType} from "../../Components/BradCrumbs/bradCrumbs";
+
+const breadCrumbsData: BradCrumbsType = {
+	desktop: [
+		{
+			to: AppLinks.home,
+			title: "Главная"
+		},
+		{
+			to: AppLinks.basket,
+			title: "Корзина"
+		}
+	],
+	mobile: {
+		to: AppLinks.home,
+		title: "Назад"
+	},
+}
 
 const Basket = () => {
-	const isMobile = useMediaQuery("(max-width: 480px)")
-
-	const basketBalance = useAppSelector(state => state.basket.balance)
-	const basketWallet = useAppSelector(state => state.basket.wallet)
-	const basketItems = useAppSelector(state => state.basket.items)
-
 	const dispatch = useAppDispatch()
 
-	const handleDisablePageNavigation = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-		e.preventDefault()
-	}
+	const basketBalance = useAppSelector(basketBalanceSelector)
+	const basketWallet = useAppSelector(basketWalletSelector)
+	const basketItems = useAppSelector(basketItemsSelector)
+
 
 	const mappedBasketItems = basketItems.map((el) => {
 		return (<BasketItem key={el.id} data={el}/>)
@@ -44,29 +54,7 @@ const Basket = () => {
 	return (
 		<div>
 			<div className={wrapper.wrapper}>
-				<div className={breadCrumbs.navigate}>
-					{isMobile ?
-						<div className={breadCrumbs.navigate__item_mobile}>
-							<Link to={AppLinks.home}>
-								<div><img src={bradCrumbsLogo} alt="bradCrumbsLogo"/></div>
-								Назад
-							</Link>
-						</div>
-						:
-						<>
-							<div className={breadCrumbs.navigate__item}>
-								<Link to={AppLinks.home}>Главная</Link>
-							</div>
-							<div className={breadCrumbs.navigate__item}>
-								<Link
-									to={AppLinks.catalog}
-									onClick={handleDisablePageNavigation}
-									className={breadCrumbs.navigate__item_disabled}
-								>Каталог</Link>
-							</div>
-						</>
-					}
-				</div>
+				<BradCrumbs desktop={breadCrumbsData.desktop} mobile={breadCrumbsData.mobile}/>
 				<DefaultCustomTitle text={"Корзина"}/>
 				<div className={styles.cards}>
 					{cardsBody}

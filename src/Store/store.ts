@@ -1,8 +1,8 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {productListReducer} from "./slices/productListSlice";
-import {basketReducer} from "./slices/basketSlice";
-import {productListFilterReducer} from "./slices/productListFilter";
-import {burgerMenuSlice} from "./slices/burgerMenuSlice";
+import {productListReducer} from "./Slices/productListSlice";
+import {basketReducer} from "./Slices/basketSlice";
+import {productListFilterReducer} from "./Slices/productListFilterSlice";
+import {burgerMenuSlice} from "./Slices/burgerMenuSlice";
 
 export const store = configureStore({
 	reducer: {

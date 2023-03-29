@@ -7,10 +7,10 @@ import {AppLinks} from "./links";
 import Admin from "../Pages/Admin/admin";
 import styles from "./index.module.scss"
 import {BurgerMenu} from "../Components/BurgerMenu/burgerMenu";
-import {useAppSelector} from "../Store/hooks/useAppSelector";
+import {useAppSelector} from "../Store/Hooks/useAppSelector";
 import {useMediaQuery} from "usehooks-ts";
-import {useAppDispatch} from "../Store/hooks/useAppDispatch";
-import {setIsOpen} from "../Store/slices/burgerMenuSlice";
+import {useAppDispatch} from "../Store/Hooks/useAppDispatch";
+import {setIsOpen} from "../Store/Slices/burgerMenuSlice";
 
 export const AppRoutes = () => {
 	const dispatch = useAppDispatch()

@@ -2,6 +2,7 @@ import React, {FC} from "react";
 import styles from "./index.module.scss"
 import arrowLeftLogo from "../../assets/arrowLeft.svg";
 import arrowRightLogo from "../../assets/arrowRight.svg";
+import {v4 as generateId} from "uuid";
 
 type PaginationPropsType = {
 	currentPage: number
@@ -27,8 +28,8 @@ const Pagination: FC<PaginationPropsType> = ({currentPage, countPerPage, totalCo
 	}
 
 	const mappedPages = Pages.map(el => {
-		if (el === currentPage) return <div className={styles.pagination__item_selected}>{el}</div>
-		return <div onClick={()=>handleSetPage(el)}>{el}</div>
+		if (el === currentPage) return <div key={generateId()} className={styles.pagination__item_selected}>{el}</div>
+		return <div key={generateId()} onClick={()=>handleSetPage(el)}>{el}</div>
 	})
 
 	return (

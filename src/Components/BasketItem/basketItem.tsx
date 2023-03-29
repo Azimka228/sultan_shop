@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 import styles from "./index.module.scss"
-import {BasketDataType, decreaseItemCount, deleteBasketItem, increaseItemCount} from "../../Store/slices/basketSlice";
-import {useAppSelector} from "../../Store/hooks/useAppSelector";
+import {BasketDataType, decreaseItemCount, deleteBasketItem, increaseItemCount} from "../../Store/Slices/basketSlice";
+import {useAppSelector} from "../../Store/Hooks/useAppSelector";
 import deleteIcon from "./delete.svg"
-import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
+import {useAppDispatch} from "../../Store/Hooks/useAppDispatch";
 import {ItemSize} from "../ItemSize/itemSize";
 
 type BasketItemPropsType = {

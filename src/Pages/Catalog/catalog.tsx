@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {useAppSelector} from "../../Store/hooks/useAppSelector";
+import {useAppSelector} from "../../Store/Hooks/useAppSelector";
 import wrapper from "../../Styles/wrapper.module.scss";
 import styles from "./index.module.scss"
-import breadCrumbs from "../../Styles/breadCrumbs.module.scss";
-import {Link, useLocation, useSearchParams} from "react-router-dom";
+import {useLocation, useSearchParams} from "react-router-dom";
 import {AppLinks} from "../../Routes/links";
 import {DefaultCustomTitle} from "../../Components/DefaultCustomTitle/defaultCustomTitle";
 import {CardItem} from "../../Components/CardItem/cardItem";
 import {getDataSearchByString} from "../../Utills/getDataSearchByString";
 import {MenuSortBy} from "../../Components/MenuSortBy/menuSortBy";
-import bradCrumbsLogo from "../../assets/bradCrumbsArrow.svg"
-
-import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
+import {v4 as generateId} from "uuid";
+import {useAppDispatch} from "../../Store/Hooks/useAppDispatch";
 import {
 	catalogDataDefaultSort,
 	catalogDataFilterByItemType,
@@ -22,10 +20,25 @@ import {
 	setCurrentPage,
 	setFilterByPrice,
 	setSortByItemType
-} from "../../Store/slices/productListFilter";
+} from "../../Store/Slices/productListFilterSlice";
 import Pagination from "../../Components/Pagination/pagination";
 import {useMediaQuery} from "usehooks-ts";
 import {SelectionByParametrs} from "../../Components/SelectionByParametrs/selectionByParametrs";
+import {defaultSortBy} from "../../Utills/defaultSortBy";
+import {defaultFilterSortBy} from "../../Utills/defaultFilterSortBy";
+import {getItemsTypesCareData} from "../../Utills/getItemsTypesCareData";
+import {
+	filterByMaxPriceSelector,
+	filterByMinPriceSelector,
+	filterCountPerPageSelector,
+	filterCurrentPageSelector,
+	filterSortByItemTypeSelector,
+	filterSortBySelector,
+	itemsCopySelector,
+	itemsSelector,
+	sortByListSelector
+} from "../../Store/Selectors/productListFilterSelector";
+import BradCrumbs, {BradCrumbsType} from "../../Components/BradCrumbs/bradCrumbs";
 
 type FilterStateType = {
 	max: number
@@ -39,6 +52,26 @@ type ParamsType = {
 	sortBy: string
 	page: string
 	SortByItemType?: string
+}
+type SortBY = {
+	value: DefaultSortType
+}
+
+const breadCrumbsData: BradCrumbsType = {
+	desktop: [
+		{
+			to: AppLinks.home,
+			title: "Главная"
+		},
+		{
+			to: AppLinks.catalog,
+			title: "Каталог"
+		}
+	],
+	mobile: {
+		to: AppLinks.home,
+		title: "Назад"
+	},
 }
 
 const Catalog = () => {
@@ -59,17 +92,17 @@ const Catalog = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation();
 
-	const items = useAppSelector((state) => state.productListFilter.productsList)
-	const itemsCopy = useAppSelector((state) => state.productListFilter.productsListCopy)
+	const items = useAppSelector(itemsSelector)
+	const itemsCopy = useAppSelector(itemsCopySelector)
 
-	const sortByList = useAppSelector(state => state.productListFilter.sortByList)
+	const sortByList = useAppSelector(sortByListSelector)
 
-	const filterSortBy = useAppSelector(state => state.productListFilter.sortBy)
-	const filterByMaxPrice = useAppSelector(state => state.productListFilter.maxPrice)
-	const filterByMinPrice = useAppSelector(state => state.productListFilter.minPrice)
-	const filterCurrentPage = useAppSelector(state => state.productListFilter.currentPage)
-	const filterCountPerPage = useAppSelector(state => state.productListFilter.countPerPage)
-	const filterSortByItemType = useAppSelector(state => state.productListFilter.sortByItemType)
+	const filterSortBy = useAppSelector(filterSortBySelector)
+	const filterByMaxPrice = useAppSelector(filterByMaxPriceSelector)
+	const filterByMinPrice = useAppSelector(filterByMinPriceSelector)
+	const filterCurrentPage = useAppSelector(filterCurrentPageSelector)
+	const filterCountPerPage = useAppSelector(filterCountPerPageSelector)
+	const filterSortByItemType = useAppSelector(filterSortByItemTypeSelector)
 
 	const [filterState, setFilterState] = useState<FilterStateType>({
 		max: filterByMaxPrice,
@@ -91,24 +124,8 @@ const Catalog = () => {
 		if (filterByMaxPrice >= 0) params.maxPrice = String(filterByMaxPrice)
 		if (filterByMinPrice >= 0) params.minPrice = String(filterByMinPrice)
 
-		switch (filterSortBy) {
-			case "дешевые" : {
-				params.sortBy = "price-asc"
-				break;
-			}
-			case "дорогие" : {
-				params.sortBy = "price-desc"
-				break;
-			}
-			case "по названию A-Z" : {
-				params.sortBy = "title-asc"
-				break;
-			}
-			case "по названию Z-A" : {
-				params.sortBy = "title-desc"
-				break;
-			}
-		}
+		params.sortBy = defaultFilterSortBy(filterSortBy)
+
 		if (filterSortByItemType.length > 0) {
 			params.SortByItemType = filterSortByItemType.join(",")
 		}
@@ -117,17 +134,7 @@ const Catalog = () => {
 		setSearchParams(params)
 	}, [filterByMaxPrice, filterByMinPrice, filterSortBy, filterCurrentPage, filterSortByItemType])
 
-	const itemTypesFiltred = new Set()
-	items.forEach((item) => {
-		item.itemType.forEach(el => {
-			(itemTypesFiltred.add(el))
-		})
-	})
-	let itemTypesFiltredArr = (Array.from(itemTypesFiltred)) as string[]
-
-	const handleDisablePageNavigation = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-		e.preventDefault()
-	}
+	let itemTypesFiltredArr = getItemsTypesCareData(items)
 
 	// That for pagination
 	const lastItemsIndex = filterCurrentPage * filterCountPerPage
@@ -135,12 +142,12 @@ const Catalog = () => {
 	const currentItems = items.slice(firstItemsIndex, lastItemsIndex)
 	//
 
-	const productCardItems = currentItems.map(el => (<CardItem data={el}/>))
+	const productCardItems = currentItems.map(el => (<CardItem key={generateId()} data={el}/>))
 
 	const handleAddItemTypes = (item: string) => {
 		dispatch(setSortByItemType({item}))
 	}
-	const typeCardItems = itemTypesFiltredArr.map((el) => {
+	const typeCardItems = itemTypesFiltredArr.map((el, index) => {
 		let isSelectedItem
 		if (filterSortByItemType.includes(el)) {
 			isSelectedItem = `${styles.typeCards__item} ${styles.typeCards__item_selected}`
@@ -150,6 +157,7 @@ const Catalog = () => {
 
 		return (
 			<div
+				key={index}
 				onClick={() => handleAddItemTypes(el)}
 				className={isSelectedItem}
 			>
@@ -169,7 +177,7 @@ const Catalog = () => {
 
 		return (
 			<>
-				<div className={isSelectedItem} onClick={() => handleAddItemTypes(el)}>{el}</div>
+				<div className={isSelectedItem} key={index} onClick={() => handleAddItemTypes(el)}>{el}</div>
 				{!isMobile && linesAfterItem}
 			</>
 		)
@@ -186,29 +194,19 @@ const Catalog = () => {
 		const pageParams = searchParams.get("page") ?? filterCurrentPage
 		const SortByItemTypeParams = searchParams.get("SortByItemType")
 
-		type SortBY = {
-			value: DefaultSortType
-		}
 		const sortBy: SortBY = {
 			value: "дешевые"
 		}
-		switch (sortByParams) {
-			case "price-asc" : {
-				sortBy.value = "дешевые"
-				break;
-			}
-			case "price-desc" : {
-				sortBy.value = "дорогие"
-				break;
-			}
-			case "title-asc" : {
-				sortBy.value = "по названию A-Z"
-				break;
-			}
-			case "title-desc" : {
-				sortBy.value = "по названию Z-A"
-				break;
-			}
+		if (sortByParams) {
+			sortBy.value = defaultSortBy(sortByParams)
+		}
+
+		let SortByItemTypeArray: Array<string> = []
+		if (SortByItemTypeParams !== null) {
+			SortByItemTypeArray = SortByItemTypeParams.split(",")
+			dispatch(catalogDataFilterByItemType({fitlerValues: SortByItemTypeArray}))
+		} else {
+			dispatch(catalogDataFilterByItemType({fitlerValues: []}))
 		}
 
 		setFilterState({...filterState, sortBy: sortBy.value, max: Number(maxPriceParams), min: Number(minPriceParams)})
@@ -216,12 +214,6 @@ const Catalog = () => {
 		dispatch(catalogDataFilterByPrice({maxPrice: Number(maxPriceParams), minPrice: Number(minPriceParams)}))
 		dispatch(setFilterByPrice({max: Number(maxPriceParams), min: Number(minPriceParams)}))
 		dispatch(setCurrentPage({page: Number(pageParams)}))
-
-		let SortByItemTypeArray: Array<string> = []
-		if (SortByItemTypeParams !== null) {
-			SortByItemTypeArray = SortByItemTypeParams.split(",")
-			dispatch(catalogDataFilterByItemType({fitlerValues: SortByItemTypeArray}))
-		}
 
 	}, [location])
 
@@ -252,28 +244,7 @@ const Catalog = () => {
 	return (
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>
-				<div className={breadCrumbs.navigate}>
-					{isMobile ?
-						<div className={breadCrumbs.navigate__item_mobile}>
-							<Link to={AppLinks.home}>
-								<div><img src={bradCrumbsLogo} alt="bradCrumbsLogo"/></div>
-								Назад
-							</Link>
-						</div>
-						:
-						<>
-							<div className={breadCrumbs.navigate__item}>
-								<Link to={AppLinks.home}>Главная</Link>
-							</div>
-							<div className={breadCrumbs.navigate__item}>
-								<Link
-									to={AppLinks.catalog}
-									onClick={handleDisablePageNavigation}
-									className={breadCrumbs.navigate__item_disabled}
-								>Каталог</Link>
-							</div>
-						</>}
-				</div>
+				<BradCrumbs desktop={breadCrumbsData.desktop} mobile={breadCrumbsData.mobile}/>
 				<div className={styles.header}>
 					<DefaultCustomTitle text={"Косметика и гигиена"}/>
 					{!isTablet && <MenuSortBy

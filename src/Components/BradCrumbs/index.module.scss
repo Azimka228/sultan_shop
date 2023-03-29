@@ -1,0 +1,14 @@
+@import "../../Styles/varibels.module";
+
+.navigate {
+  padding-top: 45px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      padding-top: 20px;
+      padding-bottom: 25px;
+    }
+  }
+}

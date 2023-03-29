@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC, FormEvent, useEffect} from "react";
-import {ProductDataType} from "../../Store/slices/productListSlice";
+import {ProductDataType} from "../../Store/Slices/productListSlice";
 import {v4 as generateId} from "uuid";
 import styles from "./index.module.scss"
 import {uploadImg} from "../../Utills/uploadImg";

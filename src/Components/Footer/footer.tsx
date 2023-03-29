@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./index.module.scss";
 import wrapper from "../../Styles/wrapper.module.scss";
 import {FooterDescktop} from "./FooterDesktop/footerDescktop";
-import {useAppDispatch} from "../../Store/hooks/useAppDispatch";
-import {useAppSelector} from "../../Store/hooks/useAppSelector";
-import {setIsOpen} from "../../Store/slices/burgerMenuSlice";
+import {useAppDispatch} from "../../Store/Hooks/useAppDispatch";
+import {useAppSelector} from "../../Store/Hooks/useAppSelector";
+import {setIsOpen} from "../../Store/Slices/burgerMenuSlice";
 import {useMediaQuery} from "usehooks-ts";
 import {FooterMobile} from "./FooterMobile/footerMobile";
 
