@@ -25,6 +25,7 @@ const initialState: InitialAppStateType = {
 	sortByList: ["дешевые", "дорогие", "по названию A-Z", "по названию Z-A"],
 	sortByBrand: [],
 	sortByItemType: [],
+	sortByManufacturer: [],
 	productsList: [],
 	productsListCopy: [],
 	currentPage: 1,
@@ -38,6 +39,7 @@ export type InitialAppStateType = {
 	sortByList: Array<DefaultSortType>,
 	sortByBrand: Array<string>,
 	sortByItemType: Array<string>,
+	sortByManufacturer: Array<string>,
 	productsList: Array<ProductDataType>
 	productsListCopy: Array<ProductDataType>
 	currentPage: number,
@@ -72,13 +74,11 @@ const slice = createSlice({
 			state.productsList = action.payload.productsList
 			state.productsListCopy = action.payload.productsList
 		},
-		setCatalogMaxPrice(state, action: PayloadAction<{ productsList: Array<ProductDataType> }>) {
-			state.maxPrice = action.payload.productsList.reduce((acc, curr) => acc.price > curr.price ? acc : curr).price
-		},
 		setCurrentPage(state, action: PayloadAction<{ page: number }>) {
 			state.currentPage = action.payload.page
 		},
 		catalogDataFilterByItemType(state, action: PayloadAction<{ fitlerValues: Array<string> }>) {
+
 			if (action.payload.fitlerValues.length === 0) {
 				state.productsList = state.productsListCopy
 				return
@@ -98,6 +98,7 @@ const slice = createSlice({
 			state.productsList = state.productsList.filter(el => el.price >= action.payload.minPrice && el.price <= action.payload.maxPrice)
 		},
 		catalogDataFilterByManufacturer(state, action: PayloadAction<{ value: Array<string> }>) {
+			state.sortByManufacturer = action.payload.value
 			if (action.payload.value.length === 0) return
 			const FiltredArray: ProductDataType[] = []
 
@@ -151,5 +152,4 @@ export const {
 	setCurrentPage,
 	setSortByItemType,
 	catalogDataFilterByItemType,
-	setCatalogMaxPrice
 } = slice.actions

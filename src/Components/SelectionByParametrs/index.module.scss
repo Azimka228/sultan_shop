@@ -52,7 +52,7 @@
   }
 
   &__submit {
-    padding: 21px 74px 21px 74px;
+    padding: 21px 51px 21px 51px;
     font-family: 'Inter', serif;
     background: #FFC85E;
     border-radius: 79px;
@@ -89,6 +89,9 @@
   &__btns {
     display: flex;
     margin-top: 20px;
+    & > button:hover {
+       cursor: pointer;
+    }
     @media only screen and (min-width: 0px) and (max-width: $mobile) {
       & {
         margin-bottom: 40px;

@@ -8,6 +8,7 @@ export const filterByMinPriceSelector = createSelector(selectSelf, state => stat
 export const filterCurrentPageSelector = createSelector(selectSelf, state => state.productListFilter.currentPage)
 export const filterCountPerPageSelector = createSelector(selectSelf, state => state.productListFilter.countPerPage)
 export const filterSortByItemTypeSelector = createSelector(selectSelf, state => state.productListFilter.sortByItemType)
+export const filterSortByManufacturerSelector = createSelector(selectSelf, state => state.productListFilter.sortByManufacturer)
 export const sortByListSelector = createSelector(selectSelf, state => state.productListFilter.sortByList)
 export const itemsCopySelector = createSelector(selectSelf, (state) => state.productListFilter.productsListCopy)
 export const itemsSelector = createSelector(selectSelf, (state) => state.productListFilter.productsList)

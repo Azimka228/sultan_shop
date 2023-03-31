@@ -7,25 +7,27 @@ import {AppRoutes} from "./Routes/appRoutes";
 import {Footer} from "./Components/Footer/footer";
 import data from "./db.json"
 import {useAppDispatch} from "./Store/Hooks/useAppDispatch";
-import {ProductDataType, setCatalogData, setCatalogMaxPrice} from "./Store/Slices/productListFilterSlice";
+import {ProductDataType, setCatalogData} from "./Store/Slices/productListFilterSlice";
 import {setProductData} from "./Store/Slices/productListSlice";
-import {useLocalStorage} from "usehooks-ts";
+import useReadLocalStorage from "usehooks-ts/dist/esm/useReadLocalStorage/useReadLocalStorage";
 
 function App() {
 
 	const dispatch = useAppDispatch()
-	const [cardItems,] = useLocalStorage<Array<ProductDataType>>("cardItems", [])
-	const isCardItems = cardItems.length > 0
+	const cardItems = useReadLocalStorage<Array<ProductDataType>>("cardItems")
+	let isCardItems:boolean
+	if (cardItems) {
+		isCardItems = cardItems.length > 0
+	}
+
 
 	useEffect(()=>{
-		if(isCardItems) {
+		if(isCardItems && cardItems) {
 			dispatch(setProductData({productsList : cardItems }))
 			dispatch(setCatalogData({productsList : cardItems}))
-			dispatch(setCatalogMaxPrice({productsList : cardItems}))
 		} else {
 			dispatch(setProductData({productsList : data.productsList as Array<ProductDataType>}))
 			dispatch(setCatalogData({productsList : data.productsList as Array<ProductDataType>}))
-			dispatch(setCatalogMaxPrice({productsList : data.productsList as Array<ProductDataType>}))
 		}
 
 	},[dispatch])

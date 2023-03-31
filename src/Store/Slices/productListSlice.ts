@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {itemVolumeLiquidType, itemWeightType} from "./productListFilterSlice";
 
 export type ProductDataType = {
 	id: string
@@ -14,9 +15,6 @@ export type ProductDataType = {
 	price: number
 	currencyType: string
 }
-
-export type itemWeightType = "кг" | "г" | "мг"
-export type itemVolumeLiquidType = "мл" | "л"
 
 
 const initialState: InitialAppStateType = {

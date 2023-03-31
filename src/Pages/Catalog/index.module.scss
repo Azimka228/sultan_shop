@@ -119,60 +119,6 @@
       }
     }
   }
-  &__priceTitle {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 150%;
-    color: #3F4E65;
-    margin-top: 10px;
-    margin-bottom: 16px;
-
-    & > b {
-      font-family: 'Inter', serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 150%;
-      color: #111111;
-    }
-  }
-
-  &__title {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    color: #111111;
-  }
-
-  &__submit {
-    padding: 21px 51px 21px 51px;
-    font-family: 'Inter', serif;
-    background: #FFC85E;
-    border-radius: 79px;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    color: #FFFFFF;
-    border: none;
-  }
-
-  &__reset {
-    margin-left: 10px;
-    border: none;
-    background: #FFC85E;
-    border-radius: 79px;
-    padding: 21px;
-  }
-
-  &__btns {
-    display: flex;
-    margin-top: 20px;
-  }
 }
 
 .itemTypeCare__title {

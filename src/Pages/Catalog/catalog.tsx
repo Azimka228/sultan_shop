@@ -32,7 +32,7 @@ import {
 	filterByMinPriceSelector,
 	filterCountPerPageSelector,
 	filterCurrentPageSelector,
-	filterSortByItemTypeSelector,
+	filterSortByItemTypeSelector, filterSortByManufacturerSelector,
 	filterSortBySelector,
 	itemsCopySelector,
 	itemsSelector,
@@ -51,7 +51,8 @@ type ParamsType = {
 	minPrice: string
 	sortBy: string
 	page: string
-	SortByItemType?: string
+	FilterByItemType?: string
+	FilterByManufacturer?: string
 }
 type SortBY = {
 	value: DefaultSortType
@@ -103,6 +104,7 @@ const Catalog = () => {
 	const filterCurrentPage = useAppSelector(filterCurrentPageSelector)
 	const filterCountPerPage = useAppSelector(filterCountPerPageSelector)
 	const filterSortByItemType = useAppSelector(filterSortByItemTypeSelector)
+	const filterSortByManufacturer = useAppSelector(filterSortByManufacturerSelector)
 
 	const [filterState, setFilterState] = useState<FilterStateType>({
 		max: filterByMaxPrice,
@@ -127,7 +129,7 @@ const Catalog = () => {
 		params.sortBy = defaultFilterSortBy(filterSortBy)
 
 		if (filterSortByItemType.length > 0) {
-			params.SortByItemType = filterSortByItemType.join(",")
+			params.FilterByItemType = filterSortByItemType.join(",")
 		}
 
 		params.page = String(filterCurrentPage)
@@ -192,7 +194,7 @@ const Catalog = () => {
 		const minPriceParams = searchParams.get("minPrice") ?? filterByMinPrice
 		const sortByParams = searchParams.get("sortBy")
 		const pageParams = searchParams.get("page") ?? filterCurrentPage
-		const SortByItemTypeParams = searchParams.get("SortByItemType")
+		const SortByItemTypeParams = searchParams.get("FilterByItemType")
 
 		const sortBy: SortBY = {
 			value: "дешевые"
@@ -221,6 +223,8 @@ const Catalog = () => {
 		setFilterState({...filterState, max, min, filterByManufacturer: []})
 	}
 	const handleSubmitParametrs = () => {
+		setFilterState({...filterState,filterByManufacturer: []})
+		console.log("filterState.filterByManufacturer",filterState.filterByManufacturer)
 		dispatch(catalogDataFilterByManufacturer({value: filterState.filterByManufacturer}))
 		dispatch(setFilterByPrice({max: filterState.max, min: filterState.min}))
 	}
@@ -234,6 +238,7 @@ const Catalog = () => {
 		dispatch(catalogDataDefaultSort({sortBy: e}))
 	}
 	const handleChangeFilterByManufacturer = (e: Array<string>) => {
+		console.log("handleChangeFilterByManufacturer",e)
 		setFilterState({...filterState, filterByManufacturer: e})
 	}
 
@@ -265,7 +270,7 @@ const Catalog = () => {
 							onChangeFilterByString={handleChangeFilterByManufacturer}
 							onResetResetParametrs={handleResetParametrs}
 							onSubmitParametrs={handleSubmitParametrs}
-						/>
+							FilterByManufacturerData={filterSortByManufacturer}/>
 						<div className={styles.filterPanel__itemTypeCare}>
 							{leftMenuTypeCardsItems}
 						</div>

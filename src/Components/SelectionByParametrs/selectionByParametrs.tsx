@@ -5,13 +5,14 @@ import deleteIcon from "../../assets/delete.svg";
 import {DataType} from "../../Utills/getDataSearchByString";
 import {useMediaQuery} from "usehooks-ts";
 import styles from "./index.module.scss"
-import closeLogo from './close.svg'
-import openLogo from './open.svg'
+import closeLogo from "./close.svg"
+import openLogo from "./open.svg"
 
 type SelectionByParametrsPropsType = {
 	FilterByPriceData: { max: number, min: number }
 	onChangeFilterByPrice: (max: number, min: number) => void
 	FilterByStringData: Array<DataType>
+	FilterByManufacturerData: Array<string>
 	onChangeFilterByString: (e: Array<string>) => void
 	onSubmitParametrs: () => void
 	onResetResetParametrs: () => void
@@ -20,6 +21,7 @@ type SelectionByParametrsPropsType = {
 export const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
 	{
 		FilterByPriceData,
+		FilterByManufacturerData,
 		onChangeFilterByPrice,
 		FilterByStringData,
 		onChangeFilterByString,
@@ -30,7 +32,7 @@ export const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
 	const isTablet = useMediaQuery("(max-width: 768px)")
 
 	const [isOpenedPanel, setIsOpenedPanel] = useState(true)
-	const panelButtonLogo = isOpenedPanel? closeLogo: openLogo
+	const panelButtonLogo = isOpenedPanel ? closeLogo : openLogo
 
 	const handleChangeStatePanel = () => {
 		setIsOpenedPanel(!isOpenedPanel)
@@ -41,7 +43,7 @@ export const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
 				<p>ПОДБОР ПО ПАРАМЕТРАМ</p>
 				{isTablet && <button onClick={handleChangeStatePanel}>
      <img src={panelButtonLogo} alt="panelButtonLogo"/>
-				</button>}
+    </button>}
 			</div>
 			{isOpenedPanel &&
     <>
@@ -51,6 +53,7 @@ export const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
       onChangeCallback={onChangeFilterByPrice}
      />
      <FilterByString
+      checkedData={FilterByManufacturerData}
       onChangeCallback={onChangeFilterByString}
       data={FilterByStringData}
       title={"Производитель"}

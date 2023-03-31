@@ -4,14 +4,19 @@ import {v4 as generateId} from "uuid";
 import styles from "./index.module.scss"
 import {uploadImg} from "../../Utills/uploadImg";
 import uploadImgLogo from "./uploadImg.png"
+import {itemVolumeLiquidType, itemWeightType} from "../../Store/Slices/productListFilterSlice";
 
 type  AddAdminDataItemPropsType = {
 	onSubmit: (e: ProductDataType) => void
 	data?: ProductDataType
 }
-const initialState = {
+type ItemTypeSizeType = itemWeightType | itemVolumeLiquidType
+
+const itemTypeSize = ["кг", "г", "мг", "мл", "л"] as Array<ItemTypeSizeType>
+
+const initialState:InitialStateType = {
 	title: "",
-	typeSize: "",
+	typeSize: "кг",
 	size: 0,
 	manufacturer: "",
 	url: "",
@@ -20,6 +25,20 @@ const initialState = {
 	price: 0,
 	itemType: ""
 }
+
+type InitialStateType = {
+	title: string,
+	typeSize: ItemTypeSizeType,
+	size: number,
+	manufacturer: string,
+	url: string,
+	description: string,
+	brand: string,
+	price:number,
+	itemType: string
+}
+
+
 
 export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data}) => {
 	useEffect(() => {
@@ -42,9 +61,9 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 
 	}, [data])
 
-	const [form, setForm] = React.useState({
+	const [form, setForm] = React.useState<InitialStateType>({
 		title: "",
-		typeSize: "",
+		typeSize: "кг",
 		size: 0,
 		manufacturer: "",
 		url: "",
@@ -82,9 +101,26 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 			}
 		}
 	}
+	const handleChangeSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+		switch (event.target.id) {
+			case "typeSize": {
+				setForm({
+					...form,
+					[event.target.id as keyof InitialStateType]: event.target.value,
+				});
+				break;
+			}
+			default: {
+				setForm({
+					...form,
+					[event.target.id]: event.target.value,
+				});
+				break;
+			}
+		}
+	}
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		console.log("form", form)
 		const currentItemType = form.itemType.split(",").map(el => el.trim().replace(/ +/g, " "))
 		e.preventDefault()
 		if (data) {
@@ -93,8 +129,8 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 				itemType: currentItemType,
 				url: form.url,
 				title: form.title,
-				typeSize: "мл",
-				size: (parseInt("0.0039", 10)),
+				typeSize: form.typeSize,
+				size: Number(parseInt(String(form.size), 10)),
 				barcode: data.barcode,
 				manufacturer: form.manufacturer,
 				brand: form.brand,
@@ -109,8 +145,8 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 				itemType: currentItemType,
 				url: form.url,
 				title: form.title,
-				typeSize: "мл",
-				size: form.size,
+				typeSize: form.typeSize,
+				size: Number(parseInt(String(form.size), 10)),
 				barcode: "460404" + `${randomBarcode}`,
 				manufacturer: form.manufacturer,
 				brand: form.brand,
@@ -122,10 +158,16 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 
 		setForm(initialState)
 	}
-	const buttonText = data ? "Подтвердить" : "+"
 
+	const buttonText = data ? "Подтвердить" : "+"
+	const itemTypeSizeSelectOptions = itemTypeSize.map((el, index) => {
+		let defaultItemSelected
+		defaultItemSelected = !!(data && data.typeSize === el);
+	return	<option value={el} selected={defaultItemSelected}>{el}</option>
+	})
 	return (
 		<form onSubmit={handleSubmit} className={styles.main}>
+
 			<label htmlFor="itemType">
 				itemType:
 				<input
@@ -148,16 +190,11 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 					required
 				/>
 			</label>
-			<label htmlFor="typeSize">
-				typeSize:
-				<input
-					type="text"
-					id="typeSize"
-					placeholder="мл или кг..."
-					value={form.typeSize}
-					onChange={handleChange}
-					required
-				/>
+			<label>
+				Item Size:
+				<select name="typeSize" id="typeSize" onChange={handleChangeSelect}>
+					{itemTypeSizeSelectOptions}
+				</select>
 			</label>
 			<label htmlFor="size">
 				size:
@@ -221,7 +258,7 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 			</div>
 			<label htmlFor="url" className={styles.inputFileLabel}>
 				<img src={uploadImgLogo} alt="uploadImgLogo"/>
-				Choose a file...
+				Choose a photo...
 				<input
 					type="file"
 					id="url"
