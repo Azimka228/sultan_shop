@@ -1,5 +1,5 @@
 import React, {FC, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import styles from "./index.module.scss"
 import cartImg from "../../assets/cart.svg"
 import deleteLogo from "../../assets/delete.svg"
@@ -10,6 +10,9 @@ import {ItemSize} from "../ItemSize/itemSize";
 import {ProductDataType} from "../../Store/Slices/productListFilterSlice";
 import {UpdateAdminItemModal} from "../ModalWindow/UpdateAdminItemModal/updateAdminItemModal";
 import {DeleteAdminItemModal} from "../ModalWindow/DeleteAdminItemModal/deleteAdminItemModal";
+import {AppLinks} from "../../Routes/links";
+import {useAppSelector} from "../../Store/Hooks/useAppSelector";
+import {basketItemsSelector} from "../../Store/Selectors/basketSelector";
 
 type PromotionalGoodsItemPropsType = {
 	data: ProductDataType
@@ -20,9 +23,22 @@ type PromotionalGoodsItemPropsType = {
 
 export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data, updateForAdmin, onItemUpdate, onItemDelete}) => {
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
+
+	const basketItems = useAppSelector(basketItemsSelector)
+	const isItemInCart = basketItems.find(el => el.id === data.id)
+	const [isAddedToCart, setAddedToCart] = useState(!!isItemInCart)
+	const buttonAddToCartText = isAddedToCart ? "В КОРЗИНЕ" : "В КОРЗИНУ"
+	const buttonAddToCartClass = isAddedToCart ? styles.btnAddToCart_active : ""
 
 	const handleAddToCart = (item: ProductDataType) => {
-		dispatch(setBasketItem({item: {...item, count: 1},}))
+		if (isAddedToCart) {
+			navigate(AppLinks.basket)
+		} else {
+			setAddedToCart(true)
+			dispatch(setBasketItem({item: {...item, count: 1},}))
+		}
+
 	}
 	const typeCare = data.itemType.join(", ")
 
@@ -77,7 +93,8 @@ export const CardItem: FC<PromotionalGoodsItemPropsType> = ({data, updateForAdmi
 			<div className={styles.cashout}>
 				<div><b>{data.price} {data.currencyType}</b></div>
 				{!updateForAdmin &&
-     <button onClick={() => handleAddToCart(data)}>В КОРЗИНУ <img src={cartImg} alt="cart"/></button>}
+     <button onClick={() => handleAddToCart(data)} className={buttonAddToCartClass}>{buttonAddToCartText}<img
+      src={cartImg} alt="cart"/></button>}
 			</div>
 		</div>
 	);

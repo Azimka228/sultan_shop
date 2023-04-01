@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 import FilterByPrice from "../FilterByNumber/filterByPrice";
-import {FilterByString} from "../FilterByString/filterByString";
+import FilterByString from "../FilterByString/filterByString";
 import deleteIcon from "../../assets/delete.svg";
 import {DataType} from "../../Utills/getDataSearchByString";
 import {useMediaQuery} from "usehooks-ts";
@@ -18,7 +18,7 @@ type SelectionByParametrsPropsType = {
 	onResetResetParametrs: () => void
 }
 
-export const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
+const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
 	{
 		FilterByPriceData,
 		FilterByManufacturerData,
@@ -80,4 +80,5 @@ export const SelectionByParametrs: FC<SelectionByParametrsPropsType> = (
 	)
 }
 
+export default React.memo(SelectionByParametrs);
 

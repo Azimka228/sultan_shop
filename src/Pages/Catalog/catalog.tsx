@@ -22,8 +22,8 @@ import {
 	setSortByItemType
 } from "../../Store/Slices/productListFilterSlice";
 import Pagination from "../../Components/Pagination/pagination";
-import {useMediaQuery} from "usehooks-ts";
-import {SelectionByParametrs} from "../../Components/SelectionByParametrs/selectionByParametrs";
+import {useMediaQuery, useUpdateEffect} from "usehooks-ts";
+import SelectionByParametrs from "../../Components/SelectionByParametrs/selectionByParametrs";
 import {defaultSortBy} from "../../Utills/defaultSortBy";
 import {defaultFilterSortBy} from "../../Utills/defaultFilterSortBy";
 import {getItemsTypesCareData} from "../../Utills/getItemsTypesCareData";
@@ -32,7 +32,8 @@ import {
 	filterByMinPriceSelector,
 	filterCountPerPageSelector,
 	filterCurrentPageSelector,
-	filterSortByItemTypeSelector, filterSortByManufacturerSelector,
+	filterSortByItemTypeSelector,
+	filterSortByManufacturerSelector,
 	filterSortBySelector,
 	itemsCopySelector,
 	itemsSelector,
@@ -76,23 +77,24 @@ const breadCrumbsData: BradCrumbsType = {
 }
 
 const Catalog = () => {
+
 	const isTablet = useMediaQuery("(max-width: 768px)")
 	const isMobile = useMediaQuery("(max-width: 480px)")
 
 	useEffect(() => {
 		//This code is for loading search parameters by "Item type"
-		const SortByItemTypeParams = searchParams.get("SortByItemType")
+		const FilterByItemTypeParams = searchParams.get("FilterByItemType")
 
 		let SortByItemTypeArray: Array<string> = []
-		if (SortByItemTypeParams !== null) {
-			SortByItemTypeArray = SortByItemTypeParams.split(",")
+		if (FilterByItemTypeParams !== null) {
+			SortByItemTypeArray = FilterByItemTypeParams.split(",")
 			dispatch(setSortByItemType({item: SortByItemTypeArray}))
 		}
 	}, [])
 	const dispatch = useAppDispatch()
 	const [searchParams, setSearchParams] = useSearchParams();
-	const location = useLocation();
-
+	const location = useLocation()
+	console.log(location)
 	const items = useAppSelector(itemsSelector)
 	const itemsCopy = useAppSelector(itemsCopySelector)
 
@@ -113,7 +115,7 @@ const Catalog = () => {
 		filterByManufacturer: []
 	})
 
-	useEffect(() => {
+	useUpdateEffect(() => {
 
 		const params: ParamsType = {
 			maxPrice: "0",
@@ -131,7 +133,6 @@ const Catalog = () => {
 		if (filterSortByItemType.length > 0) {
 			params.FilterByItemType = filterSortByItemType.join(",")
 		}
-
 		params.page = String(filterCurrentPage)
 		setSearchParams(params)
 	}, [filterByMaxPrice, filterByMinPrice, filterSortBy, filterCurrentPage, filterSortByItemType])
@@ -147,6 +148,7 @@ const Catalog = () => {
 	const productCardItems = currentItems.map(el => (<CardItem key={generateId()} data={el}/>))
 
 	const handleAddItemTypes = (item: string) => {
+		dispatch(setCurrentPage({page: 1}))
 		dispatch(setSortByItemType({item}))
 	}
 	const typeCardItems = itemTypesFiltredArr.map((el, index) => {
@@ -190,6 +192,7 @@ const Catalog = () => {
 	const itemsByManufacturer = getDataSearchByString(filtredItemsByPrice, "manufacturer")
 
 	useEffect(() => {
+
 		const maxPriceParams = searchParams.get("maxPrice") ?? filterByMaxPrice
 		const minPriceParams = searchParams.get("minPrice") ?? filterByMinPrice
 		const sortByParams = searchParams.get("sortBy")
@@ -216,15 +219,14 @@ const Catalog = () => {
 		dispatch(catalogDataFilterByPrice({maxPrice: Number(maxPriceParams), minPrice: Number(minPriceParams)}))
 		dispatch(setFilterByPrice({max: Number(maxPriceParams), min: Number(minPriceParams)}))
 		dispatch(setCurrentPage({page: Number(pageParams)}))
-
 	}, [location])
 
 	const handleChangeSelectionByPrice = (max: number, min: number) => {
 		setFilterState({...filterState, max, min, filterByManufacturer: []})
 	}
 	const handleSubmitParametrs = () => {
-		setFilterState({...filterState,filterByManufacturer: []})
-		console.log("filterState.filterByManufacturer",filterState.filterByManufacturer)
+		dispatch(setCurrentPage({page: 1}))
+		setFilterState({...filterState, filterByManufacturer: []})
 		dispatch(catalogDataFilterByManufacturer({value: filterState.filterByManufacturer}))
 		dispatch(setFilterByPrice({max: filterState.max, min: filterState.min}))
 	}
@@ -232,20 +234,20 @@ const Catalog = () => {
 		setFilterState({...filterState, max: 10000, min: 0, filterByManufacturer: []})
 		dispatch(setFilterByPrice({max: 10000, min: 0}))
 		dispatch(setCatalogData({productsList: itemsCopy}))
+		dispatch(catalogDataFilterByManufacturer({value: []}))
+
 	}
 	const handleChangeDefaultSort = (e: DefaultSortType) => {
 		setFilterState({...filterState, sortBy: e})
 		dispatch(catalogDataDefaultSort({sortBy: e}))
 	}
 	const handleChangeFilterByManufacturer = (e: Array<string>) => {
-		console.log("handleChangeFilterByManufacturer",e)
 		setFilterState({...filterState, filterByManufacturer: e})
 	}
 
 	const handleSetPage = (value: number) => {
 		dispatch(setCurrentPage({page: value}))
 	}
-
 	return (
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>

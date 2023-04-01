@@ -1,8 +1,7 @@
 import React, {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useAppSelector} from "../../Store/Hooks/useAppSelector";
 import wrapper from "../../Styles/wrapper.module.scss";
-import breadCrumbs from "../../Styles/breadCrumbs.module.scss";
 import {AppLinks} from "../../Routes/links";
 import cartImg from "../../assets/cart.svg";
 import styles from "./index.module.scss"
@@ -16,8 +15,9 @@ import {ItemSize} from "../../Components/ItemSize/itemSize";
 import {mainItemsSelector} from "../../Store/Selectors/productListSelector";
 import BradCrumbs, {BradCrumbsType} from "../../Components/BradCrumbs/bradCrumbs";
 import {ProductDataType} from "../../Store/Slices/productListSlice";
+import {basketItemsSelector} from "../../Store/Selectors/basketSelector";
 
-const defaultCurrentItem:ProductDataType = {
+const defaultCurrentItem: ProductDataType = {
 	id: "static",
 	itemType: ["static"],
 	url: "https://api.e-dostavka.by/UserFiles/images/catalog/Goods/4588/00634588/norm/00634588.n_1.png",
@@ -33,6 +33,7 @@ const defaultCurrentItem:ProductDataType = {
 }
 
 const СardProduct = () => {
+
 	const isDesktop = useMediaQuery("(max-width: 1253px)")
 	const isMobile = useMediaQuery("(max-width: 480px)")
 
@@ -41,6 +42,13 @@ const СardProduct = () => {
 	let {barcode} = useParams()
 	const productsList = useAppSelector(mainItemsSelector)
 	let currentItem = productsList?.find((el) => (el.barcode === barcode))
+
+	const navigate = useNavigate()
+	const basketItems = useAppSelector(basketItemsSelector)
+	const isItemInCart = basketItems.find(el => el.id === currentItem?.id)
+	const [isAddedToCart, setAddedToCart] = useState(!!isItemInCart)
+	const buttonAddToCartText = isAddedToCart ? "В КОРЗИНЕ" : "В КОРЗИНУ"
+	const buttonAddToCartClass = isAddedToCart ? styles.addToCart_active : styles.addToCart
 
 	if (!currentItem) {
 		currentItem = defaultCurrentItem
@@ -61,8 +69,15 @@ const СardProduct = () => {
 		setAmountItems(amountItems - 1)
 	}
 	const handleAddToCart = () => {
-		if (currentItem && currentItem.id !== 'static') {
-			dispatch(setBasketItem({item: {...currentItem, count: amountItems}}))
+
+		if (currentItem && currentItem.id !== "static") {
+			if (isAddedToCart) {
+				navigate(AppLinks.basket)
+			} else {
+				setAddedToCart(true)
+				dispatch(setBasketItem({item: {...currentItem, count: amountItems}}))
+			}
+
 		}
 	}
 
@@ -81,9 +96,7 @@ const СardProduct = () => {
 	return (
 		<div className={styles.main}>
 			<div className={wrapper.wrapper}>
-				<div className={breadCrumbs.navigate}>
-					<BradCrumbs desktop={breadCrumbsData.desktop} mobile={breadCrumbsData.mobile}/>
-				</div>
+				<BradCrumbs desktop={breadCrumbsData.desktop} mobile={breadCrumbsData.mobile}/>
 				<div className={styles.content}>
 					<div className={styles.logo}><img src={currentItem?.url} alt="Item img"/></div>
 					<div className={styles.content__main}>
@@ -98,13 +111,15 @@ const СardProduct = () => {
 								<button onClick={handleIncreaseAmountItems}>+</button>
 							</div>
 							{!isDesktop &&
-        <button onClick={handleAddToCart} className={styles.addToCart}>В корзину <img src={cartImg} alt="cart"/>
+        <button onClick={handleAddToCart} className={buttonAddToCartClass}>{buttonAddToCartText}<img
+         src={cartImg} alt="cart"/>
         </button>}
 						</div>
 						<div className={styles.informationBTNS}>
 							<div className={styles.informationBTNS__share}>
 								{isDesktop &&
-         <button onClick={handleAddToCart} className={styles.addToCart}>В корзину <img src={cartImg} alt="cart"/>
+         <button onClick={handleAddToCart} className={buttonAddToCartClass}>{buttonAddToCartText}<img
+          src={cartImg} alt="cart"/>
          </button>}
 								<button><img src={shareLogo} alt="shareLogo"/></button>
 							</div>

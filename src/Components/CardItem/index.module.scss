@@ -1,5 +1,4 @@
 @import "../../Styles/varibels.module";
-
 .main {
   background: #FFFFFF;
   box-shadow: 0 14px 39px -11px rgba(0, 0, 0, 0.06);
@@ -48,6 +47,9 @@
   display: flex;
   align-items: center;
   margin-top: 12px;
+  .btnAddToCart_active{
+    background-color: green;
+  }
   @media only screen and (min-width: 0px) and (max-width: $mobile) {
     & {
       justify-content: space-between;

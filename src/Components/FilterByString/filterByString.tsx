@@ -15,15 +15,15 @@ type FilterByStringPropsType = {
 	itemsAmountByStart: number
 }
 
-export const FilterByString: FC<FilterByStringPropsType> = ({title, data, onChangeCallback, itemsAmountByStart,checkedData}) => {
+const FilterByString: FC<FilterByStringPropsType> = ({title, data, onChangeCallback, itemsAmountByStart,checkedData}) => {
 	const isMobile = useMediaQuery("(max-width: 480px)")
-
+	console.log('test')
 	const [currentData, setCurrentData] = useState<any>()
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
 
 	useEffect(() => {
 		setSelectedItems([])
-	}, [checkedData])
+	}, [])
 	useEffect(() => {
 		if (isOpened) {
 			setCurrentData(Object.entries(data))
@@ -87,4 +87,6 @@ export const FilterByString: FC<FilterByStringPropsType> = ({title, data, onChan
 		</div>
 	);
 };
+
+export default React.memo(FilterByString);
 

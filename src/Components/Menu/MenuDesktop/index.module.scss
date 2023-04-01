@@ -40,6 +40,9 @@
       }
     }
   }
+  & > .item:hover{
+    cursor: pointer;
+  }
   & > .item:not(:last-child) {
     padding-right: 30px;
     min-height: 29px;

@@ -171,6 +171,24 @@ html > body .addToCart {
   font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
+  &_active{
+    background-color: green;
+    box-sizing: border-box;
+    border-radius: 79px;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 18px 40px 18px 40px;
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   &:hover {
     cursor: pointer;

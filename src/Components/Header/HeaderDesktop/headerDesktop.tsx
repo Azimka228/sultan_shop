@@ -14,7 +14,6 @@ import {useMediaQuery} from "usehooks-ts";
 const HeaderDesktop = () => {
 
 	const isMediumWindowWidth = useMediaQuery('(max-width: 693px)')
-	console.log(isMediumWindowWidth)
 	const basketBalance = useAppSelector(state => state.basket.balance)
 	const basketAmountItems = useAppSelector(state => state.basket.amountItems)
 	const basketWallet = useAppSelector(state => state.basket.wallet)

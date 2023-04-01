@@ -52,7 +52,12 @@ const slice = createSlice({
 				return el
 			}).filter(el => (el.count >= 1))
 			state.amountItems -= 1
-			state.balance -= action.payload.item.price
+			if ((state.balance - action.payload.item.price) <= 0) {
+				state.balance = 0
+			} else {
+				state.balance -= action.payload.item.price
+			}
+
 		},
 
 		increaseItemCount(state, action: PayloadAction<{ item: BasketDataType }>) {

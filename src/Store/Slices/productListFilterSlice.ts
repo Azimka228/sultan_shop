@@ -78,21 +78,23 @@ const slice = createSlice({
 			state.currentPage = action.payload.page
 		},
 		catalogDataFilterByItemType(state, action: PayloadAction<{ fitlerValues: Array<string> }>) {
-
+			const filtredArray: Array<ProductDataType> = []
 			if (action.payload.fitlerValues.length === 0) {
 				state.productsList = state.productsListCopy
 				return
 			}
-			const filtredArray: Array<ProductDataType> = []
-			action.payload.fitlerValues.forEach(filterItem => {
+			if (action.payload.fitlerValues.length >= 1) {
 				state.productsListCopy.forEach(el => {
-					if (el.itemType.includes(filterItem)) {
-						filtredArray.push(el)
+					const CurrentItemTypeArr = el.itemType
+					for (let i = 0; i < action.payload.fitlerValues.length; i++) {
+						if (CurrentItemTypeArr.includes(action.payload.fitlerValues[i])) continue;
+						return
 					}
+					filtredArray.push(el)
 				})
-			})
-			const table: any = {};
-			state.productsList = filtredArray.filter(({id}) => (!table[id] && (table[id] = 1)));
+			}
+
+			state.productsList = filtredArray
 		},
 		catalogDataFilterByPrice(state, action: PayloadAction<{ minPrice: number, maxPrice: number }>) {
 			state.productsList = state.productsList.filter(el => el.price >= action.payload.minPrice && el.price <= action.payload.maxPrice)

@@ -11,6 +11,7 @@ import {ProductDataType, setCatalogData} from "./Store/Slices/productListFilterS
 import {setProductData} from "./Store/Slices/productListSlice";
 import useReadLocalStorage from "usehooks-ts/dist/esm/useReadLocalStorage/useReadLocalStorage";
 
+
 function App() {
 
 	const dispatch = useAppDispatch()

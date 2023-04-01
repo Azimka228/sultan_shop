@@ -15,18 +15,18 @@ import {setIsOpen} from "../Store/Slices/burgerMenuSlice";
 export const AppRoutes = () => {
 	const dispatch = useAppDispatch()
 	const isOpenBurgerMenu = useAppSelector(state => state.burgerMenu.isOpen)
-	const isMobile = useMediaQuery('(max-width: 694px)')
+	const isMobile = useMediaQuery("(max-width: 694px)")
 	const handleCloseBurgerMenu = () => {
 		dispatch(setIsOpen({value: false}))
 	}
 	return (
 		<main className={styles.main}>
-			{isMobile && <BurgerMenu isOpen={isOpenBurgerMenu}/> }
-			{isOpenBurgerMenu &&	isMobile &&<div onClick={handleCloseBurgerMenu} className={styles.overlay}></div>}
+			{isMobile && <BurgerMenu isOpen={isOpenBurgerMenu}/>}
+			{isOpenBurgerMenu && isMobile && <div onClick={handleCloseBurgerMenu} className={styles.overlay}></div>}
 			<Routes>
-				<Route path={"*"} element={<Navigate to={AppLinks.catalog} replace />}/>
-				<Route path={AppLinks.admin} element={<Admin />}/>
-				<Route path={AppLinks.catalog} element={<Catalog />}/>
+				<Route path={"*"} element={<Navigate to={AppLinks.catalog} replace/>}/>
+				<Route path={AppLinks.admin} element={<Admin/>}/>
+				<Route path={AppLinks.catalog} element={<Catalog/>}/>
 				<Route path={`${AppLinks.catalog}/:barcode`} element={<СardProduct/>}/>
 				<Route path={AppLinks.basket} element={<Basket/>}/>
 			</Routes>
