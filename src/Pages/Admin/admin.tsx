@@ -55,9 +55,15 @@ const Admin = () => {
 
 				<div className={styles.content}>
 					<AdminDataItemForm onSubmit={handleAddNewCardItem}/>
-					<div className={styles.items}>
-						{MappedItems}
-					</div>
+					{cardItems.length > 0 ?
+						<div className={styles.items}>
+							{MappedItems}
+						</div>
+						:
+						<div className={styles.noItems}>Нету предметов</div>
+					}
+
+
 				</div>
 			</div>
 		</div>

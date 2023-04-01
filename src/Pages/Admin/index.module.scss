@@ -1,19 +1,39 @@
 @import "../../Styles/varibels.module";
+
 .title {
   display: flex;
   justify-content: space-between;
+
   & > button {
     border: none;
     background-color: red;
     padding: 20px;
     border-radius: 79px;
     color: white;
-    &:hover{
+
+    &:hover {
       cursor: pointer;
     }
   }
 }
-.content{
+
+.noItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-transform: uppercase;
+  color: #111111;
+  border: 1px solid #FFC85E;
+  margin-top: 10px;
+  min-height: 150px;
+}
+
+.content {
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-column-gap: 10px;
@@ -23,7 +43,8 @@
     }
   }
 }
-.items{
+
+.items {
   display: grid;
   box-sizing: border-box;
   padding-bottom: 20px;
@@ -33,10 +54,11 @@
   max-height: 900px;
   width: 100%;
   overflow: auto;
-  scrollbar-color:  #FFC85E;
+  scrollbar-color: #FFC85E;
   @media only screen and (min-width: 0px) and (max-width: 1378px) {
     & {
       grid-template-columns: 1fr 1fr;
+
       & > div {
         justify-self: center;
       }
@@ -47,6 +69,7 @@
       grid-template-columns: 1fr;
     }
   }
+
   &::-webkit-scrollbar {
     width: 10px;
     background-color: #f9f9fd;
@@ -64,6 +87,7 @@
   }
 
 }
-.main{
+
+.main {
   padding: 40px 0 40px 0;
 }
