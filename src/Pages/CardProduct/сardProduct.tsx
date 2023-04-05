@@ -139,13 +139,11 @@ const СardProduct = () => {
 							<p>Штрихкод: <span>{currentItem?.barcode}</span></p>
 							<p>Вес коробки: <span>{currentItem?.size} {currentItem?.typeSize}</span></p>
 						</div>
-						<CollapsibleDiv
-							title={"Описание"}>
+						<CollapsibleDiv title={"Описание"}>
 							<div className={styles.description}>{currentItem?.description}</div>
 						</CollapsibleDiv>
 						<div className={styles.line}></div>
-						<CollapsibleDiv
-							title={"Характеристики"}>
+						<CollapsibleDiv title={"Характеристики"}>
 							{characteristicsBlock}
 						</CollapsibleDiv>
 					</div>

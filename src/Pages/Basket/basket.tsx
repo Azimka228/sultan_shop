@@ -36,7 +36,6 @@ const Basket = () => {
 	const basketWallet = useAppSelector(basketWalletSelector)
 	const basketItems = useAppSelector(basketItemsSelector)
 
-
 	const mappedBasketItems = basketItems.map((el) => {
 		return (<BasketItem key={el.id} data={el}/>)
 	})

@@ -17,11 +17,11 @@ export type ProductDataType = {
 }
 
 
-const initialState: InitialAppStateType = {
+const initialState: InitialProductListStateType = {
 	productsList: []
 }
 
-export type InitialAppStateType = {
+export type InitialProductListStateType = {
 	productsList: Array<ProductDataType>
 }
 

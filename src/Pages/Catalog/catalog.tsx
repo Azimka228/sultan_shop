@@ -94,10 +94,8 @@ const Catalog = () => {
 	const dispatch = useAppDispatch()
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation()
-	console.log(location)
 	const items = useAppSelector(itemsSelector)
 	const itemsCopy = useAppSelector(itemsCopySelector)
-
 	const sortByList = useAppSelector(sortByListSelector)
 
 	const filterSortBy = useAppSelector(filterSortBySelector)

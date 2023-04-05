@@ -18,7 +18,7 @@ export type ProductDataType = {
 export type itemWeightType = "кг" | "г" | "мг"
 export type itemVolumeLiquidType = "мл" | "л"
 
-const initialState: InitialAppStateType = {
+const initialState: InitialProductListFilterStateType = {
 	maxPrice: 9999999,
 	minPrice: 0,
 	sortBy: "дешевые",
@@ -32,7 +32,7 @@ const initialState: InitialAppStateType = {
 	countPerPage: 9,
 }
 
-export type InitialAppStateType = {
+export type InitialProductListFilterStateType = {
 	maxPrice: number
 	minPrice: number
 	sortBy: DefaultSortType

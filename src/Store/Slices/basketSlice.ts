@@ -5,14 +5,14 @@ export type BasketDataType = {
 	count: number
 } & ProductDataType
 
-const initialState: InitialAppStateType = {
+const initialState: InitialBasketStateType = {
 	items: [],
 	amountItems: 0,
 	balance: 0,
 	wallet: "₸"
 }
 
-export type InitialAppStateType = {
+export type InitialBasketStateType = {
 	items: Array<BasketDataType>
 	amountItems: number
 	balance: number

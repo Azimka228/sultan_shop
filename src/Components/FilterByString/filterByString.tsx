@@ -17,7 +17,6 @@ type FilterByStringPropsType = {
 
 const FilterByString: FC<FilterByStringPropsType> = ({title, data, onChangeCallback, itemsAmountByStart,checkedData}) => {
 	const isMobile = useMediaQuery("(max-width: 480px)")
-	console.log('test')
 	const [currentData, setCurrentData] = useState<any>()
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
 

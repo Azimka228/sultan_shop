@@ -11,12 +11,10 @@ import {DeleteAllAdminItemModal} from "../../Components/ModalWindow/DeleteAllAdm
 const Admin = () => {
 	const [cardItems, setCardItems] = useLocalStorage<Array<ProductDataType>>("cardItems", [])
 
-
 	const handleAddNewCardItem = (e: ProductDataType) => {
 		setCardItems([...cardItems, e])
 	}
 	const handleUpdateItem = (item: ProductDataType) => {
-		console.log("item",item)
 		const newArray = cardItems.map((cardItem) => {
 			if (cardItem.id === item.id) {
 				return item
@@ -30,7 +28,7 @@ const Admin = () => {
 		setCardItems(newArray)
 	}
 	const handleDeleteAllCardItems = () => {
-		const newArray:Array<any> = []
+		const newArray: Array<any> = []
 		setCardItems(newArray)
 	}
 	const MappedItems = cardItems.map(el => <CardItem
@@ -49,10 +47,10 @@ const Admin = () => {
 			<div className={wrapper.wrapper}>
 				<div className={styles.title}>
 					<DefaultCustomTitle text={"Admin panel"}/>
-					<DeleteAllAdminItemModal isOpen={isOpenModal} onModalSubmit={handleDeleteAllCardItems} toggle={handleChangeModalStatus}/>
+					<DeleteAllAdminItemModal isOpen={isOpenModal} onModalSubmit={handleDeleteAllCardItems}
+																														toggle={handleChangeModalStatus}/>
 					<button onClick={handleChangeModalStatus} disabled={cardItems.length < 1}>Удалить все предметы</button>
 				</div>
-
 				<div className={styles.content}>
 					<AdminDataItemForm onSubmit={handleAddNewCardItem}/>
 					{cardItems.length > 0 ?
@@ -62,8 +60,6 @@ const Admin = () => {
 						:
 						<div className={styles.noItems}>Нету предметов</div>
 					}
-
-
 				</div>
 			</div>
 		</div>

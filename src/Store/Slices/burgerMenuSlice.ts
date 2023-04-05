@@ -1,10 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const initialState: InitialAppStateType = {
+const initialState: InitialBurgerMenuStateType = {
 	isOpen: false
 }
 
-export type InitialAppStateType = {
+export type InitialBurgerMenuStateType = {
 	isOpen: boolean
 }
 
