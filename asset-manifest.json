@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sultan_shop/static/css/main.546d7c33.css",
-    "main.js": "/sultan_shop/static/js/main.d88f86a7.js",
+    "main.js": "/sultan_shop/static/js/main.799c8376.js",
     "static/js/787.3fc3b27b.chunk.js": "/sultan_shop/static/js/787.3fc3b27b.chunk.js",
     "static/media/operatorLogo.svg": "/sultan_shop/static/media/operatorLogo.dba7cddafd7e656b5b76905621b9c725.svg",
     "static/media/uploadImg.png": "/sultan_shop/static/media/uploadImg.c6f29fc70d59cf6f7df2.png",
@@ -40,11 +40,11 @@
     "static/media/bradCrumbsArrow.svg": "/sultan_shop/static/media/bradCrumbsArrow.5a3ebbf524233ddda3e33d65833a2922.svg",
     "static/media/open.svg": "/sultan_shop/static/media/open.90a0847e2609fe35eb180fd09df108b9.svg",
     "main.546d7c33.css.map": "/sultan_shop/static/css/main.546d7c33.css.map",
-    "main.d88f86a7.js.map": "/sultan_shop/static/js/main.d88f86a7.js.map",
+    "main.799c8376.js.map": "/sultan_shop/static/js/main.799c8376.js.map",
     "787.3fc3b27b.chunk.js.map": "/sultan_shop/static/js/787.3fc3b27b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.546d7c33.css",
-    "static/js/main.d88f86a7.js"
+    "static/js/main.799c8376.js"
   ]
 }
