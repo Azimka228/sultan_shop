@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react";
 import FilterByPrice from "../FilterByNumber/filterByPrice";
 import FilterByString from "../FilterByString/filterByString";
-import deleteIcon from "../../assets/delete.svg";
+import deleteIcon from "../../Assets/delete.svg";
 import {DataType} from "../../Utills/getDataSearchByString";
 import {useMediaQuery} from "usehooks-ts";
 import styles from "./index.module.scss"

@@ -14,7 +14,7 @@ type ItemTypeSizeType = itemWeightType | itemVolumeLiquidType
 
 const itemTypeSize = ["кг", "г", "мг", "мл", "л"] as Array<ItemTypeSizeType>
 
-const initialState:InitialStateType = {
+const initialState: InitialStateType = {
 	title: "",
 	typeSize: "кг",
 	size: 0,
@@ -34,11 +34,9 @@ type InitialStateType = {
 	url: string,
 	description: string,
 	brand: string,
-	price:number,
+	price: number,
 	itemType: string
 }
-
-
 
 export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data}) => {
 	useEffect(() => {
@@ -160,14 +158,13 @@ export const AdminDataItemForm: FC<AddAdminDataItemPropsType> = ({onSubmit, data
 	}
 
 	const buttonText = data ? "Подтвердить" : "+"
-	const itemTypeSizeSelectOptions = itemTypeSize.map((el, index) => {
+	const itemTypeSizeSelectOptions = itemTypeSize.map(el => {
 		let defaultItemSelected
 		defaultItemSelected = !!(data && data.typeSize === el);
-	return	<option value={el} selected={defaultItemSelected}>{el}</option>
+		return <option value={el} selected={defaultItemSelected}>{el}</option>
 	})
 	return (
 		<form onSubmit={handleSubmit} className={styles.main}>
-
 			<label htmlFor="itemType">
 				itemType:
 				<input

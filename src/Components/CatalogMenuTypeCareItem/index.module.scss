@@ -1,0 +1,42 @@
+@import "../../Styles/varibels.module";
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 238px;
+  opacity: 0.3;
+  border-bottom: 1px dashed #3F4E65;
+}
+
+.itemTypeCare__title {
+  margin: 20px 0 20px 0;
+  font-family: 'Inter', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-transform: uppercase;
+  color: #111111;
+  @media only screen and (min-width: 0px) and (max-width: $mobile) {
+    & {
+      margin: 5px 0 5px 0;
+      font-family: 'Inter', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      color: #3F4E65;
+      text-transform: none;
+    }
+  }
+
+  &_selected {
+    color: red;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

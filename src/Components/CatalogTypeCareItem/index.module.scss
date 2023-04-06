@@ -1,0 +1,25 @@
+.typeCards {
+  &__item {
+    background: #FFFFFF;
+    box-shadow: 0 15px 70px -11px rgba(43, 28, 1, 0.04);
+    border-radius: 10px;
+    text-align: center;
+    padding: 18px 19px 18px 19px;
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #3F4E65;
+    margin-bottom: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+    &_selected{
+      background: lightgrey;
+    }
+  }
+  &__item:not(:last-child) {
+    margin-right: 11px;
+  }
+}

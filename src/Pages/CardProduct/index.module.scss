@@ -313,30 +313,7 @@ html > body .addToCart {
   }
 }
 
-.specification {
-  @media only screen and (min-width: 0px) and (max-width: 1253px) {
-    & {
-      margin-top: 10px;
-    }
-  }
-  & > p {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 150%;
-    color: #3F4E65;
-  }
 
-  & > p > span {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 150%;
-    color: #111111;
-  }
-}
 
 .logo {
   box-sizing: border-box;

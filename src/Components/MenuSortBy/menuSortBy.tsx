@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import styles from "./index.module.scss"
-import openListLogo from "../../assets/openedList.svg";
-import closedListLogo from "../../assets/closedList.svg";
+import openListLogo from "../../Assets/openedList.svg";
+import closedListLogo from "../../Assets/closedList.svg";
 import {DefaultSortType} from "../../Store/Slices/productListFilterSlice";
 
 type MenuSortByPropsType = {

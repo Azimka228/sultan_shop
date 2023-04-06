@@ -2,8 +2,8 @@ import React, {FC, useEffect, useState} from "react";
 import {CustomInput} from "../CustomInput/customInput";
 import {DataType} from "../../Utills/getDataSearchByString";
 import {FilterByStringItem} from "./FilterByStringItem/filterByStringItem";
-import openListLogo from "../../assets/openedList.svg";
-import closedListLogo from "../../assets/closedList.svg";
+import openListLogo from "../../Assets/openedList.svg";
+import closedListLogo from "../../Assets/closedList.svg";
 import styles from "./index.module.scss"
 import {useMediaQuery} from "usehooks-ts";
 

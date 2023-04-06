@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import "./App.css";
 import {Menu} from "./Components/Menu/menu";
 import "./Styles/normalize.scss"
 import Header from "./Components/Header/header";
@@ -11,27 +10,25 @@ import {ProductDataType, setCatalogData} from "./Store/Slices/productListFilterS
 import {setProductData} from "./Store/Slices/productListSlice";
 import useReadLocalStorage from "usehooks-ts/dist/esm/useReadLocalStorage/useReadLocalStorage";
 
-
 function App() {
 
 	const dispatch = useAppDispatch()
 	const cardItems = useReadLocalStorage<Array<ProductDataType>>("cardItems")
-	let isCardItems:boolean
+	let isCardItems: boolean
 	if (cardItems) {
 		isCardItems = cardItems.length > 0
 	}
 
-
-	useEffect(()=>{
-		if(isCardItems && cardItems) {
-			dispatch(setProductData({productsList : cardItems }))
-			dispatch(setCatalogData({productsList : cardItems}))
+	useEffect(() => {
+		if (isCardItems && cardItems) {
+			dispatch(setProductData({productsList: cardItems}))
+			dispatch(setCatalogData({productsList: cardItems}))
 		} else {
-			dispatch(setProductData({productsList : data.productsList as Array<ProductDataType>}))
-			dispatch(setCatalogData({productsList : data.productsList as Array<ProductDataType>}))
+			dispatch(setProductData({productsList: data.productsList as Array<ProductDataType>}))
+			dispatch(setCatalogData({productsList: data.productsList as Array<ProductDataType>}))
 		}
 
-	},[dispatch])
+	}, [dispatch])
 
 	return (
 		<React.Fragment>

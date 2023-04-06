@@ -1,8 +1,8 @@
 import React from "react";
 import styles from './index.module.scss'
 import {Link} from "react-router-dom";
-import searchLogo from '../../../assets/search.svg'
-import cubesLogo from '../../../assets/cubes.svg'
+import searchLogo from '../../../Assets/search.svg'
+import cubesLogo from '../../../Assets/cubes.svg'
 import {AppLinks} from "../../../Routes/links";
 
 export const HeaderMobile = () => {

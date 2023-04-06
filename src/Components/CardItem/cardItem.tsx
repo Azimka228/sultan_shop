@@ -1,9 +1,9 @@
 import React, {FC, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import styles from "./index.module.scss"
-import cartImg from "../../assets/cart.svg"
-import deleteLogo from "../../assets/delete.svg"
-import updateLogo from "../../assets/update.png"
+import cartImg from "../../Assets/cart.svg"
+import deleteLogo from "../../Assets/delete.svg"
+import updateLogo from "../../Assets/update.png"
 import {useAppDispatch} from "../../Store/Hooks/useAppDispatch";
 import {setBasketItem} from "../../Store/Slices/basketSlice";
 import {ItemSize} from "../ItemSize/itemSize";

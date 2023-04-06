@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import styles from "./index.module.scss"
-import arrowLeftLogo from "../../assets/arrowLeft.svg";
-import arrowRightLogo from "../../assets/arrowRight.svg";
+import arrowLeftLogo from "../../Assets/arrowLeft.svg";
+import arrowRightLogo from "../../Assets/arrowRight.svg";
 import {v4 as generateId} from "uuid";
 
 type PaginationPropsType = {

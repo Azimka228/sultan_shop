@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {BradCrumbsPathType} from "../bradCrumbs";
 import {Link} from "react-router-dom";
-import bradCrumbsLogo from "../../../assets/bradCrumbsArrow.svg";
+import bradCrumbsLogo from "../../../Assets/bradCrumbsArrow.svg";
 import styles from './index.module.scss'
 
 type BradCrumbsMobilePropsType = {

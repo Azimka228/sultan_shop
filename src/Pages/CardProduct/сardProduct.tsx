@@ -3,7 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useAppSelector} from "../../Store/Hooks/useAppSelector";
 import wrapper from "../../Styles/wrapper.module.scss";
 import {AppLinks} from "../../Routes/links";
-import cartImg from "../../assets/cart.svg";
+import cartImg from "../../Assets/cart.svg";
 import styles from "./index.module.scss"
 import CollapsibleDiv from "../../Components/CollapsibleDiv/collapsibleDiv";
 import shareLogo from "./share.svg"
@@ -16,6 +16,7 @@ import {mainItemsSelector} from "../../Store/Selectors/productListSelector";
 import BradCrumbs, {BradCrumbsType} from "../../Components/BradCrumbs/bradCrumbs";
 import {ProductDataType} from "../../Store/Slices/productListSlice";
 import {basketItemsSelector} from "../../Store/Selectors/basketSelector";
+import Specification, {SpecificationItem} from "../../Components/Specification/specification";
 
 const defaultCurrentItem: ProductDataType = {
 	id: "static",
@@ -42,6 +43,17 @@ const СardProduct = () => {
 	let {barcode} = useParams()
 	const productsList = useAppSelector(mainItemsSelector)
 	let currentItem = productsList?.find((el) => (el.barcode === barcode))
+
+	const typeCare = currentItem?.itemType.join(", ")
+
+	const currentItemSpecification:Array<SpecificationItem> = [
+		{title: "Производитель",text: currentItem?.manufacturer || 'static' },
+		{title: "Бренд",text: currentItem?.brand || 'static' },
+		{title: "Артикул",text: currentItem?.barcode.slice(0, 6) || 'static' },
+		{title: "Штрихкод",text: currentItem?.barcode || 'static' },
+		{title: "Вес коробки",text: `${currentItem?.size} ${currentItem?.typeSize}` ?? 'static' },
+		{title: "Тип ухода",text: typeCare || 'static' },
+	]
 
 	const navigate = useNavigate()
 	const basketItems = useAppSelector(basketItemsSelector)
@@ -80,18 +92,6 @@ const СardProduct = () => {
 
 		}
 	}
-
-	const typeCare = currentItem?.itemType.join(", ")
-
-	const characteristicsBlock =
-		<div className={styles.specification}>
-			<p>Производитель: <span>{currentItem?.manufacturer}</span></p>
-			<p>Бренд: <span>{currentItem?.brand}</span></p>
-			<p>Артикул: <span>{currentItem?.barcode.slice(0, 6)}</span></p>
-			<p>Штрихкод: <span>{currentItem?.barcode}</span></p>
-			<p>Вес коробки: <span>{currentItem?.size} {currentItem?.typeSize}</span></p>
-			<p>Тип ухода: <span>{typeCare}</span></p>
-		</div>;
 
 	return (
 		<div className={styles.main}>
@@ -132,19 +132,13 @@ const СardProduct = () => {
 								</button>
 							</div>
 						</div>
-						<div className={styles.specification}>
-							<p>Производитель: <span>{currentItem?.manufacturer}</span></p>
-							<p>Бренд: <span>{currentItem?.brand}</span></p>
-							<p>Артикул: <span>{currentItem?.barcode.slice(0, 6)}</span></p>
-							<p>Штрихкод: <span>{currentItem?.barcode}</span></p>
-							<p>Вес коробки: <span>{currentItem?.size} {currentItem?.typeSize}</span></p>
-						</div>
+						<Specification data={currentItemSpecification}/>
 						<CollapsibleDiv title={"Описание"}>
 							<div className={styles.description}>{currentItem?.description}</div>
 						</CollapsibleDiv>
 						<div className={styles.line}></div>
 						<CollapsibleDiv title={"Характеристики"}>
-							{characteristicsBlock}
+							<Specification data={currentItemSpecification}/>
 						</CollapsibleDiv>
 					</div>
 				</div>

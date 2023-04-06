@@ -40,6 +40,8 @@ import {
 	sortByListSelector
 } from "../../Store/Selectors/productListFilterSelector";
 import BradCrumbs, {BradCrumbsType} from "../../Components/BradCrumbs/bradCrumbs";
+import CatalogTypeCareItem from "../../Components/CatalogTypeCareItem/catalogTypeCareItem";
+import CatalogMenuTypeCareItem from "../../Components/CatalogMenuTypeCareItem/catalogMenuTypeCareItem";
 
 type FilterStateType = {
 	max: number
@@ -79,7 +81,6 @@ const breadCrumbsData: BradCrumbsType = {
 const Catalog = () => {
 
 	const isTablet = useMediaQuery("(max-width: 768px)")
-	const isMobile = useMediaQuery("(max-width: 480px)")
 
 	useEffect(() => {
 		//This code is for loading search parameters by "Item type"
@@ -91,6 +92,7 @@ const Catalog = () => {
 			dispatch(setSortByItemType({item: SortByItemTypeArray}))
 		}
 	}, [])
+
 	const dispatch = useAppDispatch()
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation()
@@ -149,40 +151,15 @@ const Catalog = () => {
 		dispatch(setCurrentPage({page: 1}))
 		dispatch(setSortByItemType({item}))
 	}
+
 	const typeCardItems = itemTypesFiltredArr.map((el, index) => {
-		let isSelectedItem
-		if (filterSortByItemType.includes(el)) {
-			isSelectedItem = `${styles.typeCards__item} ${styles.typeCards__item_selected}`
-		} else {
-			isSelectedItem = styles.typeCards__item
-		}
-
-		return (
-			<div
-				key={index}
-				onClick={() => handleAddItemTypes(el)}
-				className={isSelectedItem}
-			>
-				{el}
-			</div>
-		)
+		return <CatalogTypeCareItem key={index} itemValue={el} onClickItemCallback={handleAddItemTypes}/>
 	})
+
 	const leftMenuTypeCardsItems = itemTypesFiltredArr.map((el, index, array) => {
-		let isSelectedItem
-		if (filterSortByItemType.includes(el)) {
-			isSelectedItem = `${styles.itemTypeCare__title} ${styles.itemTypeCare__title_selected}`
-		} else {
-			isSelectedItem = styles.itemTypeCare__title
-		}
-
-		const linesAfterItem = index !== array.length - 1 && <div className={styles.line}></div>
-
-		return (
-			<>
-				<div className={isSelectedItem} key={index} onClick={() => handleAddItemTypes(el)}>{el}</div>
-				{!isMobile && linesAfterItem}
-			</>
-		)
+		return <CatalogMenuTypeCareItem isLineAfterItem={index !== array.length - 1}
+																																		itemValue={el}
+																																		onClickItemCallback={handleAddItemTypes}/>
 	})
 
 	const filtredItemsByPrice = items.filter(el => el.price >= filterState.min && el.price <= filterState.max)
@@ -229,8 +206,8 @@ const Catalog = () => {
 		dispatch(setFilterByPrice({max: filterState.max, min: filterState.min}))
 	}
 	const handleResetParametrs = () => {
-		setFilterState({...filterState, max: 10000, min: 0, filterByManufacturer: []})
-		dispatch(setFilterByPrice({max: 10000, min: 0}))
+		setFilterState({...filterState, max: 9999999, min: 0, filterByManufacturer: []})
+		dispatch(setFilterByPrice({max: 9999999, min: 0}))
 		dispatch(setCatalogData({productsList: itemsCopy}))
 		dispatch(catalogDataFilterByManufacturer({value: []}))
 
