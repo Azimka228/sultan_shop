@@ -1,7 +1,7 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import {BasketItem} from "./basketItem";
 import * as actions from "../../Store/Slices/basketSlice";
-import {BasketDataType} from "../../Store/Slices/basketSlice";
+import {BasketDataType, decreaseItemCount, deleteBasketItem} from "../../Store/Slices/basketSlice";
 import * as reduxHooks from "react-redux";
 
 const emptyData = {} as BasketDataType
@@ -39,15 +39,25 @@ describe("Basket item", () => {
 		mockedUseSelector.mockReturnValue([])
 		// @ts-ignore
 		mockedDispatch.mockReturnValue(dispatch)
-		const mockIncreaseItemCount = jest.spyOn(actions,'increaseItemCount')
+		const mockIncreaseItemCount = jest.spyOn(actions, "increaseItemCount")
+		const mockDecreaseItemCount = jest.spyOn(actions, "decreaseItemCount")
+		const mockDeleteBasketItem = jest.spyOn(actions, "deleteBasketItem")
 
 		const utils = render(
 			<BasketItem data={fulliedData}/>
 		);
 
-		fireEvent.click(screen.getByText('+'))
+		fireEvent.click(screen.getByText("+"))
+		expect(mockIncreaseItemCount).toHaveBeenCalled()
+
+		fireEvent.click(screen.getByText("-"))
+		expect(mockDecreaseItemCount).toHaveBeenCalled()
+
+		fireEvent.click(screen.getByAltText("deleteIcon"))
+		expect(mockDeleteBasketItem).toHaveBeenCalled()
+
 		let test = expect(utils).toMatchSnapshot()
 		expect(dispatch).toHaveBeenCalled()
-		expect(mockIncreaseItemCount).toHaveBeenCalled()
+
 	})
 })
