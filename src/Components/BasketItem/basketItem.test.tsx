@@ -32,12 +32,11 @@ describe("Basket item", () => {
 			<BasketItem data={emptyData}/>
 		);
 
-		let test = expect(utils).toMatchSnapshot()
+		expect(utils).toMatchSnapshot()
 	})
 	it("should create Basket item with data", () => {
 		const dispatch = jest.fn()
 		mockedUseSelector.mockReturnValue([])
-		// @ts-ignore
 		mockedDispatch.mockReturnValue(dispatch)
 		const mockIncreaseItemCount = jest.spyOn(actions, "increaseItemCount")
 		const mockDecreaseItemCount = jest.spyOn(actions, "decreaseItemCount")
@@ -56,7 +55,7 @@ describe("Basket item", () => {
 		fireEvent.click(screen.getByAltText("deleteIcon"))
 		expect(mockDeleteBasketItem).toHaveBeenCalled()
 
-		let test = expect(utils).toMatchSnapshot()
+		expect(utils).toMatchSnapshot()
 		expect(dispatch).toHaveBeenCalled()
 
 	})

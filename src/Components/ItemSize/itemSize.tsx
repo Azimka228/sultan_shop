@@ -3,7 +3,7 @@ import bottleImg from "../../Assets/bottle.svg";
 import boxImg from "../../Assets/box.svg";
 import styles from './index.module.scss'
 import {itemVolumeLiquidType, itemWeightType} from "../../Store/Slices/productListFilterSlice";
-type ItemSizePropsType = {
+export type ItemSizePropsType = {
 	typeSize: itemWeightType | itemVolumeLiquidType
 	size: number
 }
